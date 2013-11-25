@@ -10,7 +10,7 @@ get_template_part('templates/page', 'header');
 do_action('woocommerce_before_main_content');
 
 while (have_posts()) : the_post();
-	woocommerce_get_template_part('content', 'single-product');
+	get_template_part( 'templates/content', 'single-product');
 endwhile;
 
 /**
