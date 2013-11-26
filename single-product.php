@@ -1,21 +1,50 @@
 <?php
-
-get_template_part('templates/page', 'header');
 /**
- * woocommerce_before_main_content hook
+ * The Template for displaying all single products.
  *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- */
-do_action('woocommerce_before_main_content');
-
-while (have_posts()) : the_post();
-	get_template_part( 'templates/content', 'single-product');
-endwhile;
-
-/**
- * woocommerce_after_main_content hook
+ * Override this template by copying it to yourtheme/woocommerce/single-product.php
  *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     1.6.4
  */
-do_action('woocommerce_after_main_content');
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+get_template_part('templates/page', 'header'); ?>
+
+	<?php
+		/**
+		 * woocommerce_before_main_content hook
+		 *
+		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+		 * @hooked woocommerce_breadcrumb - 20
+		 */
+		do_action('woocommerce_before_main_content');
+	?>
+
+		<?php while ( have_posts() ) : the_post(); ?>
+
+			<?php woocommerce_get_template_part( 'content', 'single-product' ); ?>
+
+		<?php endwhile; // end of the loop. ?>
+
+	<?php
+		/**
+		 * woocommerce_after_main_content hook
+		 *
+		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+		 */
+		do_action('woocommerce_after_main_content');
+	?>
+
+	<?php
+		/**
+		 * woocommerce_sidebar hook
+		 *
+		 * @hooked woocommerce_get_sidebar - 10
+		 */
+		do_action('woocommerce_sidebar');
+	?>
+
+<?php get_footer('shop'); ?>
