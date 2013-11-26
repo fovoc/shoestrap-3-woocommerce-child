@@ -26,6 +26,7 @@ function shoestrap_woocommerce_styles() { ?>
 	.woocommerce #content div.product div.images,
 	.woocommerce-page #content div.product div.images {
 		float: left;
+		margin-right: 1em;
 	}
 	.woocommerce div.product form.cart div.quantity,
 	.woocommerce-page div.product form.cart div.quantity,
