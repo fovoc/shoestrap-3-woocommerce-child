@@ -15,7 +15,29 @@ function shoestrap_woocommerce_styles() { ?>
 	}
 	div.quantity.buttons_added .minus,
 	div.quantity.buttons_added .plus {
-		display: inline-block;
+		display: none;
+	}
+	div.quantity.buttons_added .qty{
+/*		float: left;
+*/		margin-right: .5em;
+	}
+	.woocommerce div.product div.images,
+	.woocommerce-page div.product div.images,
+	.woocommerce #content div.product div.images,
+	.woocommerce-page #content div.product div.images {
+		float: left;
+	}
+	.woocommerce div.product form.cart div.quantity,
+	.woocommerce-page div.product form.cart div.quantity,
+	.woocommerce #content div.product form.cart div.quantity,
+	.woocommerce-page #content div.product form.cart div.quantity {
+		float: left;
+	}
+	.woocommerce div.product .woocommerce-tabs,
+	.woocommerce-page div.product .woocommerce-tabs,
+	.woocommerce #content div.product .woocommerce-tabs,
+	.woocommerce-page #content div.product .woocommerce-tabs {
+		clear: both;
 	}
 	</style>
 	<?php
