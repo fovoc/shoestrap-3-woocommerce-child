@@ -18,8 +18,7 @@ function shoestrap_woocommerce_styles() { ?>
 		display: none;
 	}
 	div.quantity.buttons_added .qty{
-/*		float: left;
-*/		margin-right: .5em;
+		margin-right: .5em;
 	}
 	.woocommerce div.product div.images,
 	.woocommerce-page div.product div.images,
