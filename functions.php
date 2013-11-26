@@ -39,6 +39,8 @@ function shoestrap_woocommerce_styles() { ?>
 	.woocommerce #content div.product .woocommerce-tabs,
 	.woocommerce-page #content div.product .woocommerce-tabs {
 		clear: both;
+		position: relative;
+		top: 1em;
 	}
 	</style>
 	<?php
