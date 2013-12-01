@@ -1,7 +1,10 @@
 <?php
 
+// Remove default stylesheets for pre-2.1 versions of WooCommerce
 define('WOOCOMMERCE_USE_CSS', false);
+// Remove default stylesheets for WooCommerce 2.1 and above
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+// Add support for WooCommerce
 add_theme_support( 'woocommerce' );
 
 // Remove default WooCommerce titles
