@@ -53,9 +53,11 @@ add_action( 'wp_footer', 'shoestrap_woocommerce_styles' );
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 add_action( 'woocommerce_before_shop_loop_item_title', 'shoestrap_woocommerce_template_loop_product_thumbnail', 10 );
 
+
 function shoestrap_woocommerce_template_loop_product_thumbnail() {
 	echo shoestrap_woocommerce_get_product_thumbnail();
 }
+
 
 function shoestrap_woocommerce_get_product_thumbnail( $size = 'shop_catalog', $placeholder_width = 0, $placeholder_height = 0  ) {
 	global $post;
@@ -71,4 +73,45 @@ function shoestrap_woocommerce_get_product_thumbnail( $size = 'shop_catalog', $p
 		return $image;
 	elseif ( wc_placeholder_img_src() )
 		return wc_placeholder_img( $size );
+}
+
+
+function shoestrap_get_rating_html( $rating = null ) {
+	global $product;
+
+	if ( ! is_numeric( $rating ) ) {
+		$rating = $product->get_average_rating();
+		$rating = round( $rating );
+	}
+
+	if ( $rating > 0 ) {
+		$star_on  = '<i class="el-icon-star text-success"></i>';
+		$star_off = '<i class="el-icon-star-empty text-danger"></i>';
+
+		$stars .= $star_on;
+		if ( $rating >= 2 ) :
+			$stars .= $star_on;
+			if ( $rating >= 3 ) :
+				$stars .= $star_on;
+				if ( $rating >= 4 ) :
+					$stars .= $star_on;
+					if ( $rating >= 5 ) :
+						$stars .= $star_on;
+					else :
+						$stars .= $star_off;
+					endif;
+				else :
+					$stars .= $star_off . $star_off;
+				endif;
+			else :
+				$stars .= $star_off . $star_off . $star_off;
+			endif;
+		else :
+			$stars .= $star_off . $star_off . $star_off . $star_off;
+		endif;
+
+		$rating_html  = '<div class="star-rating" title="' . sprintf( __( 'Rated %s out of 5', 'woocommerce' ), $rating ) . '">' . $stars . '</div>';
+
+		return $rating_html;
+	}
 }
