@@ -44,6 +44,9 @@ function shoestrap_woocommerce_styles() { ?>
 		position: relative;
 		top: 1em;
 	}
+	img.avatar.media-object {
+		border-radius: 50%;
+	}
 	</style>
 	<?php
 }
