@@ -120,3 +120,49 @@ function shoestrap_get_rating_html( $rating = null ) {
 		return $rating_html;
 	}
 }
+
+/*
+ * Add classes to single posts
+ */
+add_filter( 'post_class', 'shoestrap_woo_post_classes' );
+if ( !function_exists( 'shoestrap_woo_post_classes' ) ) :
+function shoestrap_woo_post_classes( $classes ) {
+	global $post;
+	// get the specified width ( narrow/normal/wide )
+	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
+	
+	// Remove unnecessary classes
+	foreach (range(0, 12) as $number) :
+		$remove_classes[] = 'col-xs-'.$number.'';
+		$remove_classes[] = 'col-sm-'.$number.'';
+		$remove_classes[] = 'col-md-'.$number.'';
+		$remove_classes[] = 'col-lg-'.$number.'';
+	endforeach;
+
+	$classes = array_diff( $classes, $remove_classes );
+
+	$classes[] = '';
+	// calculate the css classes based on the above selection
+	if ( $mode == 'narrow' ) :
+		$classes[] = 'col-lg-3';
+		$classes[] = 'col-md-4';
+		$classes[] = 'col-sm-6';
+		$classes[] = 'col-xs-12';
+	elseif ( $mode == 'normal' ) :
+		$classes[] = 'col-lg-4';
+		$classes[] = 'col-md-6';
+		$classes[] = 'col-sm-6';
+		$classes[] = 'col-xs-12';
+	else :
+		$classes[] = 'col-lg-6';
+		$classes[] = 'col-md-6';
+		$classes[] = 'col-sm-12';
+		$classes[] = 'col-xs-12';
+	endif;
+
+	// If this is NOT a singular post/page etc, return the classes
+	if ( !is_singular() ) :
+		return $classes;
+	endif;
+}
+endif;
