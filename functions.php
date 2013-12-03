@@ -1,5 +1,7 @@
 <?php
 
+require_once locate_template('/lib/admin-options.php');
+
 // Remove default stylesheets for pre-2.1 versions of WooCommerce
 define('WOOCOMMERCE_USE_CSS', false);
 // Remove default stylesheets for WooCommerce 2.1 and above
