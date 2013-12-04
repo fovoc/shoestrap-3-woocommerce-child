@@ -119,10 +119,21 @@ function shoestrap_get_rating_html( $rating = null ) {
 	}
 }
 
+
 /*
- * Add classes to single posts
+ * Add classes to single products on product archives
  */
-add_filter( 'post_class', 'shoestrap_woo_post_classes' );
+function shoestrap_woo_conditional_post_classes() {
+	if ( is_woocommerce() && !is_product() ) :
+		add_filter( 'post_class', 'shoestrap_woo_post_classes' );
+	endif;
+}
+add_action( 'wp', 'shoestrap_woo_conditional_post_classes' );
+
+
+/*
+ * the classes to add to single products on product archives
+ */
 if ( !function_exists( 'shoestrap_woo_post_classes' ) ) :
 function shoestrap_woo_post_classes( $classes ) {
 	global $post;
