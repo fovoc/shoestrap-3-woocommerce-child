@@ -93,7 +93,7 @@ function shoestrap_get_rating_html( $rating = null ) {
 		$star_on  = '<i class="el-icon-star text-success"></i>';
 		$star_off = '<i class="el-icon-star-empty text-danger"></i>';
 
-		$stars .= $star_on;
+		$stars = $star_on;
 		if ( $rating >= 2 ) :
 			$stars .= $star_on;
 			if ( $rating >= 3 ) :
