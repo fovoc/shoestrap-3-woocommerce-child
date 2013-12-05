@@ -11,46 +11,11 @@ add_theme_support( 'woocommerce' );
 add_filter( 'woocommerce_show_page_title', '__return_false' );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
-function shoestrap_woocommerce_styles() { ?>
-	<style>
-	div.quantity.buttons_added {
-		width: 50px;
-	}
-	div.quantity.buttons_added .minus,
-	div.quantity.buttons_added .plus {
-		display: none;
-	}
-	div.quantity.buttons_added .qty{
-		margin-right: .5em;
-	}
-	.woocommerce div.product div.images,
-	.woocommerce-page div.product div.images,
-	.woocommerce #content div.product div.images,
-	.woocommerce-page #content div.product div.images {
-		float: left;
-		margin-right: 1em;
-	}
-	.woocommerce div.product form.cart div.quantity,
-	.woocommerce-page div.product form.cart div.quantity,
-	.woocommerce #content div.product form.cart div.quantity,
-	.woocommerce-page #content div.product form.cart div.quantity {
-		float: left;
-	}
-	.woocommerce div.product .woocommerce-tabs,
-	.woocommerce-page div.product .woocommerce-tabs,
-	.woocommerce #content div.product .woocommerce-tabs,
-	.woocommerce-page #content div.product .woocommerce-tabs {
-		clear: both;
-		position: relative;
-		top: 1em;
-	}
-	img.avatar.media-object {
-		border-radius: 50%;
-	}
-	</style>
-	<?php
+function shoestrap_woocommerce_styles( $bootstrap ) {
+	return $bootstrap . '
+	@import "' . get_stylesheet_directory() . '/assets/less/woocommerce.less";';
 }
-add_action( 'wp_footer', 'shoestrap_woocommerce_styles' );
+add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
 
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
