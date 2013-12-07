@@ -116,4 +116,4 @@ function shoestrap_module_woo_options( $sections ) {
 	return $sections;
 }
 endif;
-add_filter( 'redux-sections-'.REDUX_OPT_NAME, 'shoestrap_module_woo_options', 93 );
+add_filter( 'redux-sections-' . 'REDUX_OPT_NAME', 'shoestrap_module_woo_options', 93 );
