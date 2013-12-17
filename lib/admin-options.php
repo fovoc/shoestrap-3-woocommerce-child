@@ -4,7 +4,7 @@
 /*
  * Gridder Addon options
  */
-if ( !function_exists( 'shoestrap_module_gridder_options' ) ) :
+if ( !function_exists( 'shoestrap_module_woo_options' ) ) :
 function shoestrap_module_woo_options( $sections ) {
 
 	$section = array(
@@ -116,4 +116,4 @@ function shoestrap_module_woo_options( $sections ) {
 	return $sections;
 }
 endif;
-add_filter( 'redux-sections-' . 'REDUX_OPT_NAME', 'shoestrap_module_woo_options', 93 );
+add_filter( 'redux-sections-' . REDUX_OPT_NAME, 'shoestrap_module_woo_options', 16 );
