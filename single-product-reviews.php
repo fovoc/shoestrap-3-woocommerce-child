@@ -1,10 +1,17 @@
 <?php
-
+/**
+ * Display single product reviews (comments)
+ *
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     2.0.3
+ */
 global $woocommerce, $product;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if ( comments_open() ) : ?><div id="reviews"><?php
+?>
+<?php if ( comments_open() ) : ?><div id="reviews"><?php
 
 	echo '<div id="comments">';
 
