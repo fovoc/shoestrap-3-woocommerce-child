@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $post, $woocommerce, $product; ?>
 
 <div class="wrap">
-	<div id="flexslider-product" class="flexslider">
+	<div id="slider" class="flexslider">
 		<ul class="slides">
 			<?php if ( has_post_thumbnail() ) : ?>
 				<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID),'full', false, '' ); ?>

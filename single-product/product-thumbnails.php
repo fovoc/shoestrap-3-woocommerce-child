@@ -7,7 +7,7 @@ global $post, $product, $woocommerce;
 $attachment_ids = $product->get_gallery_attachment_ids();
 $total = sizeof($attachment_ids);
 if ( $total > 0 ) : ?>
-	<div id="flexcarousel-product" class="flexslider hidden-xs">
+	<div id="carousel" class="flexslider hidden-xs">
 		<ul class="slides">
 			<?php if ( has_post_thumbnail() ) : ?>
 				<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'thumbnail', false, '' ); ?>
@@ -27,7 +27,7 @@ if ( $total > 0 ) : ?>
 				$image       = wp_get_attachment_image( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ) );
 				$image_title = esc_attr( get_the_title( $attachment_id ) );
 
-				echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<li><a href="%s" rel="thumbnails">%s</a></li>', $image_link, $image), $attachment_id, $post->ID, );
+				echo apply_filters( 'woocommerce_single_product_image_thumbnail_html', sprintf( '<li><a href="%s" rel="thumbnails">%s</a></li>', $image_link, $image), $attachment_id, $post->ID );
 
 				$loop++;
 
