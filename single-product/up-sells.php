@@ -1,13 +1,6 @@
 <?php
-/**
- * Single Product Up-Sells
- *
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     1.6.4
- */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product, $woocommerce, $woocommerce_loop;
 
@@ -33,23 +26,16 @@ $products = new WP_Query( $args );
 $woocommerce_loop['columns'] 	= $columns;
 
 if ( $products->have_posts() ) : ?>
-	<hr>
 	<div class="upsells products clearfix">
-
 		<h5><?php _e('YOU MAY ALSO LIKE&hellip;', 'woocommerce') ?></h5>
-
-		<?php woocommerce_product_loop_start(); ?>
-
-			<?php while ( $products->have_posts() ) : $products->the_post(); ?>
-
-				<?php woocommerce_get_template_part( 'content', 'product-small' ); ?>
-
-			<?php endwhile; // end of the loop. ?>
-
-		<?php woocommerce_product_loop_end(); ?>
-
+		<?php
+			woocommerce_product_loop_start();
+			while ( $products->have_posts() ) : $products->the_post();
+				woocommerce_get_template_part( 'content', 'product-small' );
+			endwhile;
+			woocommerce_product_loop_end();
+		?>
 	</div>
-
-<?php endif;
-
+	<?php
+endif;
 wp_reset_postdata();
