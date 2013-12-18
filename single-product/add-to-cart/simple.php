@@ -22,7 +22,7 @@ if ( $product->is_in_stock() ) : ?>
 		<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart form" method="post" enctype='multipart/form-data'>
 			<?php do_action('woocommerce_before_add_to_cart_button'); ?>
 
-			<div class="col-xs-6 col-sm-4">
+			<div class="col-sm-4">
 				<?php
 					if ( ! $product->is_sold_individually() ) :
 						woocommerce_quantity_input( array(
@@ -33,8 +33,8 @@ if ( $product->is_in_stock() ) : ?>
 				?>
 			</div>
 
-			<div class="col-xs-6 col-sm-8 buttonblock">
-				<button type="submit" class="btn btn-md theme single_add_to_cart_button button alt"><?php echo apply_filters('single_add_to_cart_text', __('Add to cart', 'woocommerce'), $product->product_type); ?></button>
+			<div class="col-sm-8">
+				<button type="submit" class="btn btn-block btn-primary btn-lg"><?php echo apply_filters('single_add_to_cart_text', __('Add to cart', 'woocommerce'), $product->product_type); ?></button>
 			</div>
 			<?php do_action('woocommerce_after_add_to_cart_button'); ?>
 		</form>
