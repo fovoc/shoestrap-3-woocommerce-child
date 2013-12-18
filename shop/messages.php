@@ -1,17 +1,15 @@
 <?php
-/**
- * Show messages
- *
- * @author 		WooThemes
- * @package 	WooCommerce/Templates
- * @version     1.6.4
- */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! $messages ) return;
-?>
+if ( ! $messages ) :
+	return;
+endif; ?>
 
 <?php foreach ( $messages as $message ) : ?>
-	<div class="wrap"><div class="woocommerce_message text-left alert alert-success"><?php echo wp_kses_post( $message ); ?></div></div>
-<?php endforeach; ?>
+	<div class="wrap">
+		<div class="woocommerce_message alert alert-success">
+			<?php echo wp_kses_post( $message ); ?>
+		</div>
+	</div>
+<?php endforeach;
