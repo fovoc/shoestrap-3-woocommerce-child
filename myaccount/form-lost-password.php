@@ -40,7 +40,7 @@ global $woocommerce, $post;
     <input type="hidden" name="reset_login" value="<?php echo isset( $args['login'] ) ? $args['login'] : ''; ?>" />
 	<?php endif; ?>
 
-    <p class="form-row"><input type="submit" class="button btn theme" name="reset" value="<?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'woocommerce' ) : __( 'Save', 'woocommerce' ); ?>" /></p>
+    <p class="form-row"><input type="submit" class="button btn btn-primary" name="reset" value="<?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'woocommerce' ) : __( 'Save', 'woocommerce' ); ?>" /></p>
 	<?php $woocommerce->nonce_field( $args['form'] ); ?>
 
 </form>

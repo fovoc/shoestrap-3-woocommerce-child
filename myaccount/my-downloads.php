@@ -34,4 +34,4 @@ if ( $downloads = $woocommerce->customer->get_downloadable_products() ) : ?>
 		<?php endforeach; ?>
 	</ul>
 
-<?php endif; ?>
+<?php endif;

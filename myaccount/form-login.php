@@ -115,7 +115,7 @@ global $woocommerce; ?>
 	
 				<div class="form-group">
 						<?php $woocommerce->nonce_field('register', 'register') ?>
-						<input type="submit" class="button btn theme" name="register" value="<?php _e('Register', 'woocommerce'); ?>" />
+						<input type="submit" class="button btn btn-primary" name="register" value="<?php _e('Register', 'woocommerce'); ?>" />
 				</div>
 	
 			</form>
@@ -127,4 +127,4 @@ global $woocommerce; ?>
 
 </div>
 <?php endif; ?>
-<?php do_action('woocommerce_after_customer_login_form'); ?>
+<?php do_action('woocommerce_after_customer_login_form');

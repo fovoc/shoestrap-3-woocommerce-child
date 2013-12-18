@@ -31,4 +31,4 @@ $woocommerce->show_messages(); ?>
 
 <?php woocommerce_get_template( 'myaccount/my-address.php' ); ?>
 
-<?php do_action( 'woocommerce_after_my_account' ); ?>
+<?php do_action( 'woocommerce_after_my_account' );

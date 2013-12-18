@@ -46,4 +46,4 @@ get_currentuserinfo();
 
 	</form>
 
-<?php endif; ?>
+<?php endif;
