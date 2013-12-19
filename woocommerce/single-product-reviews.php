@@ -72,7 +72,7 @@ if ( comments_open() ) : ?>
 							$comment_form['comment_field'] = '<p class="comment-form-rating"><label for="rating">' . __( 'Rating', 'woocommerce' ) .'</label><select name="rating" id="rating"><option value="">'.__( 'Rate&hellip;', 'woocommerce' ).'</option><option value="5">'.__( 'Perfect', 'woocommerce' ).'</option><option value="4">'.__( 'Good', 'woocommerce' ).'</option><option value="3">'.__( 'Average', 'woocommerce' ).'</option><option value="2">'.__( 'Not that bad', 'woocommerce' ).'</option><option value="1">'.__( 'Very Poor', 'woocommerce' ).'</option></select></p>';
 						endif;
 
-						$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . __( 'Your Review', 'woocommerce' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea></p>' . $woocommerce->nonce_field('comment_rating', true, false);
+						$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . __( 'Your Review', 'woocommerce' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" class="form-control"></textarea></p>' . wp_nonce_field( 'comment_rating', true, false );
 						comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form ) );
 					?>
 				</div>
