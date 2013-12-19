@@ -1,28 +1,35 @@
 <?php
+/**
+ * The template for displaying product content within loops.
+ *
+ * Override this template by copying it to yourtheme/woocommerce/content-product.php
+ *
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     1.6.4
+ */
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product, $woocommerce_loop;
 
 // Store loop count we're currently on
-if ( empty( $woocommerce_loop['loop'] ) ) :
+if ( empty( $woocommerce_loop['loop'] ) )
 	$woocommerce_loop['loop'] = 0;
-endif;
 
 // Store column count for displaying the grid
-if ( empty( $woocommerce_loop['columns'] ) ) :
+if ( empty( $woocommerce_loop['columns'] ) )
 	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
-endif;
 
 // Ensure visibility
-if ( !$product->is_visible() ) :
+if ( ! $product || ! $product->is_visible() )
 	return;
-endif;
 
 // Increase loop count
-$woocommerce_loop['loop']++; ?>
+$woocommerce_loop['loop']++;
+?>
 
-<div class="product col-md-3">
+<div <?php post_class(); ?>>
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 	<?php global $product, $post, $woocommerce; ?>
 	<div class="thumbnail">
