@@ -22,35 +22,30 @@ endif;
 // Increase loop count
 $woocommerce_loop['loop']++; ?>
 
-<div class="product col-sm-3">
-	<?php do_action( 'woocommerce_before_shop_loop_item' ); global $product, $post, $woocommerce; ?>
-	<div class="view view-thumb">
+<div class="product col-md-3">
+	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
+	<?php global $product, $post, $woocommerce; ?>
+	<div class="thumbnail">
 		<?php if ($product->is_on_sale()) : ?>
 			<?php echo apply_filters('woocommerce_sale_flash', '<span class="onsale">'.__('SALE', 'woocommerce').'</span>', $post, $product); ?>
 		<?php endif; ?>
 
-		<?php
-			if ( has_post_thumbnail() ) :
-				the_post_thumbnail('medium');
-			else :
-				echo '<img src="//placehold.it/500x500" alt=""></a>';
-			endif;
-		?>
+		<?php echo shoestrap_woocommerce_get_product_thumbnail(); ?>
+		<div class="caption">
+			<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
-		<div class="mask">
-			<h2><?php echo $product->get_price_html(); ?></h2>
-			<?php
-				if ( function_exists( 'smart_excerpt' ) ) :
-					smart_excerpt(apply_filters( 'woocommerce_short_description', $post->post_excerpt ), 15);
-				endif;
-			?>
+			<div class="clearfix"></div>
 
-			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart" method="post" enctype='multipart/form-data'>
-				<a href="<?php the_permalink(); ?>" class="btn btn-sm custom"><?php _e('View', 'woocommerce'); ?></a>
-				<button type="submit" class="single_add_to_cart_button btn btn-sm custom"><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
+			<?php if ( function_exists( 'smart_excerpt' ) ) : ?>
+				<?php smart_excerpt( apply_filters( 'woocommerce_short_description', $post->post_excerpt ), 15 ); ?>
+			<?php endif; ?>
+
+			<div class="clearfix"></div>
+			<button class="btn btn-link pull-left"><a href="<?php the_permalink(); ?>"><?php echo $product->get_price_html(); ?></a></button>
+			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart pull-left" method="post" enctype='multipart/form-data'>
+				<button type="submit" class="btn btn-sm btn-primary "><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
 			</form>
 		</div>
+		<div class="clearfix"></div>
 	</div>
-
-	<p class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
 </div>
