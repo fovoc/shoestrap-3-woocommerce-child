@@ -19,7 +19,7 @@ add_action( 'wp_enqueue_scripts', 'shoestrap_slider_enqueue_resources', 102 );
  */
 if ( !function_exists( 'shoestrap_slider_gallery_script' ) ) :
 function shoestrap_slider_gallery_script() {
-	$script = '$("' . $element . '").flexslider({ animation: "slide" });';
+	$script = '$("#slider").flexslider({ animation: "slide" });';
 	$script = '
 	$("#carousel").flexslider({
 		animation: "slide",
