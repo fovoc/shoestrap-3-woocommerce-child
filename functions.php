@@ -131,7 +131,9 @@ function shoestrap_woo_post_classes( $classes ) {
 
 	$classes = array_diff( $classes, $remove_classes );
 
-	$classes[] = shoestrap_woo_post_extra_classes();
+	$new_classes = shoestrap_woo_post_extra_classes();
+
+	$classes = array_merge( $classes, $new_classes );
 
 	// If this is NOT a singular post/page etc, return the classes
 	if ( !is_singular() ) :
@@ -147,8 +149,6 @@ function shoestrap_woo_post_extra_classes() {
 	// get the specified width ( narrow/normal/wide )
 	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
 	
-	$classes = array();
-
 	$classes[] = '';
 	// calculate the css classes based on the above selection
 	if ( $mode == 'narrow' ) :
