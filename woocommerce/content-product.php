@@ -27,7 +27,7 @@ $woocommerce_loop['loop']++; ?>
 	<?php global $product, $post, $woocommerce; ?>
 	<div class="thumbnail">
 		<?php if ($product->is_on_sale()) : ?>
-			<?php echo apply_filters('woocommerce_sale_flash', '<span class="onsale">'.__('SALE', 'woocommerce').'</span>', $post, $product); ?>
+			<?php echo apply_filters('woocommerce_sale_flash', '<div class="onsale-ribbon"><div class="onsale">' . __( 'Sale!', 'woocommerce' ) . '</div></div>', $post, $product); ?>
 		<?php endif; ?>
 
 		<?php echo shoestrap_woocommerce_get_product_thumbnail(); ?>

@@ -16,7 +16,7 @@ div.quantity.buttons_added .qty{
 	div.product {
 		div.images {
 			.pull-left;
-			margin-right: (@gutter / 2);
+			margin-right: (@grid-gutter-width / 2);
 		}
 	}
 	form.cart div.quantity {
@@ -25,24 +25,12 @@ div.quantity.buttons_added .qty{
 	.woocommerce-tabs {
 		clear: both;
 		position: relative;
-		top: (@gutter / 2);
+		top: (@grid-gutter-width / 2);
 	}
 }
 
 img.avatar.media-object {
 	.img-rounded;
-}
-
-span.onsale {
-	position: absolute;
-	border-radius: 0;
-	z-index: 999;
-}
-
-.product.sale {
-	span.onsale {
-		font-size: 150%;
-	}	
 }
 
 .price {
@@ -56,5 +44,27 @@ span.onsale {
 			text-decoration: none !important;
 			font-weight: 700;
 		}
+	}
+}
+
+.onsale-ribbon {
+	width: ( 5 * @line-height-computed );
+	height: ( 5 * @line-height-computed );
+	overflow: hidden;
+	position: absolute;
+	right: ( @grid-gutter-width / 2 );
+	top: 0;
+	z-index: 999;
+	.onsale {
+		width: sqrt( ( 2 * ( 5 * @line-height-computed ) * ( 5 * @line-height-computed ) ) );
+		color: @body-bg;
+		text-align: center;
+		.rotate(45deg);
+		position: relative;
+		padding: @padding-base-vertical 0;
+		left: -@thumbnail-padding;
+		top: ( @line-height-computed - @thumbnail-padding );
+		background: @brand-warning;
+		color: @body-bg;
 	}
 }
