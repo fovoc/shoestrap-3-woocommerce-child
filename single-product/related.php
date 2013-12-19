@@ -30,7 +30,7 @@ if ( $products->have_posts() ) : ?>
 			<?php
 				woocommerce_product_loop_start();
 				while ( $products->have_posts() ) : $products->the_post();
-					woocommerce_get_template_part( 'content', 'product-small' );
+					woocommerce_get_template_part( 'content', 'product' );
 				endwhile;
 				woocommerce_product_loop_end();
 			?>

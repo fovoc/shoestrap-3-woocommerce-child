@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product, $woocommerce_loop;
 
@@ -11,10 +11,10 @@ endif;
 
 // Store column count for displaying the grid
 if ( empty( $woocommerce_loop['columns'] ) ) :
-	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 3 );
+	$woocommerce_loop['columns'] = apply_filters( 'loop_shop_columns', 4 );
 endif;
 
-// Make sure product is visible
+// Ensure visibility
 if ( !$product->is_visible() ) :
 	return;
 endif;
@@ -22,73 +22,30 @@ endif;
 // Increase loop count
 $woocommerce_loop['loop']++; ?>
 
-
-<article class="product col-sm-4">
-	<?php do_action( 'woocommerce_before_shop_loop_item' ); global $product, $post, $woocommerce, $loop; ?>
-	<div class="view view-thumb">
-		<?php if ( $product->is_on_sale() ) : ?>
+<div class="product col-md-3">
+	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
+	<?php global $product, $post, $woocommerce; ?>
+	<div class="thumbnail">
+		<?php if ($product->is_on_sale()) : ?>
 			<?php echo apply_filters('woocommerce_sale_flash', '<span class="onsale">'.__('SALE', 'woocommerce').'</span>', $post, $product); ?>
 		<?php endif; ?>
 
-		<?php
-			if ( has_post_thumbnail() ) :
-				the_post_thumbnail('medium');
-			else :
-				echo '<img src="//placehold.it/500x500" alt="" class="img-responsive"></a>';
-			endif;
-		?>
+		<?php echo shoestrap_woocommerce_get_product_thumbnail(); ?>
+		<div class="caption">
+			<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
-		<div class="mask">
-			<h2><?php echo $product->get_price_html(); ?></h2>
-			<?php if ( function_exists( 'smart_excerpt') ) :
-				smart_excerpt( apply_filters( 'woocommerce_short_description', $post->post_excerpt ), 80 ); ?>
+			<div class="clearfix"></div>
+
+			<?php if ( function_exists( 'smart_excerpt' ) ) : ?>
+				<?php smart_excerpt( apply_filters( 'woocommerce_short_description', $post->post_excerpt ), 15 ); ?>
 			<?php endif; ?>
-			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart" method="post" enctype='multipart/form-data'>
-				<a href="<?php the_permalink(); ?>" class="btn btn-sm custom"><?php _e('View', 'woocommerce'); ?></a>
-				<?php global $product;
 
-				if ( !$product->is_purchasable() && !in_array( $product->product_type, array( 'external', 'grouped' ) ) ) :
-					return;
-				endif;  ?>
-
-				<?php if ( !$product->is_in_stock() ) : ?>
-					<a href="<?php echo apply_filters( 'out_of_stock_add_to_cart_url', get_permalink( $product->id ) ); ?>" class="btn btn-sm custom"><?php echo apply_filters( 'out_of_stock_add_to_cart_text', __( 'Read More', 'woocommerce' ) ); ?></a>
-				<?php else : ?>
-					<?php
-						switch ( $product->product_type ) {
-							case "variable" :
-								$link   = apply_filters( 'variable_add_to_cart_url', get_permalink( $product->id ) );
-								$label  = apply_filters( 'variable_add_to_cart_text', __('Select', 'woocommerce') );
-							break;
-
-							case "grouped" :
-								$link   = apply_filters( 'grouped_add_to_cart_url', get_permalink( $product->id ) );
-								$label  = apply_filters( 'grouped_add_to_cart_text', __('Options', 'woocommerce') );
-							break;
-
-							case "external" :
-								$link   = apply_filters( 'external_add_to_cart_url', get_permalink( $product->id ) );
-								$label  = apply_filters( 'external_add_to_cart_text', __('Read More', 'woocommerce') );
-							break;
-
-							default :
-								$link   = apply_filters( 'add_to_cart_url', esc_url( $product->add_to_cart_url() ) );
-								$label  = apply_filters( 'add_to_cart_text', __('Buy', 'woocommerce') );
-							break;
-						}
-
-						if ( $product->product_type == 'simple' ) : ?>
-							<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart form" method="post" enctype='multipart/form-data'>
-								<button type="submit" class="btn btn-sm alt custom"><?php echo $label; ?></button>
-							</form>
-							<?php
-						else :
-							printf('<a href="%s" rel="nofollow" data-product_id="%s" class="btn btn-sm add_to_cart_button product_type_%s custom">%s</a>', $link, $product->id, $product->product_type, $label);
-						endif;
-
-				endif; ?>
+			<div class="clearfix"></div>
+			<button class="btn btn-link pull-left"><a href="<?php the_permalink(); ?>"><?php echo $product->get_price_html(); ?></a></button>
+			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart pull-left" method="post" enctype='multipart/form-data'>
+				<button type="submit" class="btn btn-sm btn-primary "><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
 			</form>
 		</div>
+		<div class="clearfix"></div>
 	</div>
-	<p class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
-</article>
+</div>
