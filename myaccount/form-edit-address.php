@@ -41,7 +41,7 @@ get_currentuserinfo();
 
 		<input type="submit" class="btn-default btn" name="save_address" value="<?php _e('Save Address', 'woocommerce'); ?>" />
 
-		<?php $woocommerce->nonce_field('edit_address') ?>
+		<?php wp_nonce_field( 'edit_address' ); ?>
 		<input type="hidden" name="action" value="edit_address" />
 
 	</form>

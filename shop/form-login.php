@@ -26,7 +26,7 @@ endif; ?>
 			</div>
 
 			<div class="form-group text-center">
-				<?php $woocommerce->nonce_field('login', 'login') ?>
+				<?php wp_nonce_field( 'login', 'login' ); ?>
 				<input type="submit" class="btn btn-primary" name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" />
 				<input type="hidden" name="redirect" value="<?php echo esc_url( $redirect ) ?>" />
 				<a class="lost_password" href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>"><?php _e( 'Lost Password?', 'woocommerce' ); ?></a>

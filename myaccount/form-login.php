@@ -46,7 +46,7 @@ global $woocommerce; ?>
 					</div>
 					
 					<div class="form-group">
-							<?php $woocommerce->nonce_field('login', 'login') ?>
+							<?php wp_nonce_field( 'login', 'login' ); ?>
 							<input type="submit" class="button btn theme" name="login" value="<?php _e('Login', 'woocommerce'); ?>" />
 					</div>
 				</form>
@@ -114,7 +114,7 @@ global $woocommerce; ?>
 				<?php do_action( 'register_form' ); ?>
 	
 				<div class="form-group">
-						<?php $woocommerce->nonce_field('register', 'register') ?>
+						<?php wp_nonce_field( 'register', 'register' ); ?>
 						<input type="submit" class="button btn btn-primary" name="register" value="<?php _e('Register', 'woocommerce'); ?>" />
 				</div>
 	

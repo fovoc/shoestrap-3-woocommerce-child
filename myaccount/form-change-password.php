@@ -28,7 +28,7 @@ global $woocommerce;
 
 	<p class="form-group text-center"><input type="submit" class="button btn btn-primary" name="change_password" value="<?php _e('Save', 'woocommerce'); ?>" /></p>
 
-	<?php $woocommerce->nonce_field('change_password')?>
+	<?php wp_nonce_field( 'change_password' ); ?>
 	<input type="hidden" name="action" value="change_password" />
 
 </form>

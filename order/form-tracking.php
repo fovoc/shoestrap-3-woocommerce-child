@@ -10,6 +10,6 @@ global $woocommerce, $post; ?>
 		<p class="form-row form-row-first"><label for="orderid"><?php _e( 'Order ID', 'woocommerce' ); ?></label> <br><input class="input-text" type="text" name="orderid" id="orderid" placeholder="<?php _e( 'Found in your order confirmation email.', 'woocommerce' ); ?>" /></p>
 		<p class="form-row form-row-last"><label for="order_email"><?php _e( 'Billing Email', 'woocommerce' ); ?></label> <br><input class="input-text" type="text" name="order_email" id="order_email" placeholder="<?php _e( 'Email you used during checkout.', 'woocommerce' ); ?>" /></p>
 		<p class="form-row"><input type="submit" class="btn theme" name="track" value="<?php _e( 'Track', 'woocommerce' ); ?>" /></p>
-		<?php $woocommerce->nonce_field('order_tracking') ?>
+		<?php wp_nonce_field( 'order_tracking' ); ?>
 	</div>
 </form>
