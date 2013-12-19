@@ -11,7 +11,7 @@ global $woocommerce, $product, $post; ?>
 		<?php $loop = 0; ?>
 		<?php foreach ( $attributes as $name => $options ) : $loop++; ?>
 			<div class="row option">
-				<div class="col-sm-8"><label for="<?php echo sanitize_title($name); ?>"><?php echo $woocommerce->attribute_label( $name ); ?></label></div>
+				<div class="col-sm-8"><label for="<?php echo sanitize_title($name); ?>"><?php echo wc_attribute_label( $name ); ?></label></div>
 				<div class="col-sm-4 value">
 					<select id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="attribute_<?php echo sanitize_title($name); ?>" class="form-control">
 						<option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
