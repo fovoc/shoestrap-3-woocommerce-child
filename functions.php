@@ -131,6 +131,24 @@ function shoestrap_woo_post_classes( $classes ) {
 
 	$classes = array_diff( $classes, $remove_classes );
 
+	$classes[] = shoestrap_woo_post_extra_classes();
+
+	// If this is NOT a singular post/page etc, return the classes
+	if ( !is_singular() ) :
+		return $classes;
+	endif;
+}
+endif;
+
+if ( !function_exists( 'shoestrap_woo_post_extra_classes' ) ) :
+function shoestrap_woo_post_extra_classes() {
+	global $post;
+
+	// get the specified width ( narrow/normal/wide )
+	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
+	
+	$classes = array();
+
 	$classes[] = '';
 	// calculate the css classes based on the above selection
 	if ( $mode == 'narrow' ) :
@@ -150,9 +168,6 @@ function shoestrap_woo_post_classes( $classes ) {
 		$classes[] = 'col-xs-12';
 	endif;
 
-	// If this is NOT a singular post/page etc, return the classes
-	if ( !is_singular() ) :
-		return $classes;
-	endif;
+	return $classes;
 }
 endif;

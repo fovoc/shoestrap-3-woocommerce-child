@@ -29,7 +29,8 @@ if ( ! $product || ! $product->is_visible() )
 $woocommerce_loop['loop']++;
 ?>
 
-<div <?php post_class(); ?>>
+<?php $classes = shoestrap_woo_post_extra_classes(); ?>
+<div <?php post_class( $classes ); ?>>
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
 	<?php global $product, $post, $woocommerce; ?>
 	<div class="thumbnail">
