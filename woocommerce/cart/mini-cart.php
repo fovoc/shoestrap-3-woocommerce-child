@@ -66,8 +66,8 @@ global $woocommerce;
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 	<p class="text-center">
-		<a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="btn btn-sm"><?php _e('View Cart', 'woocommerce'); ?></a>
-		<a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="btn btn-sm theme checkout"><?php _e('Checkout <i class="el-icon-shopping-cart"></i>', 'woocommerce'); ?></a>
+		<a href="<?php echo $woocommerce->cart->get_cart_url(); ?>" class="btn btn-default"><?php _e('View Cart', 'woocommerce'); ?></a>
+		<a href="<?php echo $woocommerce->cart->get_checkout_url(); ?>" class="btn btn-default checkout"><?php _e('Checkout <i class="el-icon-shopping-cart"></i>', 'woocommerce'); ?></a>
 	</p>
 	<hr />
 <?php endif; ?>
