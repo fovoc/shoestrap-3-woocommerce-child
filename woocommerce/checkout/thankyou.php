@@ -66,4 +66,4 @@ if ( $order ) : ?>
 
 	<p class="text-center well"><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
 
-<?php endif; ?>
+<?php endif;

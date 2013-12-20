@@ -88,4 +88,4 @@ if ( get_option('woocommerce_enable_shipping_calc')=='no' || ! $woocommerce->car
 	</section>
 </form>
 
-<?php do_action( 'woocommerce_after_shipping_calculator' ); ?>
+<?php do_action( 'woocommerce_after_shipping_calculator' );

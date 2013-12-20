@@ -69,4 +69,4 @@ global $woocommerce;
 
 <?php endif; ?>
 
-<?php do_action('woocommerce_after_order_notes', $checkout); ?>
+<?php do_action('woocommerce_after_order_notes', $checkout);

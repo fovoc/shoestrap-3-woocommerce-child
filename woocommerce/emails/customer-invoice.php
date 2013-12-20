@@ -62,4 +62,4 @@ if (!defined('ABSPATH')) exit; ?>
 
 <?php do_action('woocommerce_email_after_order_table', $order, false); ?>
 
-<?php do_action('woocommerce_email_footer'); ?>
+<?php do_action('woocommerce_email_footer');

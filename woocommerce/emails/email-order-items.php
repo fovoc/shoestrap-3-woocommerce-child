@@ -48,4 +48,4 @@ foreach ($items as $item) :
 		</tr>
 	<?php endif; ?>
 
-<?php endforeach; ?>
+<?php endforeach;

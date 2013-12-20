@@ -60,4 +60,4 @@ global $woocommerce;
 
 	<?php do_action( 'woocommerce_after_checkout_registration_form', $checkout ); ?>
 
-<?php endif; ?>
+<?php endif;

@@ -17,4 +17,4 @@ if (!defined('ABSPATH')) exit; ?>
 
 <div style="clear:both;"></div>
 
-<?php do_action('woocommerce_email_footer'); ?>
+<?php do_action('woocommerce_email_footer');

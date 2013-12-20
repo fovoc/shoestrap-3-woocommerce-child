@@ -57,4 +57,4 @@ if (!defined('ABSPATH')) exit; ?>
 
 <?php woocommerce_get_template('emails/email-addresses.php', array( 'order' => $order )); ?>
 
-<?php do_action('woocommerce_email_footer'); ?>
+<?php do_action('woocommerce_email_footer');

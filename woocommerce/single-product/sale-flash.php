@@ -15,4 +15,4 @@ global $post, $product;
 
 	<?php echo apply_filters('woocommerce_sale_flash', '<div class="onsale-ribbon"><div class="onsale">' . __( 'Sale!', 'woocommerce' ) . '</div></div>', $post, $product); ?>
 
-<?php endif; ?>
+<?php endif;

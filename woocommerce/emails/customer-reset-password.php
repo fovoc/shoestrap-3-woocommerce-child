@@ -21,4 +21,4 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 </p>
 <p></p>
 
-<?php do_action('woocommerce_email_footer'); ?>
+<?php do_action('woocommerce_email_footer');

@@ -56,4 +56,4 @@ global $product;
 
 	?>
 
-<?php endif; ?>
+<?php endif;

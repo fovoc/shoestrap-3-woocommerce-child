@@ -24,4 +24,3 @@ $info_message = apply_filters( 'woocommerce_checkout_login_message', __( 'Return
 			'hidden'   => true
 		)
 	);
-?>
