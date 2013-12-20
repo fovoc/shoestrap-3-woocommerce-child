@@ -49,9 +49,9 @@ $woocommerce_loop['loop']++;
 			<?php endif; ?>
 
 			<div class="clearfix"></div>
-			<button class="btn btn-link pull-left"><a href="<?php the_permalink(); ?>"><?php echo $product->get_price_html(); ?></a></button>
+			<a class="btn btn-link pull-left strong" href="<?php the_permalink(); ?>"><?php echo $product->get_price_html(); ?></a>
 			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart pull-left" method="post" enctype='multipart/form-data'>
-				<button type="submit" class="btn btn-sm btn-primary "><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
+				<button type="submit" class="btn btn-primary "><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
 			</form>
 		</div>
 		<div class="clearfix"></div>
