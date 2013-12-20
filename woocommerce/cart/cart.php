@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $woocommerce;
 
-$woocommerce->show_messages();
+wc_print_notices();
 ?>
 
 <section class="cartpage">
-<?php $woocommerce->show_messages(); ?>
+<?php wc_print_notices(); ?>
 
 <form action="<?php echo esc_url( $woocommerce->cart->get_cart_url() ); ?>" method="post" class="form-inline">
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
