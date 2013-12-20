@@ -76,7 +76,7 @@ global $woocommerce, $product, $post; ?>
 			</div>
 			<div class="pull-right">
 				<?php if ( sizeof( $attributes ) == $loop ) : ?>
-					<a class="btn btn-link btn-lg reset_variations" href="#reset">&nbsp;&nbsp;<?php _e( 'Clear Selection', 'woocommerce' ); ?></a>
+					<a class="btn btn-link btn-lg reset_variations" href="#reset"><i class="el-icon-remove-sign text-danger"></i><span class="sr-only"><?php _e( 'Clear Selection', 'woocommerce' ); ?></span></a>
 				<?php endif; ?>
 				<button type="submit" class="btn btn-lg btn-primary"><?php echo apply_filters('single_add_to_cart_text', __( 'Add to cart', 'woocommerce' ), $product->product_type); ?></button>
 			</div>
