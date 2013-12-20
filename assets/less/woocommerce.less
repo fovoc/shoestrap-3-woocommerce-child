@@ -80,3 +80,80 @@ h4.price {
 .btn.strong {
 	font-weight: bold;
 }
+
+@font-face {
+	font-family: 'star-square';
+	src:url('fonts/star-square.eot');
+	src:url('fonts/star-square.eot?#iefix') format('embedded-opentype'),
+		url('fonts/star-square.ttf') format('truetype'),
+		url('fonts/star-square.woff') format('woff'),
+		url('fonts/star-square.svg#star-square') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="ss-woo-"], [class*=" ss-woo-"] {
+	font-family: 'star-square';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ss-woo-star-square:before {
+	content: "\e600";
+}
+
+p.comment-form-rating p.stars {
+	font-size: 1.2em;
+	a.star-1,
+	a.star-2,
+	a.star-3,
+	a.star-4,
+	a.star-5 {
+		font-family: 'Elusive-Icons';
+		overflow: hidden;
+		width: 1em;
+		visibility: hidden;
+		text-decoration: none;
+		color: @brand-success;
+		&:before {
+			content: "\e632";
+			visibility: visible;
+		}
+		&.active {
+			&:before {
+				content: "\e634";
+			}
+		}
+	}
+}
+
+div.star-rating {
+	height: 1em;
+	position:relative;
+	width: 5em;
+	overflow: hidden;
+	span {
+		height: @font-size-base;
+		position: absolute;
+		background: @brand-primary;
+		color: @brand-primary;
+		text-indent: -999;
+	}
+	.rating-stars {
+		height: @line-height-base;
+		position: absolute;
+		top: -2px;
+		color: @body-bg;
+		.el-icon-star-empty {
+			color: @brand-primary;
+		}
+	}
+}

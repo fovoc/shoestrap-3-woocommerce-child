@@ -33,6 +33,11 @@ function shoestrap_woocommerce_styles( $bootstrap ) {
 }
 add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
 
+function shoestrap_woo_hijack_compiler( $css ) {
+	$css = str_replace( '/assets/less/woocommerce.less', '/assets/', $css );
+	return $css;
+}
+add_filter( 'shoestrap_compiler_output', 'shoestrap_woo_hijack_compiler' );
 
 remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
 add_action( 'woocommerce_before_shop_loop_item_title', 'shoestrap_woocommerce_template_loop_product_thumbnail', 10 );
@@ -69,8 +74,8 @@ function shoestrap_get_rating_html( $rating = null ) {
 	}
 
 	if ( $rating > 0 ) {
-		$star_on  = '<i class="el-icon-star text-success"></i>';
-		$star_off = '<i class="el-icon-star-empty text-danger"></i>';
+		$star_on  = '<i class="ss-woo-star-square"></i>';
+		$star_off = '<i class="el-icon-star-empty"></i>';
 
 		$stars = $star_on;
 		if ( $rating >= 2 ) :
@@ -94,7 +99,10 @@ function shoestrap_get_rating_html( $rating = null ) {
 			$stars .= $star_off . $star_off . $star_off . $star_off;
 		endif;
 
-		$rating_html  = '<div class="star-rating" title="' . sprintf( __( 'Rated %s out of 5', 'woocommerce' ), $rating ) . '">' . $stars . '</div>';
+		$rating_html  = '<div class="star-rating" title="' . sprintf( __( 'Rated %s out of 5', 'woocommerce' ), $rating ) . '">';
+		$rating_html .= '<span style="width:' . ( ( $rating / 5 ) * 100 ) . '%"><strong class="rating">' . $rating . '</strong> ' . __( 'out of 5', 'woocommerce' ) . '</span>';
+		$rating_html .= '<div class="rating-stars">' . $stars . '</div>';
+		$rating_html .= '</div>';
 
 		return $rating_html;
 	}
