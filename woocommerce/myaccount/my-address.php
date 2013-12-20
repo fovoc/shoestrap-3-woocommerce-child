@@ -14,13 +14,13 @@ global $woocommerce;
 $customer_id = get_current_user_id();
 
 if ( get_option('woocommerce_ship_to_billing_address_only') == 'no' ) {
-	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="fa fa-home"></i> MY ADDRESSES', 'woocommerce' ) );
+	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="el-icon-home"></i> MY ADDRESSES', 'woocommerce' ) );
 	$get_addresses    = array(
 		'billing' => __( 'Billing Address', 'woocommerce' ),
 		'shipping' => __( 'Shipping Address', 'woocommerce' )
 	);
 } else {
-	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="fa fa-home"></i> MY ADDRESS', 'woocommerce' ) );
+	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="el-icon-home"></i> MY ADDRESS', 'woocommerce' ) );
 	$get_addresses    = array(
 		'billing' =>  __( 'Billing Address', 'woocommerce' )
 	);
@@ -43,7 +43,7 @@ $col = 1;
 	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address col-sm-6">
 		<header class="title">
 			<h5><?php echo $title; ?></h5>
-			<a href="<?php echo esc_url( add_query_arg('address', $name, get_permalink(woocommerce_get_page_id( 'edit_address' ) ) ) ); ?>" class="edit"><i class="fa fa-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( add_query_arg('address', $name, get_permalink(woocommerce_get_page_id( 'edit_address' ) ) ) ); ?>" class="edit"><i class="el-icon-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
 		</header>
 		<address class="well">
 			<?php

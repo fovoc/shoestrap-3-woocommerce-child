@@ -24,8 +24,8 @@ global $woocommerce; ?>
 <?php endif; ?>
 
 		<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#login"><i class="fa fa-lock"></i> <?php _e('Returning Customer', 'woocommerce'); ?></a></li>
-		  <li><a href="#forgot"><i class="fa fa-question"></i> <?php _e('Lost Password', 'woocommerce'); ?></a></li>
+		  <li class="active"><a href="#login"><i class="el-icon-lock"></i> <?php _e('Returning Customer', 'woocommerce'); ?></a></li>
+		  <li><a href="#forgot"><i class="el-icon-question"></i> <?php _e('Lost Password', 'woocommerce'); ?></a></li>
 		</ul>
 		
 		<div class="tab-content">
@@ -66,7 +66,7 @@ global $woocommerce; ?>
 	<div class="col-2 col-sm-6">
 	
 		<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#register"><i class="fa fa-pencil"></i> <?php _e('Register', 'woocommerce'); ?></a></li>
+		  <li class="active"><a href="#register"><i class="el-icon-pencil"></i> <?php _e('Register', 'woocommerce'); ?></a></li>
 		</ul>
 
 		<div class="tab-content">

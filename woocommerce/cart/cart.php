@@ -50,7 +50,7 @@ $woocommerce->show_messages();
 									?>
 								</div>
 								<div class="col-xs-3 col-sm-1">
-									<?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf('<a href="%s" class="remove" title="%s"><i class="fa fa-minus-circle"></i></a>', esc_url( $woocommerce->cart->get_remove_url( $cart_item_key ) ), __('Remove this item', 'woocommerce') ), $cart_item_key ); ?>
+									<?php echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf('<a href="%s" class="remove" title="%s"><i class="el-icon-minus-sign"></i></a>', esc_url( $woocommerce->cart->get_remove_url( $cart_item_key ) ), __('Remove this item', 'woocommerce') ), $cart_item_key ); ?>
 								</div>
 								<div class="col-xs-9 col-sm-7 item">
 									<?php
