@@ -9,7 +9,7 @@ if ( ! empty( $tabs ) ) : ?>
 		<ul class="tabs nav nav-tabs">
 			<?php foreach ( $tabs as $key => $tab ) : ?>
 				<li class="<?php echo $key ?>_tab">
-					<a href="#tab-<?php echo $key ?>"><i class="fa fa-th-large theme"></i>  <?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
+					<a href="#tab-<?php echo $key ?>"><i class="el-icon-th-large theme"></i>  <?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
 				</li>
 			<?php endforeach; ?>
 		</ul>
