@@ -16,6 +16,7 @@ endif;
 
 require_once locate_template( 'lib/admin-options.php' );
 require_once locate_template( 'lib/slider.php' );
+require_once locate_template( 'lib/wp-core-functions.php' );
 
 
 // Remove default stylesheets for WooCommerce 2.1 and above
