@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 ?>
-<li class="media" itemprop="reviews" itemscope itemtype="http://schema.org/Review" <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+<li itemprop="reviews" itemscope itemtype="http://schema.org/Review" <?php comment_class( 'media' ); ?> id="comment-<?php comment_ID(); ?>">
 	<div class="pull-left"><?php echo get_avatar($comment, $size = '64'); ?></div>
 	<div class="media-body">
 		
