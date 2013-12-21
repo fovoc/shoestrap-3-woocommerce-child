@@ -48,9 +48,7 @@ $classes = shoestrap_woo_post_extra_classes();
 		?>
 
 		<div class="caption">
-			<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-
-			<div class="clearfix"></div>
+			<h4 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 
 		<?php
 			/**
@@ -61,8 +59,7 @@ $classes = shoestrap_woo_post_extra_classes();
 			 */
 			do_action( 'woocommerce_after_shop_loop_item_title' );
 		?>
+		<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 		</div>
-		<div class="clearfix"></div>
-	<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 	</div>
 </div>
