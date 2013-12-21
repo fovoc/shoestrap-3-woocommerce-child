@@ -71,38 +71,13 @@ function shoestrap_get_rating_html( $rating = null ) {
 
 	if ( ! is_numeric( $rating ) ) {
 		$rating = $product->get_average_rating();
-		$rating = round( $rating );
 	}
 
 	if ( $rating > 0 ) {
-		$star_on  = '<i class="ss-woo-star-square"></i>';
-		$star_off = '<i class="el-icon-star-empty"></i>';
-
-		$stars = $star_on;
-		if ( $rating >= 2 ) :
-			$stars .= $star_on;
-			if ( $rating >= 3 ) :
-				$stars .= $star_on;
-				if ( $rating >= 4 ) :
-					$stars .= $star_on;
-					if ( $rating >= 5 ) :
-						$stars .= $star_on;
-					else :
-						$stars .= $star_off;
-					endif;
-				else :
-					$stars .= $star_off . $star_off;
-				endif;
-			else :
-				$stars .= $star_off . $star_off . $star_off;
-			endif;
-		else :
-			$stars .= $star_off . $star_off . $star_off . $star_off;
-		endif;
 
 		$rating_html  = '<div class="star-rating" title="' . sprintf( __( 'Rated %s out of 5', 'woocommerce' ), $rating ) . '">';
-		$rating_html .= '<span style="width:' . ( ( $rating / 5 ) * 100 ) . '%"><strong class="rating">' . $rating . '</strong> ' . __( 'out of 5', 'woocommerce' ) . '</span>';
-		$rating_html .= '<div class="rating-stars">' . $stars . '</div>';
+		$rating_html .= '<span class="rating" style="width:' . ( ( $rating / 5 ) * 100 ) . '%">&#9733;&#9733;&#9733;&#9733;&#9733;' . __( 'out of 5', 'woocommerce' ) . '</span>';
+		$rating_html .= '<div class="rating-stars">&#9734;&#9734;&#9734;&#9734;&#9734;</div>';
 		$rating_html .= '</div>';
 
 		return $rating_html;
