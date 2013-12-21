@@ -27,33 +27,42 @@ if ( ! $product || ! $product->is_visible() )
 
 // Increase loop count
 $woocommerce_loop['loop']++;
-?>
 
-<?php $classes = shoestrap_woo_post_extra_classes(); ?>
+// Extra post classes
+$classes = shoestrap_woo_post_extra_classes();
+?>
 <div <?php post_class( $classes ); ?>>
+
 	<?php do_action( 'woocommerce_before_shop_loop_item' ); ?>
+
 	<?php global $product, $post, $woocommerce; ?>
 	<div class="thumbnail">
-		<?php if ($product->is_on_sale()) : ?>
-			<?php echo apply_filters('woocommerce_sale_flash', '<div class="onsale-ribbon"><div class="onsale">' . __( 'Sale!', 'woocommerce' ) . '</div></div>', $post, $product); ?>
-		<?php endif; ?>
+		<?php
+			/**
+			 * woocommerce_before_shop_loop_item_title hook
+			 *
+			 * @hooked woocommerce_show_product_loop_sale_flash - 10
+			 * @hooked woocommerce_template_loop_product_thumbnail - 10
+			 */
+			do_action( 'woocommerce_before_shop_loop_item_title' );
+		?>
 
-		<?php echo shoestrap_woocommerce_get_product_thumbnail(); ?>
 		<div class="caption">
 			<h3 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 
 			<div class="clearfix"></div>
 
-			<?php if ( function_exists( 'smart_excerpt' ) ) : ?>
-				<?php smart_excerpt( apply_filters( 'woocommerce_short_description', $post->post_excerpt ), 15 ); ?>
-			<?php endif; ?>
-
-			<div class="clearfix"></div>
-			<a class="btn btn-link pull-left strong" href="<?php the_permalink(); ?>"><?php echo $product->get_price_html(); ?></a>
-			<form action="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="cart pull-left" method="post" enctype='multipart/form-data'>
-				<button type="submit" class="btn btn-primary "><?php echo apply_filters('single_add_to_cart_text', __('Buy', 'woocommerce'), $product->product_type); ?></button>
-			</form>
+		<?php
+			/**
+			 * woocommerce_after_shop_loop_item_title hook
+			 *
+			 * @hooked woocommerce_template_loop_rating - 5
+			 * @hooked woocommerce_template_loop_price - 10
+			 */
+			do_action( 'woocommerce_after_shop_loop_item_title' );
+		?>
 		</div>
 		<div class="clearfix"></div>
+	<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
 	</div>
 </div>

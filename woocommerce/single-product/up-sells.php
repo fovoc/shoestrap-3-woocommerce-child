@@ -1,14 +1,21 @@
 <?php
+/**
+ * Single Product Up-Sells
+ *
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     1.6.4
+ */
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $product, $woocommerce, $woocommerce_loop;
+global $product, $woocommerce_loop;
 
 $upsells = $product->get_upsells();
 
 if ( sizeof( $upsells ) == 0 ) return;
 
-$meta_query = $woocommerce->query->get_meta_query();
+$meta_query = WC()->query->get_meta_query();
 
 $args = array(
 	'post_type'           => 'product',
@@ -23,19 +30,26 @@ $args = array(
 
 $products = new WP_Query( $args );
 
-$woocommerce_loop['columns'] 	= $columns;
+$woocommerce_loop['columns'] = $columns;
 
 if ( $products->have_posts() ) : ?>
+
 	<div class="upsells products clearfix">
-		<h5><?php _e('YOU MAY ALSO LIKE&hellip;', 'woocommerce') ?></h5>
-		<?php
-			woocommerce_product_loop_start();
-			while ( $products->have_posts() ) : $products->the_post();
-				woocommerce_get_template_part( 'content', 'product' );
-			endwhile;
-			woocommerce_product_loop_end();
-		?>
+
+		<h2><?php _e( 'You may also like&hellip;', 'woocommerce' ) ?></h2>
+
+		<?php woocommerce_product_loop_start(); ?>
+
+			<?php while ( $products->have_posts() ) : $products->the_post(); ?>
+
+				<?php wc_get_template_part( 'content', 'product' ); ?>
+
+			<?php endwhile; // end of the loop. ?>
+
+		<?php woocommerce_product_loop_end(); ?>
+
 	</div>
-	<?php
-endif;
+
+<?php endif;
+
 wp_reset_postdata();
