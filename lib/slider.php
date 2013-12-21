@@ -18,27 +18,18 @@ add_action( 'wp_enqueue_scripts', 'shoestrap_slider_enqueue_resources', 102 );
  * The script required for the sliders.
  */
 if ( !function_exists( 'shoestrap_slider_gallery_script' ) ) :
-function shoestrap_slider_gallery_script() {
-	$script = '$("#slider").flexslider({ animation: "slide" });';
-	$script = '
-	$("#carousel").flexslider({
-		animation: "slide",
-		controlNav: false,
-		animationLoop: false,
-		slideshow: false,
-		itemWidth: 120,
-		itemMargin: 0,
-		asNavFor: "#slider"
-	});
-
-	$("#slider").flexslider({
-		animation: "slide",
-		controlNav: false,
-		animationLoop: false,
-		slideshow: false,
-		sync: "#carousel"
-	});';
-	echo '<script>$(window).load(function() {' . $script . '});</script>';
+function shoestrap_slider_gallery_script() { ?>
+	<script>
+	(function() {
+		// store the slider in a local variable
+		var $window = $(window), flexslider;
+		$window.load(function() {
+			$("#carousel").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, itemWidth: 120, asNavFor: "#slider" });
+			$("#slider").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, sync: "#carousel" });
+		});
+	}());
+	</script>
+	<?php
 }
 endif;
 add_action( 'wp_footer', 'shoestrap_slider_gallery_script' );
