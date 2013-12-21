@@ -1,9 +1,0 @@
-<?php
-
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
-global $woocommerce, $post, $product;
-
-$heading = apply_filters( 'woocommerce_product_additional_information_heading', __( 'Additional Information', 'woocommerce' ) ); ?>
-<h5><?php echo $heading; ?></h5>
-<?php $product->list_attributes();
