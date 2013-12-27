@@ -21,7 +21,7 @@ global $woocommerce, $product, $post;
 			<div class="row">
 				<?php $loop = 0; foreach ( $attributes as $name => $options ) : $loop++; ?>
 					<div class="variations-form-label col-sm-4"><?php echo wc_attribute_label( $name ); ?></div>
-					<div class="variations-form-value col-sm-7">
+					<div class="variations-form-value col-sm-7 col-xs-10">
 						<select class="form-control pull-left" id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="attribute_<?php echo sanitize_title($name); ?>">
 							<option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
 							<?php
@@ -72,7 +72,7 @@ global $woocommerce, $product, $post;
 						</select>
 					</div> <?php
 							if ( sizeof($attributes) == $loop )
-								echo '<div class="col-sm-1"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="btn btn-danger"><i class="el-icon-remove"></i></button></a></div>';
+								echo '<div class="col-sm-1 col-xs-2"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="btn btn-danger"><i class="el-icon-remove"></i></button></a></div>';
 						?>
 		        <?php endforeach;?>
 			</div>
