@@ -22,11 +22,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 <table class="shop_table cart table" cellspacing="0">
 	<thead>
 		<tr>
-			<th class="product-remove">&nbsp;</th>
-			<th class="product-thumbnail">&nbsp;</th>
+			<th class="product-remove col-sm-1">&nbsp;</th>
+			<th class="product-thumbnail hidden-xs col-sm-2">&nbsp;</th>
 			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
 			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
+			<th class="product-quantity col-sm-1"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 		</tr>
 	</thead>
@@ -42,13 +42,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 				?>
 				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
-					<td class="product-remove">
+					<td class="product-remove col-sm-1">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="btn btn-danger remove" title="%s"><i class="el-icon-remove"></i></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 						?>
 					</td>
 
-					<td class="product-thumbnail">
+					<td class="product-thumbnail hidden-xs col-sm-2">
 						<?php
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
@@ -81,7 +81,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						?>
 					</td>
 
-					<td class="product-quantity">
+					<td class="product-quantity col-sm-1">
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -111,22 +111,35 @@ do_action( 'woocommerce_before_cart' ); ?>
 		?>
 		<tr>
 			<td colspan="6" class="actions">
-				<div class="pull-left">
+				<div class="col-md-6">
 
 					<?php if ( WC()->cart->coupons_enabled() ) { ?>
 						<div class="coupon">
 
-							<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input name="coupon_code" class="input-text form-control" id="coupon_code" value="" /> <input type="submit" class="btn btn-success" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+							<div class="input-group col-xs-12 col-sm-6">
+								<input name="coupon_code" class="input-text form-control" id="coupon_code" value="" placeholder="<?php _e( 'Coupon', 'woocommerce' ); ?>:"/>
+								<span class="input-group-btn">
+									<input type="submit" class="btn btn-success" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+								</span>
+							</div>
 
 							<?php do_action('woocommerce_cart_coupon'); ?>
 
 						</div>
 					<?php } ?>
+					<hr>
 				</div>
-				<div class="pull-right ss-wc-cart-actions">
-					<input type="submit" class="btn btn-default" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
-					<input type="submit" class="checkout-button btn btn-primary wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
+				<?php if ( WC()->cart->coupons_enabled() ) : ?>
+					<div class="col-md-6 ss-wc-cart-actions">
+				<?php else : ?>
+					<div class="ss-wc-cart-actions">
+				<?php endif; ?>
+					<div class="btn-group col-xs-12">
+						<input type="submit" class="col-sm-6 btn btn-default" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
+						<input type="submit" class="col-sm-6 checkout-button btn btn-primary wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
+					</div>
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
+					<hr>
 				</div>
 				<div class="clearfix"></div>
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
