@@ -21,28 +21,6 @@ function shoestrap_module_woo_options( $sections ) {
 	);
 
 	$fields[] = array( 
-		'title'     => __( 'Enable Masonry', 'shoestrap_woo' ),
-		'desc'      => __( 'Default: On.', 'shoestrap_woo' ),
-		'id'        => 'shoestrap_woo_masorny',
-		'default'   => 1,
-		'type'      => 'switch'
-	);
-
-	$fields[] = array( 
-		'title'     => __( 'Select between box styles', 'shoestrap_woo' ),
-		'desc'      => __( 'Select between box styles.', 'shoestrap_woo' ),
-		'id'        => 'shoestrap_woo_box_style',
-		'type'      => 'button_set',
-		'options'   => array(
-			' '       => 'Default',
-			'well'    => 'Well',
-			'panel'   => 'Panel'
-		),
-		'default' => ' ',
-		'required'  => array( 'shoestrap_woo_masorny','=',array( '1' ) ),
-	);
-
-	$fields[] = array( 
 		'title'     => __( 'Loading text', 'shoestrap_woo' ),
 		'desc'      => __( 'The text inside the progress bar as next set is loading.', 'shoestrap_woo' ),
 		'id'        => 'shoestrap_woo_loading_text',
@@ -92,6 +70,14 @@ function shoestrap_module_woo_options( $sections ) {
 			'danger'  => 'Danger'
 		),
 		'required'  => array( 'shoestrap_woo_infinite_scroll','=',array( '1' ) ),
+	);
+
+	$fields[] = array( 
+		'title'     => __( 'Enable Masonry', 'shoestrap_woo' ),
+		'desc'      => __( 'Default: On.', 'shoestrap_woo' ),
+		'id'        => 'shoestrap_woo_masorny',
+		'default'   => 1,
+		'type'      => 'switch'
 	);
 
 	$fields[] = array(
