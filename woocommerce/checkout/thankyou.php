@@ -27,15 +27,15 @@ if ( $order ) : ?>
 		<p>
 			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'woocommerce' ) ?></a>
 			<?php if ( is_user_logged_in() ) : ?>
-			<a href="<?php echo esc_url( get_permalink( woocommerce_get_page_id( 'myaccount' ) ) ); ?>" class="button pay"><?php _e( 'My Account', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'myaccount' ) ) ); ?>" class="button pay"><?php _e( 'My Account', 'woocommerce' ); ?></a>
 			<?php endif; ?>
 		</p>
 
 	<?php else : ?>
 
-		<p class="text-center well"><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
+		<p><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
 
-		<ul class="order_details nav">
+		<ul class="order_details">
 			<li class="order">
 				<?php _e( 'Order:', 'woocommerce' ); ?>
 				<strong><?php echo $order->get_order_number(); ?></strong>
@@ -55,7 +55,7 @@ if ( $order ) : ?>
 			</li>
 			<?php endif; ?>
 		</ul>
-		<hr>
+		<div class="clear"></div>
 
 	<?php endif; ?>
 
@@ -64,6 +64,6 @@ if ( $order ) : ?>
 
 <?php else : ?>
 
-	<p class="text-center well"><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
+	<p><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
 
-<?php endif;
+<?php endif; ?>

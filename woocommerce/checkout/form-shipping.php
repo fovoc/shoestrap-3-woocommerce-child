@@ -12,28 +12,25 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $woocommerce;
 ?>
 
-<?php if ( ( $woocommerce->cart->needs_shipping() || get_option('woocommerce_require_shipping_address') == 'yes' ) && ! $woocommerce->cart->ship_to_billing_address_only() ) : ?>
+<?php if ( WC()->cart->needs_shipping() && ! WC()->cart->ship_to_billing_address_only() ) : ?>
 
 	<?php
-		if ( empty( $_POST ) ) :
+		if ( empty( $_POST ) ) {
 
-			$shiptobilling = (get_option('woocommerce_ship_to_same_address')=='yes') ? 1 : 0;
-			$shiptobilling = apply_filters('woocommerce_shiptobilling_default', $shiptobilling);
+			$ship_to_different_address = get_option( 'woocommerce_ship_to_billing' ) == 'no' ? 1 : 0;
+			$ship_to_different_address = apply_filters( 'woocommerce_ship_to_different_address_checked', $ship_to_different_address );
 
-		else :
+		} else {
 
-			$shiptobilling = $checkout->get_value('shiptobilling');
+			$ship_to_different_address = $checkout->get_value( 'ship_to_different_address' );
 
-		endif;
+		}
 	?>
 
-	<h5><?php _e( 'Shipping Address', 'woocommerce' ); ?></h5>
-	
-	<div class="checkbox" id="shiptobilling">
-	    <label for="shiptobilling-checkbox" class="checkbox">
-	      <input id="shiptobilling-checkbox" class="input-checkbox" <?php checked($shiptobilling, 1); ?> type="checkbox" name="shiptobilling" value="1" /> <?php _e( 'Ship to billing address?', 'woocommerce' ); ?>
-	    </label>
-	  </div>
+	<div id="ship-to-different-address">
+		<h3 style="display: inline-block;"><?php _e( 'Ship to a different address?', 'woocommerce' ); ?></h3>
+		<input id="ship-to-different-address-checkbox" class="input-checkbox" style="display: inline-block;" <?php checked( $ship_to_different_address, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />
+	</div>
 
 	<div class="shipping_address">
 
@@ -41,7 +38,16 @@ global $woocommerce;
 
 		<?php foreach ($checkout->checkout_fields['shipping'] as $key => $field) : ?>
 
-			<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+			<?php
+			$custom = array(
+				'class'             => array( 'form-group' ),
+				'label_class'       => array( 'control-label' ),
+				'input_class'       => array( 'form-control' ),
+			);
+
+			$args = wp_parse_args( $custom, $field  );
+			?>
+			<?php woocommerce_form_field( $key, $args, $checkout->get_value( $key ) ); ?>
 
 		<?php endforeach; ?>
 
@@ -51,22 +57,33 @@ global $woocommerce;
 
 <?php endif; ?>
 
-<?php do_action('woocommerce_before_order_notes', $checkout); ?>
+<?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
 
-<?php if (get_option('woocommerce_enable_order_comments')!='no') : ?>
+<?php if ( apply_filters( 'woocommerce_enable_order_notes_field', get_option( 'woocommerce_enable_order_comments', 'yes' ) == 'yes' ) ) : ?>
 
-	<?php if ($woocommerce->cart->ship_to_billing_address_only()) : ?>
+	<?php if ( ! WC()->cart->needs_shipping() || WC()->cart->ship_to_billing_address_only() ) : ?>
 
-		<h5><?php _e( 'Additional Information', 'woocommerce' ); ?></h5>
+		<h3><?php _e( 'Additional Information', 'woocommerce' ); ?></h3>
 
 	<?php endif; ?>
 
-	<?php foreach ($checkout->checkout_fields['order'] as $key => $field) : ?>
+	<?php foreach ( $checkout->checkout_fields['order'] as $key => $field ) : ?>
 
-		<?php woocommerce_form_field( $key, $field, $checkout->get_value( $key ) ); ?>
+		<?php
+		$custom = array(
+			'class'             => array( 'form-group' ),
+			'label_class'       => array( 'control-label' ),
+			'input_class'       => array( 'form-control' ),
+		);
+
+		$args = wp_parse_args( $custom, $field  );
+		?>
+		<?php woocommerce_form_field( $key, $args, $checkout->get_value( $key ) ); ?>
 
 	<?php endforeach; ?>
 
 <?php endif; ?>
 
-<?php do_action('woocommerce_after_order_notes', $checkout);
+<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
+
+<div class="clearfix"></div>
