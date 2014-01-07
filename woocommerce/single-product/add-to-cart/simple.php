@@ -30,7 +30,7 @@ if ( ! $product->is_purchasable() ) return;
 
 	<form class="cart" method="post" enctype='multipart/form-data'>
 	 	<?php do_action('woocommerce_before_add_to_cart_button'); ?>
-	 	<div class="col-sm-4">
+	 	<div class="col-lg-4">
 
 	 	<?php
 	 		if ( ! $product->is_sold_individually() )
@@ -41,7 +41,7 @@ if ( ! $product->is_purchasable() ) return;
 	 	?>
 	 	</div>
 
-	 	<div class="col-sm-8">
+	 	<div class="col-lg-8">
 
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
