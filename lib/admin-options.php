@@ -42,7 +42,7 @@ function shoestrap_module_woo_options( $sections ) {
 		'title'     => __( 'Loading progress bar color', 'shoestrap_woo' ),
 		'desc'      => __( 'Select between standard Bootstrap\'s progress bars classes', 'shoestrap_woo' ),
 		'id'        => 'shoestrap_woo_loading_color',
-		'default'   => ' ',
+		'default'   => 'default',
 		'type'      => 'select',
 		'customizer'=> array(),
 		'options'   => array( 
@@ -59,7 +59,7 @@ function shoestrap_module_woo_options( $sections ) {
 		'title'     => __( 'End progress bar color', 'shoestrap_woo' ),
 		'desc'      => __( 'Select between standard Bootstrap\'s progress bars classes', 'shoestrap_woo' ),
 		'id'        => 'shoestrap_woo_end_color',
-		'default'   => ' ',
+		'default'   => 'default',
 		'type'      => 'select',
 		'customizer'=> array(),
 		'options'   => array( 
@@ -94,6 +94,14 @@ function shoestrap_module_woo_options( $sections ) {
 		'required'  => array( 'shoestrap_woo_masorny','=',array( '1' ) ),
 	);
 
+	$fields[] = array( 
+		'title'     => __( 'Enable Isotope Sorting && Filtering', 'shoestrap_woo' ),
+		'desc'      => __( 'Default: Off.', 'shoestrap_woo' ),
+		'id'        => 'shoestrap_woo_isotope_sort_filter',
+		'default'   => 0,
+		'type'      => 'switch'
+	);
+
 	$section['fields'] = $fields;
 
 	$section = apply_filters( 'shoestrap_module_woo_options_modifier', $section );
@@ -102,5 +110,4 @@ function shoestrap_module_woo_options( $sections ) {
 	return $sections;
 }
 endif;
-add_filter( 'redux-sections-' . REDUX_OPT_NAME, 'shoestrap_module_woo_options', 16 );
 add_filter( 'redux/options/' . REDUX_OPT_NAME . '/sections', 'shoestrap_module_woo_options', 16 );

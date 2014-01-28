@@ -7,7 +7,8 @@
  * @version     2.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' )  ) exit; // Exit if accessed directly
+if ( shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ) == 1 ) return;
 
 global $woocommerce, $wp_query;
 
