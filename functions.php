@@ -1,5 +1,8 @@
 <?php
 
+if ( !defined( 'REDUX_OPT_NAME' ) )
+	define( 'REDUX_OPT_NAME', 'shoestrap' );
+
 // Add support for WooCommerce
 add_theme_support( 'woocommerce' );
 
@@ -7,17 +10,17 @@ add_theme_support( 'woocommerce' );
 add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 // Prioritize loading of some necessary core modules
-if ( file_exists( get_template_directory() . '/lib/modules/core.redux/module.php' ) )
-	require_once get_template_directory() . '/lib/modules/core.redux/module.php';
+if ( file_exists( get_template_directory() . '/lib/modules/redux/module.php' ) )
+	require_once get_template_directory() . '/lib/modules/redux/module.php';
 
 if ( file_exists( get_template_directory() . '/lib/modules/core/module.php' ) )
 	require_once get_template_directory() . '/lib/modules/core/module.php';
 
-if ( file_exists( get_template_directory() . '/lib/modules/core.layout/module.php' ) )
-	require_once get_template_directory() . '/lib/modules/core.layout/module.php';
+if ( file_exists( get_template_directory() . '/lib/modules/layout/module.php' ) )
+	require_once get_template_directory() . '/lib/modules/layout/module.php';
 
-if ( file_exists( get_template_directory() . '/lib/modules/core.images/module.php' ) )
-	require_once get_template_directory() . '/lib/modules/core.images/module.php';
+if ( file_exists( get_template_directory() . '/lib/modules/blog/module.php' ) )
+	require_once get_template_directory() . '/lib/modules/blog/module.php';
 
 require_once locate_template( 'lib/admin-options.php' );
 require_once locate_template( 'lib/slider.php' );
