@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $product;
 
-if ( get_option( 'woocommerce_enable_review_rating' ) == 'no' )
+if ( get_option( 'woocommerce_enable_review_rating' ) === 'no' )
 	return;
 
 $count   = $product->get_rating_count();
@@ -24,6 +24,7 @@ if ( $count > 0 ) : ?>
 			<span itemprop="ratingValue" class="rating sr-only"><?php echo esc_html( $average ); ?></span>
 			<?php echo shoestrap_get_rating_html(); ?>
 		</div>
+		<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $count, 'woocommerce' ), '<span itemprop="ratingCount" class="count">' . $count . '</span>' ); ?>)</a>
 	</div>
 
-<?php endif;
+<?php endif; ?>
