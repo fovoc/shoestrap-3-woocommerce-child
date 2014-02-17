@@ -13,7 +13,6 @@ if ( class_exists( 'WooCommerce' ) ) {
 	function shoestrap_woo_include_files() {
 		require_once locate_template( 'lib/admin-options.php' );
 		require_once locate_template( 'lib/slider.php' );
-		require_once locate_template( 'lib/wp-core-functions.php' );
 		require_once locate_template( 'lib/product-classes.php' );
 		require_once locate_template( 'lib/product-ratings.php' );
 		require_once locate_template( 'lib/product-thumbnails.php' );
