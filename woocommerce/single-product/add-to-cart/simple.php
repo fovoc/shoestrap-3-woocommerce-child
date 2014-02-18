@@ -44,9 +44,9 @@ if ( ! $product->is_purchasable() ) return;
 
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
-	 	</div>
-
 	 	<button type="submit" class="single_add_to_cart_button btn btn-lg btn-primary btn-block alt"><?php echo $product->single_add_to_cart_text(); ?></button>
+
+	 	</div>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 	</form>
