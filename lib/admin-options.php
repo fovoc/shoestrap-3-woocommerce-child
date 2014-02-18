@@ -72,14 +72,6 @@ function shoestrap_module_woo_options( $sections ) {
 		'required'  => array( 'shoestrap_woo_infinite_scroll','=',array( '1' ) ),
 	);
 
-	$fields[] = array( 
-		'title'     => __( 'Enable Masonry', 'shoestrap_woo' ),
-		'desc'      => __( 'Default: On.', 'shoestrap_woo' ),
-		'id'        => 'shoestrap_woo_masorny',
-		'default'   => 1,
-		'type'      => 'switch'
-	);
-
 	$fields[] = array(
 		'title'     => __( 'Products Width', 'shoestrap_woo' ),
 		'desc'      => __( 'Select the width of single products. This eventually changes the number of columns.', 'shoestrap_woo' ),
@@ -90,13 +82,20 @@ function shoestrap_module_woo_options( $sections ) {
 			'narrow' => 'Narrow',
 			'normal' => 'Normal',
 			'wide'   => 'Wide'
-		),
-		'required'  => array( 'shoestrap_woo_masorny','=',array( '1' ) ),
+		)
+	);
+
+	$fields[] = array( 
+		'title'     => __( 'Enable Masonry', 'shoestrap_woo' ),
+		'desc'      => __( 'Default: On. If disabled, equalheights.js trigger before all.', 'shoestrap_woo' ),
+		'id'        => 'shoestrap_woo_masorny',
+		'default'   => 1,
+		'type'      => 'switch'
 	);
 
 	$fields[] = array( 
 		'title'     => __( 'Enable Isotope Sorting && Filtering', 'shoestrap_woo' ),
-		'desc'      => __( 'Default: Off.', 'shoestrap_woo' ),
+		'desc'      => __( 'Default: Off. Preferable for short product lists.', 'shoestrap_woo' ),
 		'id'        => 'shoestrap_woo_isotope_sort_filter',
 		'default'   => 0,
 		'type'      => 'switch'
