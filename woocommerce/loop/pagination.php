@@ -16,7 +16,7 @@ if ( $wp_query->max_num_pages <= 1 )
 ?>
 <nav class="woocommerce-pagination text-center">
 	<?php
-		echo shoestrap_paginate_links( apply_filters( 'woocommerce_pagination_args', array(
+		echo ShoestrapBlog::paginate_links( apply_filters( 'woocommerce_pagination_args', array(
 			'base' 			=> str_replace( 999999999, '%#%', get_pagenum_link( 999999999 ) ),
 			'format' 		=> '',
 			'current' 		=> max( 1, get_query_var('paged') ),

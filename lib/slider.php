@@ -20,12 +20,14 @@ add_action( 'wp_enqueue_scripts', 'shoestrap_slider_enqueue_resources', 102 );
 if ( !function_exists( 'shoestrap_slider_gallery_script' ) ) :
 function shoestrap_slider_gallery_script() { ?>
 	<script>
-	(function() {
+	var $j = jQuery.noConflict();
+	// Using jQuery.noConflict
+	$j(window).load(function(){
 		// store the slider in a local variable
-		var $window = $(window), flexslider;
+		var $window = $j(window), flexslider;
 		$window.load(function() {
-			$("#carousel").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, itemWidth: 120, asNavFor: "#slider" });
-			$("#slider").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, sync: "#carousel" });
+			$j("#carousel").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, itemWidth: 120, asNavFor: "#slider" });
+			$j("#slider").flexslider({ animation: "slide", controlNav: false, animationLoop: false, slideshow: false, sync: "#carousel" });
 		});
 	}());
 	</script>
