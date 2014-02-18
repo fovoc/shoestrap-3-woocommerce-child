@@ -24,6 +24,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_filter( 'woocommerce_show_page_title', '__return_false' );
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
+	// Reposition count results
+	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+	add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 9 );
+
 
 	add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
 	function shoestrap_woocommerce_styles( $bootstrap ) {
