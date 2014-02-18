@@ -110,7 +110,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 		if ( shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ) == 1 )
 			add_action( 'woocommerce_before_shop_loop', 'shoestrap_woo_isotope_templates', 99999 );
 	}
-	add_action( 'init', 'shoestrap_woo_enable_isotope_sort_filter' );
+	add_action( 'wp', 'shoestrap_woo_enable_isotope_sort_filter' );
 
 
 
