@@ -54,12 +54,9 @@ if ( class_exists( 'WooCommerce' ) ) {
 			// Register && Enqueue Isotope-Sloppy-Masonry
 			wp_register_script('shoestrap_isotope_sloppy_masonry', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.sloppy-masonry.min.js', false, null, true);
 			wp_enqueue_script('shoestrap_isotope_sloppy_masonry');
-
-			if ( $sort_filters == 1 ) {
-				// Register && Enqueue Bootstrap Multiselect
-				wp_register_script('shoestrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
-				wp_enqueue_script('shoestrap_multiselect');
-			}
+			// Register && Enqueue Bootstrap Multiselect
+			wp_register_script('shoestrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
+			wp_enqueue_script('shoestrap_multiselect');
 
 			if ( $masonry != 1 ) {
 				// Register && Enqueue jQuery EqualHeights
