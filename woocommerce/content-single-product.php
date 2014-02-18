@@ -67,4 +67,5 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		do_action( 'woocommerce_after_single_product_summary' );
 	?>
 </div>
+<meta itemprop="url" content="<?php the_permalink(); ?>" />
 <?php do_action( 'woocommerce_after_single_product' );

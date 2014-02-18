@@ -13,17 +13,17 @@ global $woocommerce;
 
 $customer_id = get_current_user_id();
 
-if ( get_option('woocommerce_ship_to_billing_address_only') == 'no' ) {
-	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="el-icon-home"></i> MY ADDRESSES', 'woocommerce' ) );
-	$get_addresses    = array(
+if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) {
+	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', '<i class="el-icon-home"></i> ' . __( 'My Addresses', 'woocommerce' ) );
+	$get_addresses    = apply_filters( 'woocommerce_my_account_get_addresses', array(
 		'billing' => __( 'Billing Address', 'woocommerce' ),
 		'shipping' => __( 'Shipping Address', 'woocommerce' )
-	);
+	), $customer_id );
 } else {
-	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', __( '<i class="el-icon-home"></i> MY ADDRESS', 'woocommerce' ) );
-	$get_addresses    = array(
+	$page_title = apply_filters( 'woocommerce_my_account_my_address_title', '<i class="el-icon-home"></i> ' . __( 'My Address', 'woocommerce' ) );
+	$get_addresses    = apply_filters( 'woocommerce_my_account_get_addresses', array(
 		'billing' =>  __( 'Billing Address', 'woocommerce' )
-	);
+	), $customer_id );
 }
 
 $col = 1;
@@ -36,16 +36,16 @@ $col = 1;
 </p>
 <hr>
 <div class="row ">
-<?php if ( get_option('woocommerce_ship_to_billing_address_only') == 'no' ) echo '<div class="addresses">'; ?>
+<?php if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) echo '<div class="col2-set addresses">'; ?>
 
 <?php foreach ( $get_addresses as $name => $title ) : ?>
 
 	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address col-sm-6">
 		<header class="title">
 			<h5><?php echo $title; ?></h5>
-			<a href="<?php echo esc_url( add_query_arg('address', $name, get_permalink(woocommerce_get_page_id( 'edit_address' ) ) ) ); ?>" class="edit"><i class="el-icon-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
+			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit"><i class="el-icon-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
 		</header>
-		<address class="well">
+		<address>
 			<?php
 				$address = apply_filters( 'woocommerce_my_account_my_address_formatted_address', array(
 					'first_name' 	=> get_user_meta( $customer_id, $name . '_first_name', true ),
@@ -59,7 +59,7 @@ $col = 1;
 					'country'		=> get_user_meta( $customer_id, $name . '_country', true )
 				), $customer_id, $name );
 
-				$formatted_address = $woocommerce->countries->get_formatted_address( $address );
+				$formatted_address = WC()->countries->get_formatted_address( $address );
 
 				if ( ! $formatted_address )
 					_e( 'You have not set up this type of address yet.', 'woocommerce' );
@@ -71,5 +71,4 @@ $col = 1;
 
 <?php endforeach; ?>
 
-<?php if ( get_option('woocommerce_ship_to_billing_address_only') == 'no' ) echo '</div>'; ?>
-</div>
+<?php if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) echo '</div>'; ?>
