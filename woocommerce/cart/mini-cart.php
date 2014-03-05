@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 ?>
 
 <?php do_action( 'woocommerce_before_mini_cart' ); ?>
@@ -33,21 +33,22 @@ global $woocommerce;
 
 					?>
 					<li class="row">
-						<div class="col-xs-4">
+					<?php echo $ss_framework->open_row( 'li', null, null, null ); ?>
+						<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 4 ), null, null, null ); ?>
 							<a href="<?php echo get_permalink( $product_id ); ?>">
 								<?php echo $thumbnail; ?>
 							</a>
-						</div>
-						<div class="col-xs-8">
+						<?php echo $ss_framework->close_col( 'div' ); ?>
+						<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 8 ), null, null, null ); ?>
 							<a href="<?php echo get_permalink( $product_id ); ?>">
 								<?php echo $product_name; ?>
 							</a>
-						</div>
+						<?php echo $ss_framework->close_col( 'div' ); ?>
 
 						<?php echo WC()->cart->get_item_data( $cart_item ); ?>
 
 						<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
-					</li>
+					<?php echo $ss_framework->close_row( 'li' ); ?>
 					<?php
 				}
 			}
@@ -68,8 +69,8 @@ global $woocommerce;
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 	<p class="buttons text-center">
-		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="btn btn-default wc-forward"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
-		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="btn btn-default checkout wc-forward"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="<?php echo $ss_framework->button_classes( 'default', 'medium', null, 'wc-forward' ); ?>"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="<?php echo $ss_framework->button_classes( 'default', 'medium', null, 'checkout wc-forward' ); ?>"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
 	</p>
 
 <?php endif; ?>

@@ -33,7 +33,7 @@ $woocommerce_loop['columns'] 	= apply_filters( 'woocommerce_cross_sells_columns'
 
 if ( $products->have_posts() ) : ?>
 
-	<div class="cross-sells col-xs-12">
+	<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12 ), null, 'cross-sells', null ); ?>
 
 		<h5 class="text-center"><?php _e('You may be interested in&hellip;', 'woocommerce') ?></h5>
 
@@ -50,7 +50,7 @@ if ( $products->have_posts() ) : ?>
 		<?php woocommerce_product_loop_end(); ?>
 
 		</div>
-	</div>
+	<?php echo $ss_framework->close_col( 'div' ); ?>
 
 <?php endif;
 

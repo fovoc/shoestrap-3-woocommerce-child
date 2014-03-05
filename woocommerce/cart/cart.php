@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 wc_print_notices();
 
@@ -22,12 +22,29 @@ do_action( 'woocommerce_before_cart' ); ?>
 <table class="shop_table cart table" cellspacing="0">
 	<thead>
 		<tr>
-			<th class="product-remove col-sm-1">&nbsp;</th>
-			<th class="product-thumbnail hidden-xs col-sm-2">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
-			<th class="product-quantity col-sm-1"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
-			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 1 ), null, 'product-remove', null ); ?>
+			&nbsp;
+			<?php echo $ss_framework->close_col( 'th' ); ?>
+
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 2 ), null, 'product-thumbnail hidden-xs', null ); ?>
+			&nbsp;
+			<?php echo $ss_framework->close_col( 'th' ); ?>
+
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 3 ), null, 'product-name', null ); ?>
+			<?php _e( 'Product', 'woocommerce' ); ?>
+			<?php echo $ss_framework->close_col( 'th' ); ?>
+
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 2 ), null, 'product-price', null ); ?>
+			<?php _e( 'Price', 'woocommerce' ); ?>
+			<?php echo $ss_framework->close_col( 'th' ); ?>
+
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 2 ), null, 'product-quantity', null ); ?>
+			<?php _e( 'Quantity', 'woocommerce' ); ?>
+			<?php echo $ss_framework->close_col( 'th' ); ?>
+
+			<?php echo $ss_framework->open_col( 'th', array( 'tablet' => 2 ), null, 'product-subtotal text-right', null ); ?>
+			<?php _e( 'Total', 'woocommerce' ); ?>
+			<?php echo $ss_framework->close_col( 'th' ); ?>
 		</tr>
 	</thead>
 	<tbody>
@@ -42,13 +59,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 				?>
 				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
-					<td class="product-remove col-sm-1">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 1 ), null, 'product-remove', null ); ?>
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="btn btn-danger remove" title="%s"><i class="el-icon-remove"></i></a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 
-					<td class="product-thumbnail hidden-xs col-sm-2">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 2 ), null, 'product-thumbnail hidden-xs', null ); ?>
 						<?php
 							$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
 
@@ -57,9 +74,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 							else
 								printf( '<a href="%s">%s</a>', $_product->get_permalink(), $thumbnail );
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 
-					<td class="product-name">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 3 ), null, 'product-name', null ); ?>
 						<?php
 							if ( ! $_product->is_visible() )
 								echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key );
@@ -73,15 +90,15 @@ do_action( 'woocommerce_before_cart' ); ?>
                				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
                					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 
-					<td class="product-price">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 2 ), null, 'product-price', null ); ?>
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 
-					<td class="product-quantity col-sm-1">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 2 ), null, 'product-quantity', null ); ?>
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -95,13 +112,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key );
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 
-					<td class="product-subtotal">
+					<?php echo $ss_framework->open_col( 'td', array( 'tablet' => 2 ), null, 'product-subtotal text-right', null ); ?>
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 						?>
-					</td>
+					<?php echo $ss_framework->close_col( 'td' ); ?>
 				</tr>
 				<?php
 			}
@@ -111,37 +128,38 @@ do_action( 'woocommerce_before_cart' ); ?>
 		?>
 		<tr>
 			<td colspan="6" class="actions">
-				<div class="col-lg-6">
+				<?php echo $ss_framework->open_col( 'div', array( 'large' => 6 ), null, null, null ); ?>
 
 					<?php if ( WC()->cart->coupons_enabled() ) { ?>
 						<div class="coupon">
 
-							<div class="input-group col-xs-12 col-sm-6">
+						<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12, 'tablet' => 6 ), null, 'input-group', null ); ?>
 								<input name="coupon_code" class="input-text form-control" id="coupon_code" value="" placeholder="<?php _e( 'Coupon', 'woocommerce' ); ?>:"/>
 								<span class="input-group-btn">
-									<input type="submit" class="btn btn-success" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+									<input type="submit" class="<?php echo $ss_framework->button_classes( 'success' ); ?>" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
 								</span>
-							</div>
+							<?php echo $ss_framework->close_col( 'div' ); ?>
 
 							<?php do_action('woocommerce_cart_coupon'); ?>
 
 						</div>
 					<?php } ?>
 					<hr>
-				</div>
+				<?php echo $ss_framework->close_col( 'div' ); ?>
+
 				<?php if ( WC()->cart->coupons_enabled() ) : ?>
-					<div class="col-lg-6 ss-wc-cart-actions">
+					<?php echo $ss_framework->open_col( 'div', array( 'large' => 6 ), null, 'ss-wc-cart-actions', null ); ?>
 				<?php else : ?>
 					<div class="ss-wc-cart-actions">
 				<?php endif; ?>
-					<div class="btn-group" style="width: 100%;">
-						<input type="submit" class="col-sm-6 btn btn-default" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
-						<input type="submit" class="col-sm-6 checkout-button btn btn-primary wc-forward" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
+					<div class="<?php echo $ss_framework->button_group_classes( null, null, null ); ?>" style="width: 100%;">
+						<?php echo $ss_framework->open_col( 'input', array( 'tablet' => 6 ), null, 'btn btn-default', 'type="submit" name="update_cart" value="'. __( "Update Cart", "woocommerce" ) .'"' ); ?>
+						<?php echo $ss_framework->open_col( 'input', array( 'tablet' => 6 ), null, 'checkout-button wc-forward btn btn-primary', 'type="submit" name="proceed" value="'. __( "Proceed to Checkout", "woocommerce" ) .'"' ); ?>
 					</div>
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 					<hr>
-				</div>
-				<div class="clearfix"></div>
+				<?php echo $ss_framework->close_col( 'div' ); ?>
+				<?php echo $ss_framework->clearfix(); ?>
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
 			</td>
 		</tr>
@@ -150,11 +168,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 	</tbody>
 </table>
 
-<div class="clearfix"></div>
+<?php echo $ss_framework->clearfix(); ?>
 
 <?php do_action( 'woocommerce_after_cart_table' ); ?>
 
-<div class="clearfix"></div>
+<?php echo $ss_framework->clearfix(); ?>
 
 </form>
 
@@ -168,8 +186,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 </div>
 
-<div class="clearfix"></div>
+<?php echo $ss_framework->clearfix(); ?>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
 
-<div class="clearfix"></div>
+<?php echo $ss_framework->clearfix(); ?>

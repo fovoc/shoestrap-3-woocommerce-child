@@ -9,12 +9,16 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+global $ss_framework;
+
 wc_print_notices();
 
 ?>
 
-<p class="cart-empty alert alert-warning"><?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?></p>
+<?php echo $ss_framework->alert( 'warning', __( 'Your cart is currently empty.', 'woocommerce' ), null, 'cart-empty', true ); ?>
 
 <?php do_action('woocommerce_cart_is_empty'); ?>
 
-<p class="return-to-shop"><a class="btn btn-primary wc-backward" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'Return To Shop', 'woocommerce' ) ?></a></p>
+<p class="return-to-shop">
+	<a class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'wc-backward' ); ?>" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'Return To Shop', 'woocommerce' ) ?></a>
+</p>
