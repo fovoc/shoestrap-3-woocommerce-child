@@ -43,7 +43,7 @@ endif;
 
 if ( !function_exists( 'shoestrap_woo_post_extra_classes' ) ) :
 function shoestrap_woo_post_extra_classes() {
-	global $post;
+	global $post, $ss_framework;
 
 	// get the specified width ( narrow/normal/wide )
 	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
@@ -51,20 +51,11 @@ function shoestrap_woo_post_extra_classes() {
 	$classes[] = '';
 	// calculate the css classes based on the above selection
 	if ( $mode == 'narrow' ) :
-		$classes[] = 'col-lg-3';
-		$classes[] = 'col-md-4';
-		$classes[] = 'col-sm-6';
-		$classes[] = 'col-xs-12';
+		$classes[] = $ss_framework->column_classes( array( 'mobile' => 12, 'tablet' => 6, 'medium' => 4, 'large' => 3 ), null );
 	elseif ( $mode == 'normal' ) :
-		$classes[] = 'col-lg-4';
-		$classes[] = 'col-md-6';
-		$classes[] = 'col-sm-6';
-		$classes[] = 'col-xs-12';
+		$classes[] = $ss_framework->column_classes( array( 'mobile' => 12, 'tablet' => 6, 'medium' => 6, 'large' => 4 ) , null );
 	else :
-		$classes[] = 'col-lg-6';
-		$classes[] = 'col-md-6';
-		$classes[] = 'col-sm-12';
-		$classes[] = 'col-xs-12';
+		$classes[] = $ss_framework->column_classes( array( 'mobile' => 12, 'tablet' => 12, 'medium' => 6, 'large' => 6 ), null );
 	endif;
 
 	return $classes;
