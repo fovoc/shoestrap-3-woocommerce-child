@@ -9,31 +9,30 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 if ( $order ) : ?>
 
-	<?php if ( in_array( $order->status, array( 'failed' ) ) ) : ?>
+	<?php if ( in_array( $order->status, array( 'failed' ) ) ) : 
 
-		<p><?php _e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ); ?></p>
+		echo $ss_framework->alert( 'danger', __( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction.', 'woocommerce' ), null, null, true );
 
-		<p><?php
 			if ( is_user_logged_in() )
-				_e( 'Please attempt your purchase again or go to your account page.', 'woocommerce' );
+				echo $ss_framework->alert( 'warning', __( 'Please attempt your purchase again or go to your account page.', 'woocommerce' ), null, null, true );
 			else
-				_e( 'Please attempt your purchase again.', 'woocommerce' );
-		?></p>
+				echo $ss_framework->alert( 'warning', __( 'Please attempt your purchase again.', 'woocommerce' ), null, null, true );
+		?>
 
 		<p>
-			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php _e( 'Pay', 'woocommerce' ) ?></a>
+			<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'pay' );?>"><?php _e( 'Pay', 'woocommerce' ) ?></a>
 			<?php if ( is_user_logged_in() ) : ?>
-			<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'myaccount' ) ) ); ?>" class="button pay"><?php _e( 'My Account', 'woocommerce' ); ?></a>
+			<a href="<?php echo esc_url( get_permalink( wc_get_page_id( 'myaccount' ) ) ); ?>" class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'pay' ); ?>"><?php _e( 'My Account', 'woocommerce' ); ?></a>
 			<?php endif; ?>
 		</p>
 
 	<?php else : ?>
 
-		<p><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
+		<p><?php echo $ss_framework->alert( 'success', __( 'Thank you. Your order has been received.', 'woocommerce' ), null, null, true ); ?></p>
 
 		<ul class="order_details">
 			<li class="order">
@@ -55,7 +54,7 @@ if ( $order ) : ?>
 			</li>
 			<?php endif; ?>
 		</ul>
-		<div class="clear"></div>
+		<?php echo $ss_framework->clearfix(); ?>
 
 	<?php endif; ?>
 
@@ -64,6 +63,6 @@ if ( $order ) : ?>
 
 <?php else : ?>
 
-	<p><?php _e( 'Thank you. Your order has been received.', 'woocommerce' ); ?></p>
+	<p><?php echo $ss_framework->alert( 'success', __( 'Thank you. Your order has been received.', 'woocommerce' ), null, null, true ); ?></p>
 
 <?php endif; ?>

@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 wc_print_notices();
 
@@ -32,13 +32,13 @@ $get_checkout_url = apply_filters( 'woocommerce_get_checkout_url', WC()->cart->g
 
 		<div class="col2-set" id="customer_details">
 
-			<div class="col-md-6">
+			<div class="<?php echo $ss_framework->column_classes( array('medium' => 6), null ); ?>">
 
 				<?php do_action( 'woocommerce_checkout_billing' ); ?>
 
 			</div>
 
-			<div class="col-md-6">
+			<div class="<?php echo $ss_framework->column_classes( array('medium' => 6), null ); ?>">
 
 				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 

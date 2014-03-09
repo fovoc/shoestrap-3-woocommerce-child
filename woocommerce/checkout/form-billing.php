@@ -8,6 +8,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+global $ss_framework;
 ?>
 <div class="woocommerce-billing-fields">
 	<?php if ( WC()->cart->ship_to_billing_address_only() && WC()->cart->needs_shipping() ) : ?>
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<?php $custom = array(
 			'class'       => array( 'form-group' ),
 			'label_class' => array( 'control-label' ),
-			'input_class' => array( 'form-control' ),
+			'input_class' => array( $ss_framework->form_input_classes() ),
 		);
 		$args = wp_parse_args( $custom, $field  );
 		?>
@@ -41,9 +43,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		<?php if ( $checkout->enable_guest_checkout ) : ?>
 
-			<p class="form-row form-row-wide create-account">
-				<input class="input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true) ?> type="checkbox" name="createaccount" value="1" /> <label for="createaccount" class="checkbox"><?php _e( 'Create an account?', 'woocommerce' ); ?></label>
-			</p>
+			<h2 class="form-row form-row-wide create-account">
+				<label for="createaccount" class="checkbox"><?php _e( 'Create an account?', 'woocommerce' ); ?></label>
+				<input class="<?php echo $ss_framework->form_input_classes(); ?> input-checkbox" id="createaccount" <?php checked( ( true === $checkout->get_value( 'createaccount' ) || ( true === apply_filters( 'woocommerce_create_account_default_checked', false ) ) ), true) ?> type="checkbox" name="createaccount" value="1" />
+			</h2>
 
 		<?php endif; ?>
 
@@ -60,7 +63,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					<?php $custom = array(
 						'class'       => array( 'form-group' ),
 						'label_class' => array( 'control-label' ),
-						'input_class' => array( 'form-control' ),
+						'input_class' => array( $ss_framework->form_input_classes() ),
 					);
 					$args = wp_parse_args( $custom, $field  );
 					?>

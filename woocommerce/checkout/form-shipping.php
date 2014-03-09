@@ -8,6 +8,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+global $ss_framework;
 ?>
 <div class="woocommerce-shipping-fields">
 	<?php if ( WC()->cart->needs_shipping() && ! WC()->cart->ship_to_billing_address_only() ) : ?>
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 		<h3 id="ship-to-different-address">
 			<label for="ship-to-different-address-checkbox" class="checkbox"><?php _e( 'Ship to a different address?', 'woocommerce' ); ?></label>
-			<input id="ship-to-different-address-checkbox" class="input-checkbox" <?php checked( $ship_to_different_address, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />
+			<input id="ship-to-different-address-checkbox" class="<?php echo $ss_framework->form_input_classes(); ?> input-checkbox" <?php checked( $ship_to_different_address, 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" />
 		</h3>
 
 		<div class="shipping_address">
@@ -40,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				$custom = array(
 					'class'             => array( 'form-group' ),
 					'label_class'       => array( 'control-label' ),
-					'input_class'       => array( 'form-control' ),
+					'input_class'       => array( $ss_framework->form_input_classes() ),
 				);
 
 				$args = wp_parse_args( $custom, $field  );
@@ -72,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			$custom = array(
 				'class'             => array( 'form-group' ),
 				'label_class'       => array( 'control-label' ),
-				'input_class'       => array( 'form-control' ),
+				'input_class'       => array( $ss_framework->form_input_classes() ),
 			);
 
 			$args = wp_parse_args( $custom, $field  );

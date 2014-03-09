@@ -9,6 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+global $ss_framework;
 ?>
 <div id="order_review" class="clearfix">
 
@@ -20,6 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			</tr>
 		</thead>
 		<tfoot>
+			
+			<!-- just some empty space -->
+			<tr>
+				<th colspan="2"></th>
+			</tr>
 
 			<tr class="cart-subtotal">
 				<th><?php _e( 'Cart Subtotal', 'woocommerce' ); ?></th>
@@ -132,7 +138,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					foreach ( $available_gateways as $gateway ) {
 						?>
 						<li class="list-group-item payment_method_<?php echo $gateway->id; ?>">
-							<input id="payment_method_<?php echo $gateway->id; ?>" type="radio" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
+							<input hidden id="payment_method_<?php echo $gateway->id; ?>" type="radio" class="input-radio" name="payment_method" value="<?php echo esc_attr( $gateway->id ); ?>" <?php checked( $gateway->chosen, true ); ?> data-order_button_text="<?php echo esc_attr( $gateway->order_button_text ); ?>" />
 							<label for="payment_method_<?php echo $gateway->id; ?>"><?php echo $gateway->get_title(); ?> <?php echo $gateway->get_icon(); ?></label>
 							<?php
 								if ( $gateway->has_fields() || $gateway->get_description() ) :
@@ -167,16 +173,16 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			<?php
 			$order_button_text = apply_filters( 'woocommerce_order_button_text', __( 'Place order', 'woocommerce' ) );
 
-			echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="btn btn-primary pull-right alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '" />' );
+			echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="'. $ss_framework->button_classes( 'primary', 'block', null, 'pull-right alt' ) .'" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '" />' );
 			?>
 
 			<?php if ( wc_get_page_id( 'terms' ) > 0 && apply_filters( 'woocommerce_checkout_show_terms', true ) ) { 
 				$terms_is_checked = apply_filters( 'woocommerce_terms_is_checked_default', isset( $_POST['terms'] ) );
 				?>
-				<p class="form-row terms">
+				<h3 class="form-row terms">
 					<label for="terms" class="checkbox"><?php _e( 'I have read and accept the', 'woocommerce' ); ?> <a href="<?php echo esc_url( get_permalink(wc_get_page_id('terms')) ); ?>" target="_blank"><?php _e( 'terms &amp; conditions', 'woocommerce' ); ?></a></label>
-					<input type="checkbox" class="input-checkbox" name="terms" <?php checked( $terms_is_checked, true ); ?> id="terms" />
-				</p>
+					<input type="checkbox" class="<?php echo $ss_framework->form_input_classes(); ?> input-checkbox" name="terms" <?php checked( $terms_is_checked, true ); ?> id="terms" />
+				</h3>
 			<?php } ?>
 
 			<?php do_action( 'woocommerce_review_order_after_submit' ); ?>

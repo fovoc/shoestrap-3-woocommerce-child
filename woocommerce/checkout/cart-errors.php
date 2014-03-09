@@ -9,12 +9,12 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-?>
+global $ss_framework;
 
-<?php wc_print_notices(); ?>
+wc_print_notices(); ?>
 
-<p class="alert alert-warning"><?php _e( 'There are some issues with the items in your cart (shown above). Please go back to the cart page and resolve these issues before checking out.', 'woocommerce' ) ?></p>
+<?php echo $ss_framework->alert( 'warning', __( 'There are some issues with the items in your cart (shown above). Please go back to the cart page and resolve these issues before checking out.', 'woocommerce' ), null, null, true ); ?>
 
 <?php do_action('woocommerce_cart_has_errors'); ?>
 
-<p class="alert alert-danger"><a class="btn btn-dabger wc-backward" href="<?php echo get_permalink(wc_get_page_id( 'cart' ) ); ?>"><?php _e( 'Return To Cart', 'woocommerce' ) ?></a></p>
+<?php echo $ss_framework->alert( 'danger', '<a class="'. echo $ss_framework->button_classes( 'danger', 'medium', null, 'wc-backward' ); .'" href="'. echo get_permalink(wc_get_page_id( 'cart' ) ); .'">'. __( 'Return To Cart', 'woocommerce' ) .'</a>' , null, null, true ); ?>

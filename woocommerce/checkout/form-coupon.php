@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 if ( ! WC()->cart->coupons_enabled() )
 	return;
@@ -22,11 +22,11 @@ wc_print_notice( $info_message, 'notice' );
 <form class="checkout_coupon" method="post" style="display:none">
 
 	<p class="form-row form-row-first">
-		<input type="text" name="coupon_code" class="input-text" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
+		<input type="text" name="coupon_code" class="<?php echo $ss_framework->form_input_classes(); ?> input-text" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
 	</p>
 
 	<p class="form-row form-row-last">
-		<input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+		<input type="submit" class="<?php echo $ss_framework->button_classes( 'success', 'block', null, null ); ?>" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
 	</p>
 
 	<div class="clear"></div>
