@@ -21,13 +21,13 @@ wc_print_notice( $info_message, 'notice' );
 
 <form class="checkout_coupon" method="post" style="display:none">
 
-	<p class="form-row form-row-first">
+	<?php echo $ss_framework->open_col( 'p', array( 'mobile' => 6 ), null, 'form-row form-row-first' ); ?>
 		<input type="text" name="coupon_code" class="<?php echo $ss_framework->form_input_classes(); ?> input-text" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" id="coupon_code" value="" />
-	</p>
+	<?php echo $ss_framework->close_col( 'p' ); ?>
 
-	<p class="form-row form-row-last">
+	<?php echo $ss_framework->open_col( 'p', array( 'mobile' => 6 ), null, 'form-row form-row-last' ); ?>
 		<input type="submit" class="<?php echo $ss_framework->button_classes( 'success', 'block', null, null ); ?>" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
-	</p>
+	<?php echo $ss_framework->close_col( 'p' ); ?>
 
-	<div class="clear"></div>
+	<?php echo $ss_framework->clearfix(); ?>
 </form>

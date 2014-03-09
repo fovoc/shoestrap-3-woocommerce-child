@@ -2,15 +2,13 @@
 
 if ( !defined( 'ABSPATH' ) ) exit;
 
-
 if ( !$errors ) :
 	return;
 endif; ?>
 
 <div class="wrap">
-	<div class="woocommerce_error alert alert-danger">
-		<?php foreach ( $errors as $error ) : ?>
-			<?php echo wp_kses_post( $error ); ?>
-		<?php endforeach; ?>
-	</div>
+	<?php foreach ( $errors as $error ) : ?>
+		<?php $content = wp_kses_post( $error ); ?>
+		<?php echo $ss_framework->alert( 'danger', $content, null, 'woocommerce_error', true ); ?>
+	<?php endforeach; ?>
 </div>
