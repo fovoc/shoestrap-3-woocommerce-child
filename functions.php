@@ -58,9 +58,12 @@ if ( class_exists( 'WooCommerce' ) ) {
 			// Register && Enqueue Isotope-Sloppy-Masonry
 			wp_register_script('shoestrap_isotope_sloppy_masonry', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.sloppy-masonry.min.js', false, null, true);
 			wp_enqueue_script('shoestrap_isotope_sloppy_masonry');
-			// Register && Enqueue Bootstrap Multiselect
-			wp_register_script('shoestrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
-			wp_enqueue_script('shoestrap_multiselect');
+			
+			if ( $sort_filters == 1 ) {
+				// Register && Enqueue Bootstrap Multiselect
+				wp_register_script('shoestrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
+				wp_enqueue_script('shoestrap_multiselect');
+			}
 
 			if ( $masonry != 1 ) {
 				// Register && Enqueue jQuery EqualHeights
@@ -85,8 +88,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 	function shoestrap_load_scripts() {
 		wp_enqueue_script('shoestrap_script', get_stylesheet_directory_uri() . '/assets/js/script.js');
 		wp_localize_script('shoestrap_script', 'shoestrap_script_vars', array(
+				'is_woo'          => is_woocommerce(),
 				'masonry' 				=> shoestrap_getVariable( 'shoestrap_woo_masorny' ),
 				'infinitescroll' 	=> shoestrap_getVariable( 'shoestrap_woo_infinite_scroll' ),
+				'sort_filters'		=> shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ),
 				'no_filters'			=>  __( 'No filters', 'shoestrap_edd' ),
 				'msgText' 				=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_loading_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_loading_text' ) ) . "<span></div></div>",
 				'finishedMsg' 		=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_end_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_end_text' ) ) . "<span></div></div>"
