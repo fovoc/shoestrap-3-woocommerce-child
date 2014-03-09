@@ -10,13 +10,13 @@
 if ( ! defined( 'ABSPATH' )  ) exit; // Exit if accessed directly
 if ( shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ) == 1 ) return;
 
-global $woocommerce, $wp_query;
+global $woocommerce, $wp_query, $ss_framework;
 
 if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 	return;
 ?>
 <form class="woocommerce-ordering pull-left" method="get">
-	<select name="orderby" class="orderby form-control">
+	<select name="orderby" class="orderby <?php echo $ss_framework->form_input_classes(); ?>">
 		<?php
 			$catalog_orderby = apply_filters( 'woocommerce_catalog_orderby', array(
 				'menu_order' => __( 'Default sorting', 'woocommerce' ),
@@ -51,4 +51,4 @@ if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 		}
 	?>
 </form>
-<div class="clearfix"></div>
+<?php echo $ss_framework->clearfix(); ?>
