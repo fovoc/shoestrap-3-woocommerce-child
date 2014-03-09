@@ -20,5 +20,5 @@ wc_print_notices();
 <?php do_action('woocommerce_cart_is_empty'); ?>
 
 <p class="return-to-shop">
-	<a class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'wc-backward' ); ?>" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'Return To Shop', 'woocommerce' ) ?></a>
+	<a class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, 'wc-backward' ); ?>" href="<?php echo get_permalink( wc_get_page_id( 'shop' ) ); ?>"><?php _e( 'Return To Shop', 'woocommerce' ) ?></a>
 </p>

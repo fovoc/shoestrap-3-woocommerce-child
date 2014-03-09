@@ -32,7 +32,6 @@ global $woocommerce, $ss_framework;
 					$product_price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
 
 					?>
-					<li class="row">
 					<?php echo $ss_framework->open_row( 'li', null, null, null ); ?>
 						<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 4 ), null, null, null ); ?>
 							<a href="<?php echo get_permalink( $product_id ); ?>">

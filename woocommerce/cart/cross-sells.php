@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce_loop, $woocommerce, $product;
+global $woocommerce_loop, $woocommerce, $product, $ss_framework;
 
 $crosssells = $woocommerce->cart->get_cross_sells();
 

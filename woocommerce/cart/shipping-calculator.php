@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 if ( get_option( 'woocommerce_enable_shipping_calc' ) === 'no' || ! WC()->cart->needs_shipping() )
 	return;
@@ -82,7 +82,7 @@ if ( get_option( 'woocommerce_enable_shipping_calc' ) === 'no' || ! WC()->cart->
 
 		<?php endif; ?>
 
-		<p><button type="submit" name="calc_shipping" value="1" class="<?php echo $ss_framework->button_classes( 'default', 'small' ); ?>"><?php _e( 'Update Totals', 'woocommerce' ); ?></button></p>
+		<p><button type="submit" name="calc_shipping" value="1" class="<?php echo $ss_framework->button_classes( 'primary', 'medium' ); ?>"><?php _e( 'Update Totals', 'woocommerce' ); ?></button></p>
 
 		<?php wp_nonce_field( 'woocommerce-cart' ); ?>
 	</section>
