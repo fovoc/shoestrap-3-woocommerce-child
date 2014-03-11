@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 $customer_id = get_current_user_id();
 
@@ -29,21 +29,20 @@ if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_op
 $col = 1;
 ?>
 
-<h5><?php echo $page_title; ?></h5>
+<h4><?php echo $page_title; ?></h4>
 
 <p class="myaccount_address">
 	<?php echo apply_filters( 'woocommerce_my_account_my_address_description', __( 'The following addresses will be used on the checkout page by default.', 'woocommerce' ) ); ?>
 </p>
 <hr>
-<div class="row ">
+<?php echo $ss_framework->open_row( 'div', null, null, null ); ?>
 <?php if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) echo '<div class="col2-set addresses">'; ?>
 
 <?php foreach ( $get_addresses as $name => $title ) : ?>
 
 	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address col-sm-6">
 		<header class="title">
-			<h5><?php echo $title; ?></h5>
-			<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="edit"><i class="el-icon-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
+			<h4><?php echo $title; ?></h4>
 		</header>
 		<address>
 			<?php
@@ -62,12 +61,13 @@ $col = 1;
 				$formatted_address = WC()->countries->get_formatted_address( $address );
 
 				if ( ! $formatted_address )
-					_e( 'You have not set up this type of address yet.', 'woocommerce' );
+					echo $ss_framework->alert( 'danger', __( 'You have not set up this type of address yet.', 'woocommerce' ), null, null, true );
 				else
 					echo $formatted_address;
 			?>
 		</address>
-	</div>
+		<a href="<?php echo wc_get_endpoint_url( 'edit-address', $name ); ?>" class="<?php echo $ss_framework->button_classes( 'default', 'medium', null, 'edit'); ?>"><i class="el-icon-pencil"></i> <?php _e( 'Edit', 'woocommerce' ); ?></a>
+	<?php echo $ss_framework->close_row( 'div' ); ?>
 
 <?php endforeach; ?>
 

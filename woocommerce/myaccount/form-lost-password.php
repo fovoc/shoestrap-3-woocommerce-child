@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce, $post;
+global $woocommerce, $post, $ss_framework;
 
 ?>
 
@@ -21,7 +21,7 @@ global $woocommerce, $post;
 
         <p><?php echo apply_filters( 'woocommerce_lost_password_message', __( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p>
 
-        <p class="form-row form-row-first"><label for="user_login"><?php _e( 'Username or email', 'woocommerce' ); ?></label> <input class="form-control" type="text" name="user_login" id="user_login" /></p>
+        <p class="form-row form-row-first"><label for="user_login"><?php _e( 'Username or email', 'woocommerce' ); ?></label> <input class="<?php echo $ss_framework->form_input_classes(); ?>" type="text" name="user_login" id="user_login" /></p>
 
 	<?php else : ?>
 
@@ -29,11 +29,11 @@ global $woocommerce, $post;
 
         <div class="form-group">
             <label for="password_1"><?php _e( 'New password', 'woocommerce' ); ?> <span class="required">*</span></label>
-            <input type="password" class="form-control" name="password_1" id="password_1" />
+            <input type="password" class="<?php echo $ss_framework->form_input_classes(); ?>" name="password_1" id="password_1" />
         </div>
         <div class="form-group">
             <label for="password_2"><?php _e( 'Re-enter new password', 'woocommerce' ); ?> <span class="required">*</span></label>
-            <input type="password" class="form-control" name="password_2" id="password_2" />
+            <input type="password" class="<?php echo $ss_framework->form_input_classes(); ?>" name="password_2" id="password_2" />
         </div>
 
         <input type="hidden" name="reset_key" value="<?php echo isset( $args['key'] ) ? $args['key'] : ''; ?>" />
@@ -41,9 +41,9 @@ global $woocommerce, $post;
 
     <?php endif; ?>
 
-    <div class="clearfix"></div>
+    <?php echo $ss_framework->clearfix(); ?>
 
-    <p class="form-row"><input type="submit" class="btn btn-primary" name="wc_reset_password" value="<?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'woocommerce' ) : __( 'Save', 'woocommerce' ); ?>" /></p>
+    <p class="form-row"><input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, null ); ?>" name="wc_reset_password" value="<?php echo 'lost_password' == $args['form'] ? __( 'Reset Password', 'woocommerce' ) : __( 'Save', 'woocommerce' ); ?>" /></p>
 	<?php wp_nonce_field( $args['form'] ); ?>
 
 </form>

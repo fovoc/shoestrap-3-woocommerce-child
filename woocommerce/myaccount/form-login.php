@@ -8,6 +8,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+global $ss_framework;
 ?>
 
 <?php wc_print_notices(); ?>
@@ -16,15 +18,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 <?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
-<div class="col2-set row" id="customer_login">
+<?php echo $ss_framework->open_row( 'div', 'customer_login', 'col2-set', null ); ?>
 
-	<div class="col-sm-6">
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 6 ), null, null, null ); ?>
 
 <?php endif; ?>
 
 		<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#login"><i class="el-icon-lock"></i> <?php _e('Returning Customer', 'woocommerce'); ?></a></li>
-		  <li><a href="#forgot"><i class="el-icon-question"></i> <?php _e('Lost Password', 'woocommerce'); ?></a></li>
+		  <li class="active"><a href="#login" data-toggle="tab"><i class="el-icon-lock"></i> <?php _e('Returning Customer', 'woocommerce'); ?></a></li>
+		  <li><a href="#forgot" data-toggle="tab"><i class="el-icon-question"></i> <?php _e('Lost Password', 'woocommerce'); ?></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -36,35 +38,35 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 					<div class="form-group">
 						<label for="username" class="control-label"><?php _e('Username/email', 'woocommerce'); ?> <span class="required">*</span></label>
-						<input type="text" class="input-text form-control" name="username" id="username" />
+						<input type="text" class="input-text <?php echo $ss_framework->form_input_classes(); ?>" name="username" id="username" />
 					</div>
 					<div class="form-group">
 						<label for="password" class="control-label"><?php _e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
-						<input class="input-text form-control" type="password" name="password" id="password" />
+						<input class="input-text <?php echo $ss_framework->form_input_classes(); ?>" type="password" name="password" id="password" />
 
 					</div>
 
 					<div class="form-group">
 							<?php wp_nonce_field( 'login', 'login' ); ?>
-							<input type="submit" class="button btn theme" name="login" value="<?php _e('Login', 'woocommerce'); ?>" />
+							<input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, 'theme' ); ?>" name="login" value="<?php _e('Login', 'woocommerce'); ?>" />
 					</div>
 				</form>
 			</div>
 
 			<div class="tab-pane" id="forgot">
-				<p class="padding">Click <a href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>" class="theme">here</a> to retrieve your password </p>
+				<p class="padding">Click <a href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>" class="<?php echo $ss_framework->button_classes( 'link', 'medium', null, 'theme' ); ?>">here</a> to retrieve your password </p>
 			</div>
 
 		</div>
 
 <?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
-	</div>
+	<?php echo $ss_framework->close_col( 'div' ); ?>
 
-	<div class="col-2 col-sm-6">
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 6 ), null, 'col-2', null ); ?>
 
 		<ul class="nav nav-tabs" id="myTab">
-		  <li class="active"><a href="#register"><i class="el-icon-pencil"></i> <?php _e('Register', 'woocommerce'); ?></a></li>
+		  <li class="active"><a href="#register" data-toggle="tab"><i class="el-icon-pencil"></i> <?php _e('Register', 'woocommerce'); ?></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -76,7 +78,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 					<div class="form-group">
 						<label for="reg_username" class="control-label"><?php _e('Username', 'woocommerce'); ?> <span class="required">*</span></label>
-						<input type="text" class="input-text form-control" name="username" id="reg_username" value="<?php if (isset($_POST['username'])) echo esc_attr($_POST['username']); ?>" />
+						<input type="text" class="input-text <?php echo $ss_framework->form_input_classes(); ?>" name="username" id="reg_username" value="<?php if (isset($_POST['username'])) echo esc_attr($_POST['username']); ?>" />
 					</div>
 
 					<div class="form-group">
@@ -88,19 +90,19 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 				<?php endif; ?>
 
 						<label class="control-label" for="reg_email"><?php _e('Email', 'woocommerce'); ?> <span class="required">*</span></label>
-						<input type="email" class="input-text form-control" name="email" id="reg_email" value="<?php if (isset($_POST['email'])) echo esc_attr($_POST['email']); ?>" />
+						<input type="email" class="input-text <?php echo $ss_framework->form_input_classes(); ?>" name="email" id="reg_email" value="<?php if (isset($_POST['email'])) echo esc_attr($_POST['email']); ?>" />
 
 					</div>
 
-				<div class="clear"></div>
+				<?php echo $ss_framework->clearfix(); ?>
 
 				<div class="form-group">
 					<label class="control-label" for="reg_password"><?php _e('Password', 'woocommerce'); ?> <span class="required">*</span></label>
-					<input type="password" class="input-text form-control" name="password" id="reg_password" value="<?php if (isset($_POST['password'])) echo esc_attr($_POST['password']); ?>" />
+					<input type="password" class="input-text <?php echo $ss_framework->form_input_classes(); ?>" name="password" id="reg_password" value="<?php if (isset($_POST['password'])) echo esc_attr($_POST['password']); ?>" />
 				</div>
 				<div class="form-group">
 					<label class="control-label" for="reg_password2"><?php _e('Re-enter password', 'woocommerce'); ?> <span class="required">*</span></label>
-					<input type="password" class="input-text form-control" name="password2" id="reg_password2" value="<?php if (isset($_POST['password2'])) echo esc_attr($_POST['password2']); ?>" />
+					<input type="password" class="input-text <?php echo $ss_framework->form_input_classes(); ?>" name="password2" id="reg_password2" value="<?php if (isset($_POST['password2'])) echo esc_attr($_POST['password2']); ?>" />
 				</div>
 
 				<!-- Spam Trap -->
@@ -113,14 +115,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 				<div class="form-group">
 						<?php wp_nonce_field( 'register', 'register' ); ?>
-						<input type="submit" class="button btn btn-primary" name="register" value="<?php _e('Register', 'woocommerce'); ?>" />
+						<input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, null ); ?>" name="register" value="<?php _e('Register', 'woocommerce'); ?>" />
 				</div>
 
 			</form>
 
 			</div>
-		</div>
-</div>
+		<?php echo $ss_framework->close_col( 'div' ); ?>
+<?php echo $ss_framework->close_row( 'div' ); ?>
+
 <?php endif; ?>
 
 <?php do_action( 'woocommerce_after_customer_login_form' ); ?>

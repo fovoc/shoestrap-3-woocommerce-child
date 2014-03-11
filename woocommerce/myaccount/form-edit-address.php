@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce, $current_user;
+global $woocommerce, $current_user, $ss_framework;
 
 $page_title = ( $load_address == 'billing' ) ? __( 'Billing Address', 'woocommerce' ) : __( 'Shipping Address', 'woocommerce' );
 
@@ -26,16 +26,23 @@ get_currentuserinfo();
 
 	<form method="post" class="form" id="customer_details">
 
-		<h5><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h5>
+		<h4><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h4>
 
 		<?php foreach ( $address as $key => $field ) : ?>
 
-			<?php woocommerce_form_field( $key, $field, ! empty( $_POST[ $key ] ) ? wc_clean( $_POST[ $key ] ) : $field['value'] ); ?>
+			<?php $custom = array(
+			'class'       => array( 'form-group' ),
+			'label_class' => array( 'control-label' ),
+			'input_class' => array( $ss_framework->form_input_classes() ),
+		);
+		$args = wp_parse_args( $custom, $field  );
+		?>
+		<?php woocommerce_form_field( $key, $args, ! empty( $_POST[ $key ] ) ? wc_clean( $_POST[ $key ] ) : $field['value'] ); ?>
 
 		<?php endforeach; ?>
 
 		<p>
-			<input type="submit" class="btn btn-primary" name="save_address" value="<?php _e( 'Save Address', 'woocommerce' ); ?>" />
+			<input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, null ); ?>" name="save_address" value="<?php _e( 'Save Address', 'woocommerce' ); ?>" />
 			<?php wp_nonce_field( 'woocommerce-edit_address' ); ?>
 			<input type="hidden" name="action" value="edit_address" />
 		</p>
