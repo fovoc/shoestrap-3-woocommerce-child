@@ -10,11 +10,15 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( ! $messages ) return;
-?>
-<div class="alert alert-danger">
-	<ul class="woocommerce-error">
-		<?php foreach ( $messages as $message ) : ?>
-			<li><?php echo wp_kses_post( $message ); ?></li>
-		<?php endforeach; ?>
-	</ul>
-</div>
+
+global $ss_framework;
+
+$content = '<ul class="woocommerce-error">';
+
+foreach ( $messages as $message ) : 
+	$content .= '<li>'. echo wp_kses_post( $message ); .'</li>';
+endforeach; 
+
+$content .= '</ul>';
+
+echo $ss_framework->alert( 'danger', $content, null, null, true ); ?>

@@ -10,8 +10,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( ! $messages ) return;
+
+global $ss_framework;
 ?>
 
 <?php foreach ( $messages as $message ) : ?>
-	<div class="woocommerce-message alert alert-success"><?php echo wp_kses_post( $message ); ?></div>
+	<?php $content = wp_kses_post( $message ); ?>
+	<?php echo $ss_framework->alert( 'success', $content, null, 'woocommerce-message', true ); ?>
 <?php endforeach;

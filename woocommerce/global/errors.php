@@ -4,7 +4,10 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 if ( !$errors ) :
 	return;
-endif; ?>
+endif; 
+
+global $ss_framework;
+?>
 
 <div class="wrap">
 	<?php foreach ( $errors as $error ) : ?>
