@@ -73,6 +73,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 	 * JS assets
 	 */
 	function shoestrap_woo_assets() {
+		global $ss_framework;
 		$infinitescroll = shoestrap_getVariable( 'shoestrap_woo_infinite_scroll' );
 		$masonry 				= shoestrap_getVariable( 'shoestrap_woo_masorny' );
 		$sort_filters		= shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' );
@@ -86,9 +87,15 @@ if ( class_exists( 'WooCommerce' ) ) {
 			wp_enqueue_script('shoestrap_isotope_sloppy_masonry');
 			
 			if ( $sort_filters == 1 ) {
-				// Register && Enqueue Bootstrap Multiselect
-				wp_register_script('shoestrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
-				wp_enqueue_script('shoestrap_multiselect');
+			// Register && Enqueue Multiselect
+				if ( $ss_framework->defines['shortname'] == 'bootstrap' ) {
+					wp_register_script('shoestrap_bootstrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
+					wp_enqueue_script('shoestrap_bootstrap_multiselect');
+				}
+				elseif ( $ss_framework->defines['shortname'] == 'foundation' ) {
+					wp_register_script('shoestrap_foundation_multiselect', get_stylesheet_directory_uri() . '/assets/js/foundation-multiselect.js', false, null, true);
+					wp_enqueue_script('shoestrap_foundation_multiselect');
+				}
 			}
 
 			if ( $masonry != 1 ) {
