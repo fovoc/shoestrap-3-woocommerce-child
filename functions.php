@@ -24,6 +24,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_filter( 'woocommerce_show_page_title', '__return_false' );
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
+	// Remove meta-data in Woo pages
+	if ( is_woocommerce() ) 
+		remove_action( 'shoestrap_entry_meta' );
+
 	// Reposition count results
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 	add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 9 );
