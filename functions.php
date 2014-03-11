@@ -8,7 +8,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_theme_support( 'woocommerce' );
 
 	// Remove default stylesheets for WooCommerce 2.1 and above
-	// add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+	add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 	function shoestrap_woo_include_files() {
 		require_once locate_template( 'lib/admin-options.php' );
