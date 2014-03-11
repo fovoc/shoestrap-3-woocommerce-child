@@ -34,9 +34,31 @@ if ( class_exists( 'WooCommerce' ) ) {
 
 
 	add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
-	function shoestrap_woocommerce_styles( $bootstrap ) {
-		return $bootstrap . '
-		@import "' . get_stylesheet_directory() . '/assets/less/woocommerce.less";';
+	add_filter( 'foundation_scss', 'shoestrap_woocommerce_styles' );
+	function shoestrap_woocommerce_styles( $styles ) {
+		global $ss_framework;
+
+		// get the filename
+		if ( isset( $ss_framework->defines['shortname'] ) ) {
+			$filename = $ss_framework->defines['shortname'];
+
+			// get the filetype
+			if ( isset( $ss_framework->defines['compiler'] ) ) {
+				if ( $ss_framework->defines['compiler'] == 'sass_php' ) {
+					$filetype = 'scss';
+				} elseif ( $ss_framework->defines['compiler'] == 'less_php' ) {
+					$filetype = 'less';
+				}
+			}
+		}
+
+		if ( isset( $filename ) && isset( $filetype ) ) {
+			if ( file_exists( get_stylesheet_directory() . '/assets/' . $filename . '.' . $filetype ) ) {
+				$styles .= file_get_contents( get_stylesheet_directory() . '/assets/' . $filename . '.' . $filetype );
+			}
+		}
+
+		return $styles;
 	}
 
 
