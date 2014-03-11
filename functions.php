@@ -52,6 +52,9 @@ if ( class_exists( 'WooCommerce' ) ) {
 		}
 
 		if ( isset( $filename ) && isset( $filetype ) ) {
+			if ( file_exists( get_stylesheet_directory() . '/assets/' . $filename . '.php' ) ) {
+				include( get_stylesheet_directory() . '/assets/' . $filename . '.php' );
+			}
 			if ( file_exists( get_stylesheet_directory() . '/assets/' . $filename . '.' . $filetype ) ) {
 				$styles .= file_get_contents( get_stylesheet_directory() . '/assets/' . $filename . '.' . $filetype );
 			}
