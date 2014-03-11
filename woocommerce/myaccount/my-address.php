@@ -40,7 +40,7 @@ $col = 1;
 
 <?php foreach ( $get_addresses as $name => $title ) : ?>
 
-	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address col-sm-6">
+	<div class="col-<?php echo ( ( $col = $col * -1 ) < 0 ) ? 1 : 2; ?> address <?php echo $ss_framework->column_classes( array( 'tablet' => 6), null ); ?>">
 		<header class="title">
 			<h4><?php echo $title; ?></h4>
 		</header>

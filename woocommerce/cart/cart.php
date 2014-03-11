@@ -128,17 +128,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 		?>
 		<tr>
 			<td colspan="6" class="actions">
-				<?php echo $ss_framework->open_col( 'div', array( 'large' => 6 ), null, null, null ); ?>
+				<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12 ), null, null, null ); ?>
 
 					<?php if ( WC()->cart->coupons_enabled() ) { ?>
-						<div class="coupon">
+						<div class="coupon row">
 
-						<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12, 'tablet' => 6 ), null, 'input-group', null ); ?>
-								<input name="coupon_code" class="input-text form-control" id="coupon_code" value="" placeholder="<?php _e( 'Coupon', 'woocommerce' ); ?>:"/>
-								<span class="input-group-btn">
-									<input type="submit" class="<?php echo $ss_framework->button_classes( 'success' ); ?>" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
-								</span>
-							<?php echo $ss_framework->close_col( 'div' ); ?>
+							<span class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?>">
+								<input type="text" name="coupon_code" class="input-text <?php echo $ss_framework->form_input_classes(); ?> " id="coupon_code" value="" placeholder="<?php _e( 'Coupon', 'woocommerce' ); ?>:" style="width:100%;"/>
+							</span>
+							<span class="input-group-btn <?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?>">
+								<input type="submit" class="postfix <?php echo $ss_framework->button_classes( 'success' ); ?> " name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
+							</span>
 
 							<?php do_action('woocommerce_cart_coupon'); ?>
 
@@ -148,13 +148,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<?php echo $ss_framework->close_col( 'div' ); ?>
 
 				<?php if ( WC()->cart->coupons_enabled() ) : ?>
-					<?php echo $ss_framework->open_col( 'div', array( 'large' => 6 ), null, 'ss-wc-cart-actions', null ); ?>
+					<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12 ), null, 'ss-wc-cart-actions', null ); ?>
 				<?php else : ?>
 					<div class="ss-wc-cart-actions">
 				<?php endif; ?>
 					<div class="<?php echo $ss_framework->button_group_classes( null, null, null ); ?>" style="width: 100%;">
-						<?php echo $ss_framework->open_col( 'input', array( 'tablet' => 6 ), null, 'btn btn-default', 'type="submit" name="update_cart" value="'. __( "Update Cart", "woocommerce" ) .'"' ); ?>
-						<?php echo $ss_framework->open_col( 'input', array( 'tablet' => 6 ), null, 'checkout-button wc-forward btn btn-primary', 'type="submit" name="proceed" value="'. __( "Proceed to Checkout", "woocommerce" ) .'"' ); ?>
+						<input type="submit" class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?> <?php echo $ss_framework->button_classes( 'default', 'medium', null, null ); ?>" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
+ 						<input type="submit" class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?> <?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'checkout-button wc-forward' ); ?>" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
 					</div>
 					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 					<hr>
