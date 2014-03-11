@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 
 $order = new WC_Order( $order_id );
 ?>
@@ -110,7 +110,7 @@ $order = new WC_Order( $order_id );
 
 <div class="col2-set addresses">
 
-	<div class="col-md-6">
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 6 ), null, null, null ); ?>
 
 <?php endif; ?>
 
@@ -125,9 +125,9 @@ $order = new WC_Order( $order_id );
 
 <?php if ( get_option( 'woocommerce_ship_to_billing_address_only' ) === 'no' && get_option( 'woocommerce_calc_shipping' ) !== 'no' ) : ?>
 
-	</div><!-- /.col-1 -->
+	<?php echo $ss_framework->close_col( 'div' ); ?><!-- /.col-1 -->
 
-	<div class="col-md-6">
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 6 ), null, null, null ); ?>
 
 		<header class="title">
 			<h3><?php _e( 'Shipping Address', 'woocommerce' ); ?></h3>
@@ -138,10 +138,10 @@ $order = new WC_Order( $order_id );
 			?>
 		</p></address>
 
-	</div><!-- /.col-2 -->
+	<?php echo $ss_framework->close_col( 'div' ); ?><!-- /.col-2 -->
 
 </div><!-- /.col2-set -->
 
 <?php endif; ?>
 
-<div class="clear"></div>
+<?php echo $ss_framework->clearfix(); ?>

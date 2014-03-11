@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce;
+global $woocommerce, $ss_framework;
 ?>
 
 <?php
@@ -38,9 +38,9 @@ global $woocommerce;
 						<div class="description">
 							<?php echo wpautop( wptexturize( wp_kses_post( $note->comment_content ) ) ); ?>
 						</div>
-		  				<div class="clearfix"></div>
+		  				<?php echo $ss_framework->clearfix(); ?>
 		  			</div>
-					<div class="clearfix"></div>
+					<?php echo $ss_framework->clearfix(); ?>
 				</div>
 			</li>
 			<?php endforeach; ?>
