@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce, $post $ss_framework;
+global $woocommerce, $post, $ss_framework;
 ?>
 
 <form action="<?php echo esc_url( get_permalink( $post->ID ) ); ?>" method="post" class="track_order form-inline">

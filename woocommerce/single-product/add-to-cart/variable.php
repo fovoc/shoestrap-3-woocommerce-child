@@ -9,7 +9,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $woocommerce, $product, $post;
+global $woocommerce, $product, $post, $ss_framework;
 ?>
 
 <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
@@ -18,11 +18,11 @@ global $woocommerce, $product, $post;
 	<?php if ( ! empty( $available_variations ) ) : ?>
 		<hr>
 		<div class="variations">
-			<div class="row">
+			<?php echo $ss_framework->open_row( 'div', null, null, null ); ?>
 				<?php $loop = 0; foreach ( $attributes as $name => $options ) : $loop++; ?>
-					<div class="variations-form-label col-sm-4"><?php echo wc_attribute_label( $name ); ?></div>
-					<div class="variations-form-value col-sm-7 col-xs-10">
-						<select class="form-control pull-left" id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="attribute_<?php echo sanitize_title($name); ?>">
+					<div class="variations-form-label <?php echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>"><?php echo wc_attribute_label( $name ); ?></div>
+					<div class="variations-form-value <?php echo $ss_framework->column_classes( array( 'mobile' => 10, 'tablet' => 7 ), null ); ?>">
+						<select class="<?php echo $ss_framework->form_input_classes(); ?> pull-left" id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="attribute_<?php echo sanitize_title($name); ?>">
 							<option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
 							<?php
 								if ( is_array( $options ) ) {
@@ -72,38 +72,38 @@ global $woocommerce, $product, $post;
 						</select>
 					</div> <?php
 							if ( sizeof($attributes) == $loop )
-								echo '<div class="col-sm-1 col-xs-2"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="btn btn-danger"><i class="el-icon-remove"></i></button></a></div>';
+								echo '<div class="'. echo $ss_framework->column_classes( array( 'mobile' => 2, 'tablet' => 1 ), null ); .'"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="'. echo $ss_framework->button_classes( 'danger', 'medium', null, null ); .'"><i class="el-icon-remove"></i></button></a></div>';
 						?>
 		        <?php endforeach;?>
-			</div>
+			<?php echo $ss_framework->close_row( 'div' ); ?>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
 		<hr>
 
-		<div class="single_variation_wrap row" style="display:none;">
+		<?php echo $ss_framework->open_row( 'div', null, 'single_variation_wrap', 'style="display:none;"' ); ?>
 			<?php do_action( 'woocommerce_before_single_variation' ); ?>
 
-			<div class="single_variation col-sm-4"></div>
+			<div class="single_variation <?php echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>"></div>
 
-			<div class="variations_button col-sm-4">
+			<div class="variations_button <?php echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>">
 				<?php woocommerce_quantity_input(); ?>
 			</div>
-			<button type="submit" class="single_add_to_cart_button btn btn-primary btn-lg col-sm-4"><?php echo $product->single_add_to_cart_text(); ?></button>
+			<button type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'large', null, 'single_add_to_cart_button'); echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>"><?php echo $product->single_add_to_cart_text(); ?></button>
 
 			<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
 			<input type="hidden" name="variation_id" value="" />
 
 			<?php do_action( 'woocommerce_after_single_variation' ); ?>
-		</div>
+		<?php echo $ss_framework->close_row( 'div' ); ?>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
 	</div>
 	<?php else : ?>
 
-		<p class="stock out-of-stock alert alert-danger"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce'); ?></p>
+		<?php echo $ss_framework->alert( 'danger', __( 'This product is currently out of stock and unavailable.', 'woocommerce' ), null, 'stock out-of-stock', true ); ?> ?>
 
 	<?php endif; ?>
 

@@ -11,6 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+global $ss_framework;
 $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 ?>
 <li itemprop="reviews" itemscope itemtype="http://schema.org/Review" <?php comment_class( 'media' ); ?> id="comment-<?php comment_ID(); ?>">
@@ -25,7 +26,7 @@ $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 		<?php endif; ?>
 
 		<?php if ( $comment->comment_approved == '0' ) : ?>
-			<div class="meta alert alert-info"><em><?php _e( 'Your comment is awaiting approval', 'woocommerce' ); ?></em></div>
+			<?php echo $ss_framework->alert( 'info', '<em>'. __( 'Your comment is awaiting approval.', 'woocommerce' ).'</em>', null, 'meta', true ); ?> ?>
 		<?php else : ?>
 			<div class="meta">
 				<strong itemprop="author"><?php comment_author(); ?></strong> <?php
