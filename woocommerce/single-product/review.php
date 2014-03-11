@@ -18,12 +18,13 @@ $rating = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 	<div class="pull-left"><?php echo get_avatar($comment, $size = '64'); ?></div>
 	<div class="media-body">
 		
-		<?php if ( $rating && get_option('woocommerce_enable_review_rating') == 'yes' ) : ?>
-			<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf(__( 'Rated %d out of 5', 'woocommerce' ), $rating) ?>">
-				<?php echo shoestrap_get_rating_html( $rating ); ?>
-				<span class="sr-only" itemprop="ratingValue"><?php echo $rating; ?> <?php _e( 'out of 5', 'woocommerce' ); ?></span>
-			</div>
-		<?php endif; ?>
+			<?php if ( $rating && get_option( 'woocommerce_enable_review_rating' ) == 'yes' ) : ?>
+
+				<div itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating" class="star-rating" title="<?php echo sprintf( __( 'Rated %d out of 5', 'woocommerce' ), $rating ) ?>">
+					<span style="width:<?php echo ( $rating / 5 ) * 100; ?>%"><strong itemprop="ratingValue"><?php echo $rating; ?></strong> <?php _e( 'out of 5', 'woocommerce' ); ?></span>
+				</div>
+
+			<?php endif; ?>
 
 		<?php if ( $comment->comment_approved == '0' ) : ?>
 			<?php echo $ss_framework->alert( 'info', '<em>'. __( 'Your comment is awaiting approval.', 'woocommerce' ).'</em>', null, 'meta', true ); ?> ?>
