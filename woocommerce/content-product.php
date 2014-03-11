@@ -49,7 +49,7 @@ $classes = shoestrap_woo_post_extra_classes();
 
 		<div class="caption">
 			<h4 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-			<span class="hidden plain-price"><?php echo $product->get_price(); ?></span>
+			<span hidden class="plain-price"><?php echo $product->get_price(); ?></span>
 		<?php
 			/**
 			 * woocommerce_after_shop_loop_item_title hook

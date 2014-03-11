@@ -24,14 +24,14 @@ if ( ! empty( $tabs ) ) : ?>
 			<?php foreach ( $tabs as $key => $tab ) : ?>
 
 				<li class="<?php echo $key ?>_tab">
-					<a href="#tab-<?php echo $key ?>" data-toggle="tab"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
+					<a href="#<?php echo $key ?>" data-toggle="tab"><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', $tab['title'], $key ) ?></a>
 				</li>
 
 			<?php endforeach; ?>
 		</ul>
 		<?php foreach ( $tabs as $key => $tab ) : ?>
 
-			<div class="panel entry-content" id="tab-<?php echo $key ?>">
+			<div class="panel entry-content" id="<?php echo $key ?>">
 				<?php call_user_func( $tab['callback'], $key, $tab ) ?>
 			</div>
 

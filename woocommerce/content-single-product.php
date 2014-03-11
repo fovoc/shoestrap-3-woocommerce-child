@@ -10,6 +10,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+global $ss_framework;
 ?>
 
 <?php
@@ -27,8 +29,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="row">
-	<div class="col-sm-5" style="position:relative">
+	<?php echo $ss_framework->open_row( 'div', null, null, null ); ?>
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 5 ), null, null, 'style="position:relative"' ); ?>
 	<?php
 		/**
 		 * woocommerce_before_single_product_summary hook
@@ -38,8 +40,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		 */
 		do_action( 'woocommerce_before_single_product_summary' );
 	?>
-	</div>
-	<div class="col-sm-7">
+	<?php echo $ss_framework->close_col( 'div' ); ?>
+	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 7 ), null, null, null ); ?>
 		<div class="details wrap">
 		<?php
 			/**
@@ -55,8 +57,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			do_action( 'woocommerce_single_product_summary' );
 		?>
 		</div>
-	</div>
-	</div>
+	<?php echo $ss_framework->close_col( 'div' ); ?>
+	<?php echo $ss_framework->close_row( 'div' ); ?>
 	<?php
 		/**
 		 * woocommerce_after_single_product_summary hook
