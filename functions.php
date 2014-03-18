@@ -236,7 +236,7 @@ function get_product_search_form( $echo = true  ) {
 		return apply_filters( 'get_product_search_form', $form );
 }
 
-function shoestrap_core_updater() {
+function shoestrap_woo_child_core_updater() {
 
 	$args = array(
 		'remote_api_url' => 'http://shoestrap.org',
@@ -256,6 +256,4 @@ function shoestrap_core_updater() {
 	}
 
 }
-add_action( 'admin_init', 'shoestrap_core_updater' );
-
-	Shoestrap_Less_PHP::makecss();
+add_action( 'admin_init', 'shoestrap_woo_child_core_updater' );
