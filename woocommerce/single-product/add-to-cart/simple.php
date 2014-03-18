@@ -44,7 +44,7 @@ if ( ! $product->is_purchasable() ) return;
 
 	 	<input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $product->id ); ?>" />
 
-	 	<button type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, 'single_add_to_cart_button alt'); ?>"><?php echo $product->single_add_to_cart_text(); ?></button>
+	 	<button type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'large', null, 'single_add_to_cart_button alt'); ?>"><?php echo $product->single_add_to_cart_text(); ?></button>
 
 	 	<?php echo $ss_framework->close_col( 'div' ); ?>
 
