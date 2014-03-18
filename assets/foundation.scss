@@ -500,5 +500,52 @@ div.products {
 }
 
 .price_label {
-	@include left;
+	float: left;
+}
+
+.widget_product_categories {
+	ul.product-categories {
+		padding-left: 0;
+
+		li {
+			a {
+				text-decoration: none;
+				color: $header-font-color;
+				display: block;
+				width: 100%;
+				border-bottom: 1px solid $info-color;
+				padding: 0.3em;
+			}
+			&.current-cat {
+				a {
+					color: $primary-color;
+				}
+			}
+
+			&.cat-parent {
+				a {
+
+				}
+
+				ul.children {
+					padding-left: 1em;
+					border-left: 0.25em solid $info-color;
+					li {
+						a {
+							color: $subheader-font-color;
+							border-bottom: 1px solid rgba(0, 0, 0, 0.01);
+						}
+						&.current-cat {
+							a {
+								color: $primary-color;
+							}
+						}
+
+					}
+				}
+
+			}
+
+		}
+	}
 }
