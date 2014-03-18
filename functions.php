@@ -187,3 +187,34 @@ if ( class_exists( 'WooCommerce' ) ) {
 			return $output;
 	}
 }
+
+
+/**
+* Output Product search forms.
+*
+*/
+function get_product_search_form( $echo = true  ) {
+	do_action( 'get_product_search_form'  );
+	global $ss_framework;
+
+	$search_form_template = locate_template( 'product-searchform.php' );
+	if ( '' != $search_form_template  ) {
+		require $search_form_template;
+		return;
+	}
+
+	$form = '<form role="search" method="get" id="searchform" action="' . esc_url( home_url( '/'  ) ) . '">
+		<div class="input-group">
+			<input class="' . $ss_framework->form_input_classes() . '" type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="' . __( 'Search for products', 'woocommerce' ) . '" />
+			<span class="input-group-btn">
+				<input class="' . $ss_framework->button_classes( 'primary', 'medium', null, null ) . '" type="submit" id="searchsubmit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
+			</span>
+		</div>
+		<input type="hidden" name="post_type" value="product" />
+	</form>';
+
+	if ( $echo  )
+		echo apply_filters( 'get_product_search_form', $form );
+	else
+		return apply_filters( 'get_product_search_form', $form );
+}

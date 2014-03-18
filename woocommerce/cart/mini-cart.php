@@ -42,11 +42,11 @@ global $woocommerce, $ss_framework;
 							<a href="<?php echo get_permalink( $product_id ); ?>">
 								<?php echo $product_name; ?>
 							</a>
+							<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<p class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</p>', $cart_item, $cart_item_key ); ?>
 						<?php echo $ss_framework->close_col( 'div' ); ?>
 
 						<?php echo WC()->cart->get_item_data( $cart_item ); ?>
 
-						<?php echo apply_filters( 'woocommerce_widget_cart_item_quantity', '<span class="quantity">' . sprintf( '%s &times; %s', $cart_item['quantity'], $product_price ) . '</span>', $cart_item, $cart_item_key ); ?>
 					<?php echo $ss_framework->close_row( 'li' ); ?>
 					<?php
 				}
@@ -63,13 +63,13 @@ global $woocommerce, $ss_framework;
 
 <?php if ( sizeof( WC()->cart->get_cart() ) > 0 ) : ?>
 
-	<p class="total"><strong><?php _e( 'Subtotal', 'woocommerce' ); ?>:</strong> <?php echo WC()->cart->get_cart_subtotal(); ?></p>
+	<p class="total text-center"><strong><?php _e( 'Subtotal', 'woocommerce' ); ?>:</strong> <?php echo WC()->cart->get_cart_subtotal(); ?></p>
 
 	<?php do_action( 'woocommerce_widget_shopping_cart_before_buttons' ); ?>
 
 	<p class="buttons text-center">
-		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="<?php echo $ss_framework->button_classes( 'default', 'medium', null, 'wc-forward' ); ?>"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
-		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="<?php echo $ss_framework->button_classes( 'default', 'medium', null, 'checkout wc-forward' ); ?>"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
+		<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="<?php echo $ss_framework->button_classes( 'info', 'medium', null, 'wc-forward' ); ?>"><?php _e( 'View Cart', 'woocommerce' ); ?></a>
+		<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="<?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'checkout wc-forward' ); ?>"><?php _e( 'Checkout', 'woocommerce' ); ?></a>
 	</p>
 
 <?php endif; ?>
