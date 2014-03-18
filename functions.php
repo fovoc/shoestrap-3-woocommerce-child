@@ -28,7 +28,6 @@ if ( class_exists( 'WooCommerce' ) ) {
 		include_once( locate_template( 'lib/widgets/class-ss-wc-widget-layered-nav.php' ) );
 		include_once( locate_template( 'lib/widgets/class-ss-wc-widget-layered-nav-filters.php' ) );
 		// include_once( 'includes/widgets/class-wc-widget-price-filter.php' );
-		// include_once( 'includes/widgets/class-wc-widget-product-categories.php' );
 		// include_once( 'includes/widgets/class-wc-widget-product-search.php' );
 		// include_once( 'includes/widgets/class-wc-widget-product-tag-cloud.php' );
 		// include_once( 'includes/widgets/class-wc-widget-recent-reviews.php' );
