@@ -10,6 +10,9 @@ if ( class_exists( 'WooCommerce' ) ) {
 	// Remove default stylesheets for WooCommerce 2.1 and above
 	add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
+	/**
+	 * Include necessry files
+	 */
 	function shoestrap_woo_include_files() {
 		require_once locate_template( 'lib/admin-options.php' );
 		require_once locate_template( 'lib/slider.php' );
@@ -19,20 +22,11 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_action( 'shoestrap_include_files', 'shoestrap_woo_include_files' );
 
 	/**
-	 * Include core widgets
+	 * Replace WooCommerce core widgets with our custom ones
 	 */
 	function ss_woo_include_widgets() {
-		// include_once( 'includes/abstracts/abstract-wc-widget.php' );
-		// include_once( 'includes/widgets/class-wc-widget-cart.php' );
-		// include_once( 'includes/widgets/class-wc-widget-products.php' );
 		include_once( locate_template( 'lib/widgets/class-ss-wc-widget-layered-nav.php' ) );
 		include_once( locate_template( 'lib/widgets/class-ss-wc-widget-layered-nav-filters.php' ) );
-		// include_once( 'includes/widgets/class-wc-widget-price-filter.php' );
-		// include_once( 'includes/widgets/class-wc-widget-product-search.php' );
-		// include_once( 'includes/widgets/class-wc-widget-product-tag-cloud.php' );
-		// include_once( 'includes/widgets/class-wc-widget-recent-reviews.php' );
-		// include_once( 'includes/widgets/class-wc-widget-recently-viewed.php' );
-		// include_once( 'includes/widgets/class-wc-widget-top-rated-products.php' );
 	}
 	add_action( 'widgets_init', 'ss_woo_include_widgets' );
 
@@ -41,16 +35,17 @@ if ( class_exists( 'WooCommerce' ) ) {
 	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 
 	// Remove meta-data in Woo pages
-	if ( is_woocommerce() ) 
+	if ( is_woocommerce() ) {
 		remove_action( 'shoestrap_entry_meta' );
+	}
 
 	// Reposition count results
 	remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 	add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 9 );
 
-
-	add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
-	add_filter( 'foundation_scss', 'shoestrap_woocommerce_styles' );
+	/**
+	 * Add custom files to the compiler
+	 */
 	function shoestrap_woocommerce_styles( $styles ) {
 		global $ss_framework;
 
@@ -79,13 +74,18 @@ if ( class_exists( 'WooCommerce' ) ) {
 
 		return $styles;
 	}
+	add_filter( 'shoestrap_compiler', 'shoestrap_woocommerce_styles' );
+	add_filter( 'foundation_scss', 'shoestrap_woocommerce_styles' );
 
 
-	add_filter( 'shoestrap_compiler_output', 'shoestrap_woo_hijack_compiler' );
+	/**
+	 * Some cugly hacks for the compiler
+	 */
 	function shoestrap_woo_hijack_compiler( $css ) {
 		$css = str_replace( '/assets/less/woocommerce.less', '/assets/', $css );
 		return $css;
 	}
+	add_filter( 'shoestrap_compiler_output', 'shoestrap_woo_hijack_compiler' );
 
 
 	/*
@@ -203,37 +203,37 @@ if ( class_exists( 'WooCommerce' ) ) {
 		else
 			return $output;
 	}
-}
 
+	/**
+	* Output Product search forms.
+	*
+	*/
+	function get_product_search_form( $echo = true  ) {
+		do_action( 'get_product_search_form'  );
+		global $ss_framework;
 
-/**
-* Output Product search forms.
-*
-*/
-function get_product_search_form( $echo = true  ) {
-	do_action( 'get_product_search_form'  );
-	global $ss_framework;
+		$search_form_template = locate_template( 'product-searchform.php' );
+		if ( '' != $search_form_template  ) {
+			require $search_form_template;
+			return;
+		}
 
-	$search_form_template = locate_template( 'product-searchform.php' );
-	if ( '' != $search_form_template  ) {
-		require $search_form_template;
-		return;
+		$form = '<form role="search" method="get" id="searchform" action="' . esc_url( home_url( '/'  ) ) . '">
+			<div class="input-group">
+				<input class="' . $ss_framework->form_input_classes() . '" type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="' . __( 'Search for products', 'woocommerce' ) . '" />
+				<span class="input-group-btn">
+					<input class="' . $ss_framework->button_classes( 'primary', 'medium', null, null ) . '" type="submit" id="searchsubmit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
+				</span>
+			</div>
+			<input type="hidden" name="post_type" value="product" />
+		</form>';
+
+		if ( $echo  ) {
+			echo apply_filters( 'get_product_search_form', $form );
+		} else {
+			return apply_filters( 'get_product_search_form', $form );
+		}
 	}
-
-	$form = '<form role="search" method="get" id="searchform" action="' . esc_url( home_url( '/'  ) ) . '">
-		<div class="input-group">
-			<input class="' . $ss_framework->form_input_classes() . '" type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="' . __( 'Search for products', 'woocommerce' ) . '" />
-			<span class="input-group-btn">
-				<input class="' . $ss_framework->button_classes( 'primary', 'medium', null, null ) . '" type="submit" id="searchsubmit" value="'. esc_attr__( 'Search', 'woocommerce' ) .'" />
-			</span>
-		</div>
-		<input type="hidden" name="post_type" value="product" />
-	</form>';
-
-	if ( $echo  )
-		echo apply_filters( 'get_product_search_form', $form );
-	else
-		return apply_filters( 'get_product_search_form', $form );
 }
 
 function shoestrap_woo_child_core_updater() {
