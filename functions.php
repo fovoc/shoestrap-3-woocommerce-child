@@ -235,3 +235,27 @@ function get_product_search_form( $echo = true  ) {
 	else
 		return apply_filters( 'get_product_search_form', $form );
 }
+
+function shoestrap_core_updater() {
+
+	$args = array(
+		'remote_api_url' => 'http://shoestrap.org',
+		'item_name'      => 'Shoestrap 3 WooCommerce Child',
+		'license'        => 'c5305a091a9e61268c5be6096bfa3d38',
+		'version'        => '1.0',
+		'author'         => 'aristath, fovoc, dovy',
+		'mode'           => 'theme',
+		'title'          => 'Shoestrap 3 WooCommerce Child Theme License',
+		'field_name'     => 'shoestrap_woo_theme_license',
+		'description'    => '',
+		'single_license' => false
+	);
+
+	if ( class_exists( 'SS_EDD_SL_Updater' ) ) {
+		$updater = new SS_EDD_SL_Updater( $args );
+	}
+
+}
+add_action( 'admin_init', 'shoestrap_core_updater' );
+
+	Shoestrap_Less_PHP::makecss();
