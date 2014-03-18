@@ -29,6 +29,7 @@ global $ss_framework;
 ?>
 
 <div itemscope itemtype="<?php echo woocommerce_get_product_schema(); ?>" id="product-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php shoestrap_title_section(); ?>
 	<?php echo $ss_framework->open_row( 'div', null, null, null ); ?>
 	<?php echo $ss_framework->open_col( 'div', array( 'tablet' => 5 ), null, null, 'style="position:relative"' ); ?>
 	<?php
