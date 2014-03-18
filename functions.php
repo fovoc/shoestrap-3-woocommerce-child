@@ -243,7 +243,7 @@ function shoestrap_core_updater() {
 		'item_name'      => 'Shoestrap 3 WooCommerce Child',
 		'license'        => 'c5305a091a9e61268c5be6096bfa3d38',
 		'version'        => '1.0',
-		'author'         => 'aristath, fovoc, dovy',
+		'author'         => 'aristath, fovoc',
 		'mode'           => 'theme',
 		'title'          => 'Shoestrap 3 WooCommerce Child Theme License',
 		'field_name'     => 'shoestrap_woo_theme_license',
