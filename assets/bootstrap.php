@@ -1,6 +1,6 @@
 <?php
 
-function ss_woo_foundation_css( $styles ) {
+function ss_woo_bootstrap_css( $styles ) {
 	return $styles . '
 	/* =Custom Font
 	-------------------------------------------------------------- */
@@ -26,4 +26,4 @@ function ss_woo_foundation_css( $styles ) {
 	}
 	';
 }
-add_filter( 'foundation_scss', 'ss_woo_foundation_css', 1 );
+add_filter( 'shoestrap_compiler', 'ss_woo_bootstrap_css', 1 );

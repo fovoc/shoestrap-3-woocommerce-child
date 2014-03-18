@@ -81,45 +81,6 @@ h4.price {
 	font-weight: bold;
 }
 
-p.comment-form-rating p.stars {
-	font-size: 1.2em;
-	a.star-1,
-	a.star-2,
-	a.star-3,
-	a.star-4,
-	a.star-5 {
-		overflow: hidden;
-		width: 1em;
-		visibility: hidden;
-		text-decoration: none;
-		color: @brand-success;
-		&:before {
-			content: "\2606";
-			visibility: visible;
-		}
-		&.active {
-			&:before {
-				content: "\2605";
-			}
-		}
-	}
-}
-
-div.star-rating {
-	height: 1.1em;
-	position:relative;
-	width: 5em;
-	overflow: hidden;
-	span {
-		position: absolute;
-		color: @brand-warning;
-	}
-	.rating-stars {
-		position: absolute;
-		color: @brand-warning;
-	}
-}
-
 div#respond {
 	.form-submit {
 		input#submit {
@@ -245,5 +206,245 @@ div.products {
 #infscr-loading img {
   display: none;  
 }
+
 /*** required for Bootstrap Multiselect ****/
-.multiselect-container{position:absolute;list-style-type:none;margin:0;padding:0}.multiselect-container .input-group{margin:5px}.multiselect-container>li{padding:0}.multiselect-container>li>a.multiselect-all label{font-weight:bold}.multiselect-container>li>label.multiselect-group{margin:0;padding:3px 20px 3px 20px;height:100%;font-weight:bold}.multiselect-container>li>a>label{margin:0;height:100%;cursor:pointer;font-weight:normal}.multiselect-container>li>a>label.radio,.multiselect-container>li>a>label.checkbox{margin:0}.multiselect-container>li>a>label>input[type="checkbox"]{margin-bottom:5px}.btn-group>.btn-group:nth-child(2)>.multiselect.btn{border-top-left-radius:4px;border-bottom-left-radius:4px}
+.multiselect-container {
+	position: absolute;
+	list-style-type: none;
+	margin: 0;
+	padding: 0
+}
+
+.multiselect-container .input-group {
+	margin: 5px
+}
+
+.multiselect-container > li {
+	padding: 0
+}
+
+.multiselect-container > li > a.multiselect-all label {
+	font-weight: bold
+}
+
+.multiselect-container > li > label.multiselect-group {
+	margin: 0;
+	padding: 3px 20px 3px 20px;
+	height: 100%;
+	font-weight: bold
+}
+
+.multiselect-container > li > a > label {
+	margin: 0;
+	height: 100%;
+	cursor: pointer;
+	font-weight: normal
+}
+
+.multiselect-container > li > a > label.radio,
+.multiselect-container > li > a > label.checkbox {
+	margin:0
+}
+
+.multiselect-container > li > a > label > input[type="checkbox"] {
+	margin-bottom: 5px
+}
+
+.btn-group > .btn-group:nth-child(2) > .multiselect.btn {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px
+}
+
+/* =Main Styles (namespace to avoid conflict with common global class names)
+-------------------------------------------------------------- */
+.woocommerce, .woocommerce-page {
+
+	/* =Product Loops
+	-------------------------------------------------------------- */
+
+	/* =Reviews/comments
+	-------------------------------------------------------------- */
+	#reviews {
+		#comments {
+			ol.commentlist {
+				ul.children {
+					.star-rating {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+
+	/* Star rating */
+	.star-rating {
+		float: right;
+		overflow: hidden;
+		position: relative;
+		height: 1em;
+		line-height: 1em;
+		font-size: 1em;
+		width: 5.4em;
+		font-family: 'star';
+		&:before {
+			content: "\73\73\73\73\73";
+			color: darken( @brand-warning, 10% );
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+		}
+		span {
+			color: @brand-warning;
+			overflow: hidden;
+			float: left;
+			top: 0;
+			left: 0;
+			position: absolute;
+			padding-top: 1.5em;
+		}
+		span:before {
+			content: "\53\53\53\53\53";
+			top: 0;
+			position: absolute;
+			left: 0;
+		}
+	}
+
+	.woocommerce-product-rating {
+		line-height: 2em;
+		display: block;
+
+		.star-rating {
+			margin: .5em 4px 0 0;
+			float: left;
+		}
+	}
+
+	.products {
+		.star-rating {
+			display: block;
+			margin: 0 0 .5em;
+			float: none;
+		}
+	}
+
+	.hreview-aggregate {
+		.star-rating {
+			margin: 10px 0 0 0;
+		}
+	}
+
+	p.stars {
+		position: relative;
+		font-size: 1em;
+
+		a {
+			display: inline-block;
+			font-weight: 700;
+			margin-right: 1em;
+			text-indent: -9999px;
+			position: relative;
+
+			&:last-child {
+				border-right:0;
+			}
+
+			&.star-1,
+			&.star-2,
+			&.star-3,
+			&.star-4,
+			&.star-5 {
+				border-right:1px solid @brand-info;
+
+				&:after {
+					font-family: "WooCommerce";
+					text-indent: 0;
+					position: absolute;
+					top: 0;
+					left: 0;
+					//padding-right: 1em;
+				}
+
+			}
+
+			&.star-1 {
+				width: 2em;
+
+				&:after {
+					content: "\e021";
+				}
+
+				&:hover:after,
+				&.active:after {
+					content: "\e020"
+				}
+			}
+
+			&.star-2 {
+				width: 3em;
+
+				&:after {
+					content: "\e021\e021";
+				}
+
+				&:hover:after,
+				&.active:after {
+					content: "\e020\e020"
+				}
+			}
+
+			&.star-3 {
+				width: 4em;
+
+				&:after {
+					content: "\e021\e021\e021";
+				}
+
+				&:hover:after,
+				&.active:after {
+					content: "\e020\e020\e020"
+				}
+			}
+
+			&.star-4 {
+				width: 5em;
+
+				&:after {
+					content: "\e021\e021\e021\e021";
+				}
+
+				&:hover:after,
+				&.active:after {
+					content: "\e020\e020\e020\e020"
+				}
+			}
+
+			&.star-5 {
+				width: 6em;
+				border: 0;
+
+				&:after {
+					content: "\e021\e021\e021\e021\e021";
+				}
+
+				&:hover:after,
+				&.active:after {
+					content: "\e020\e020\e020\e020\e020"
+				}
+			}
+		}
+	}
+
+	/* =Cart Sidebar
+	-------------------------------------------------------------- */
+
+	ul.cart_list, ul.product_list_widget {
+		li {
+			.star-rating {
+				float:none;
+			}
+		}
+	}
+
+} // end .woocommerce-page namespacing wrap
