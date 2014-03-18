@@ -241,7 +241,6 @@ function shoestrap_woo_child_core_updater() {
 	$args = array(
 		'remote_api_url' => 'http://shoestrap.org',
 		'item_name'      => 'Shoestrap 3 WooCommerce Child',
-		'license'        => 'c5305a091a9e61268c5be6096bfa3d38',
 		'version'        => '1.0',
 		'author'         => 'aristath, fovoc',
 		'mode'           => 'theme',
