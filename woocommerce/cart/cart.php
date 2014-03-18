@@ -136,7 +136,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 							<span class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?>">
 								<input type="text" name="coupon_code" class="input-text <?php echo $ss_framework->form_input_classes(); ?> " id="coupon_code" value="" placeholder="<?php _e( 'Coupon', 'woocommerce' ); ?>:" style="width:100%;"/>
 							</span>
-							<span class="input-group-btn <?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?>">
+							<span class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?>">
 								<input type="submit" class="postfix <?php echo $ss_framework->button_classes( 'success', 'block' ); ?> " name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
 							</span>
 
