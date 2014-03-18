@@ -18,6 +18,24 @@ if ( class_exists( 'WooCommerce' ) ) {
 	}
 	add_action( 'shoestrap_include_files', 'shoestrap_woo_include_files' );
 
+	/**
+	 * Include core widgets
+	 */
+	function ss_woo_include_widgets() {
+		// include_once( 'includes/abstracts/abstract-wc-widget.php' );
+		// include_once( 'includes/widgets/class-wc-widget-cart.php' );
+		// include_once( 'includes/widgets/class-wc-widget-products.php' );
+		include_once( locate_template( 'lib/widgets/class-ss-wc-widget-layered-nav.php' ) );
+		// include_once( 'includes/widgets/class-wc-widget-layered-nav-filters.php' );
+		// include_once( 'includes/widgets/class-wc-widget-price-filter.php' );
+		// include_once( 'includes/widgets/class-wc-widget-product-categories.php' );
+		// include_once( 'includes/widgets/class-wc-widget-product-search.php' );
+		// include_once( 'includes/widgets/class-wc-widget-product-tag-cloud.php' );
+		// include_once( 'includes/widgets/class-wc-widget-recent-reviews.php' );
+		// include_once( 'includes/widgets/class-wc-widget-recently-viewed.php' );
+		// include_once( 'includes/widgets/class-wc-widget-top-rated-products.php' );
+	}
+	add_action( 'widgets_init', 'ss_woo_include_widgets' );
 
 	// Remove default WooCommerce titles
 	add_filter( 'woocommerce_show_page_title', '__return_false' );
