@@ -11,7 +11,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-global $product, $woocommerce_loop;
+global $product, $woocommerce_loop, $ss_framework;
 
 // Store loop count we're currently on
 if ( empty( $woocommerce_loop['loop'] ) )
@@ -50,6 +50,8 @@ $classes = shoestrap_woo_post_extra_classes();
 		<div class="caption">
 			<h4 class="product-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 			<span hidden class="plain-price"><?php echo $product->get_price(); ?></span>
+			
+			<?php echo $ss_framework->open_row( 'div', null, 'caption', null ); ?>
 		<?php
 			/**
 			 * woocommerce_after_shop_loop_item_title hook
@@ -60,6 +62,7 @@ $classes = shoestrap_woo_post_extra_classes();
 			do_action( 'woocommerce_after_shop_loop_item_title' );
 		?>
 		<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
+			<?php echo $ss_framework->close_row( 'div' ); ?>
 		</div>
 	</div>
 </div>

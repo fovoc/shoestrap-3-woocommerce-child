@@ -48,7 +48,7 @@ function shoestrap_woo_post_extra_classes() {
 	// get the specified width ( narrow/normal/wide )
 	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
 	
-	$classes[] = '';
+	$classes[] = 'hentry';
 	// calculate the css classes based on the above selection
 	if ( $mode == 'narrow' ) :
 		$classes[] = $ss_framework->column_classes( array( 'mobile' => 12, 'tablet' => 6, 'medium' => 4, 'large' => 3 ), null );
