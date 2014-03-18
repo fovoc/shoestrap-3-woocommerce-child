@@ -549,3 +549,21 @@ div.products {
 		}
 	}
 }
+
+.widget_products {
+	ul.product_list_widget {
+		list-style-type: none;
+		list-style: none;
+		padding-left: 0;
+
+		li {
+			padding: 0.2em 0;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+			font-sie: 0.6em;
+			a {
+				font-size: 1.3em;
+				text-decoration: none;
+			}
+		}
+	}
+}
