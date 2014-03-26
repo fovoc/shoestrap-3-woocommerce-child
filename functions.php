@@ -1,7 +1,7 @@
 <?php
 
-if ( !defined( 'REDUX_OPT_NAME' ) )
-	define( 'REDUX_OPT_NAME', 'shoestrap' );
+if ( !defined( 'SHOESTRAP_OPT_NAME' ) )
+	define( 'SHOESTRAP_OPT_NAME', 'shoestrap' );
 
 if ( class_exists( 'WooCommerce' ) ) {
 	// Add support for WooCommerce
@@ -241,7 +241,7 @@ function shoestrap_woo_child_core_updater() {
 	$args = array(
 		'remote_api_url' => 'http://shoestrap.org',
 		'item_name'      => 'Shoestrap 3 WooCommerce Child',
-		'version'        => '1.0',
+		'version'        => '1.1',
 		'author'         => 'aristath, fovoc',
 		'mode'           => 'theme',
 		'title'          => 'Shoestrap 3 WooCommerce Child Theme License',
