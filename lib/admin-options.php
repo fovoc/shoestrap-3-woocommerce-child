@@ -9,7 +9,7 @@ function shoestrap_module_woo_options( $sections ) {
 
 	$section = array(
 		'title' => __( 'WooCommerce', 'shoestrap_woo' ),
-		'icon'  => 'el-icon-shopping-cart icon-large'
+		'icon'  => 'el-icon-shopping-cart'
 	);
 
 	$fields[] = array( 
