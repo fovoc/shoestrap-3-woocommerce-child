@@ -1,15 +1,14 @@
 <?php
 
-
 /*
- * Gridder Addon options
+ * WooCommerce options
  */
 if ( !function_exists( 'shoestrap_module_woo_options' ) ) :
 function shoestrap_module_woo_options( $sections ) {
 
 	$section = array(
 		'title' => __( 'WooCommerce', 'shoestrap_woo' ),
-		'icon'  => 'el-icon-shopping-cart icon-large'
+		'icon'  => 'el-icon-shopping-cart'
 	);
 
 	$fields[] = array( 
@@ -109,4 +108,4 @@ function shoestrap_module_woo_options( $sections ) {
 	return $sections;
 }
 endif;
-add_filter( 'redux/options/' . REDUX_OPT_NAME . '/sections', 'shoestrap_module_woo_options', 16 );
+add_filter( 'redux/options/' . SHOESTRAP_OPT_NAME . '/sections', 'shoestrap_module_woo_options', 16 );
