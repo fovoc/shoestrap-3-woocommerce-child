@@ -129,6 +129,16 @@ table.shop_table.cart {
 
 div.products {
 	div.product.hentry {
+		div.thumbnail {
+			.caption {
+				padding: 1em;
+			}
+			.row.caption {
+				margin-left: 0;
+				margin-right: 0;
+				padding: 0;
+			}
+		}
 		&:hover {
 			div.thumbnail {
 				box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.5);
