@@ -72,7 +72,7 @@ global $woocommerce, $product, $post, $ss_framework;
 						</select>
 					</div> <?php
 							if ( sizeof($attributes) == $loop )
-								echo '<div class="'. echo $ss_framework->column_classes( array( 'mobile' => 2, 'tablet' => 1 ), null ); .'"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="'. echo $ss_framework->button_classes( 'danger', 'medium', null, null ); .'"><i class="el-icon-remove"></i></button></a></div>';
+								echo '<div class="'. $ss_framework->column_classes( array( 'mobile' => 2, 'tablet' => 1 ), null ) .'"><a class="reset_variations pull-right" href="#reset"><span class="sr-only">' . __( 'Clear selection', 'woocommerce' ) . '</span><button class="' . $ss_framework->button_classes( 'danger', 'medium', null, null ) .'"><i class="el-icon-remove"></i></button></a></div>';
 						?>
 		        <?php endforeach;?>
 			<?php echo $ss_framework->close_row( 'div' ); ?>
