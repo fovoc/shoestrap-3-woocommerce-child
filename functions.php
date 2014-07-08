@@ -97,7 +97,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 		$masonry 				= shoestrap_getVariable( 'shoestrap_woo_masorny' );
 		$sort_filters		= shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' );
 
-		if ( is_woocommerce() ) {
+		if ( is_woocommerce() && is_shop() && !is_product() ) {
 			// Register && Enqueue Isotope
 			wp_register_script('shoestrap_isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.min.js', false, null, true);
 			wp_enqueue_script('shoestrap_isotope');
@@ -138,17 +138,19 @@ if ( class_exists( 'WooCommerce' ) ) {
 	 * Load our custom scripts
 	 */
 	function shoestrap_load_scripts() {
-		wp_enqueue_script('shoestrap_script', get_stylesheet_directory_uri() . '/assets/js/script.js');
-		wp_localize_script('shoestrap_script', 'shoestrap_script_vars', array(
-				'is_woo'          => is_woocommerce(),
-				'masonry' 				=> shoestrap_getVariable( 'shoestrap_woo_masorny' ),
-				'infinitescroll' 	=> shoestrap_getVariable( 'shoestrap_woo_infinite_scroll' ),
-				'sort_filters'		=> shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ),
-				'no_filters'			=>  __( 'No filters', 'shoestrap_edd' ),
-				'msgText' 				=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_loading_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_loading_text' ) ) . "<span></div></div>",
-				'finishedMsg' 		=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_end_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_end_text' ) ) . "<span></div></div>"
-			)
-		);
+		if ( is_woocommerce() && is_shop() && !is_product() ) {
+		    wp_enqueue_script('shoestrap_script', get_stylesheet_directory_uri() . '/assets/js/script.js');
+		    wp_localize_script('shoestrap_script', 'shoestrap_script_vars', array(
+			    	'is_woo'          => is_woocommerce(),
+				    'masonry' 				=> shoestrap_getVariable( 'shoestrap_woo_masorny' ),
+				    'infinitescroll' 	=> shoestrap_getVariable( 'shoestrap_woo_infinite_scroll' ),
+				    'sort_filters'		=> shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' ),
+				    'no_filters'			=>  __( 'No filters', 'shoestrap_edd' ),
+				    'msgText' 				=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_loading_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_loading_text' ) ) . "<span></div></div>",
+				    'finishedMsg' 		=> "<div class='progress progress-striped active' style='width:220px;margin-bottom:0px;'><div class='progress-bar progress-bar-" . __( shoestrap_getVariable( 'shoestrap_woo_end_color' ) ) . "' style='width: 100%;'><span class='edd_bar_text'>" . __( shoestrap_getVariable( 'shoestrap_woo_end_text' ) ) . "<span></div></div>"
+			    )
+		    );
+		}
 	}
 	add_action('wp_enqueue_scripts', 'shoestrap_load_scripts', 99);
 
