@@ -11,20 +11,22 @@ $j(window).load(function(){
 		if ( shoestrap_script_vars.masonry != 1 )
 			$j(".products .product").equalHeights();
 
-		$container.isotope({
-			layoutMode: "sloppyMasonry",
-			itemSelector: ".products .product",
-			animationEngine: "best-available",
-			// get sort data-filter
-			getSortData : {
-				name : function ( $elem ) {
-					return $elem.find(".product-title a").text();
-				},
-				price : function ( $elem ) {
-					return parseInt( $elem.find(".plain-price").text(), 10 );
-				}
-			}
-		});
+  	if ( shoestrap_script_vars.sort_filters == 1 || shoestrap_script_vars.masonry == 1 ) {
+    	$container.isotope({
+  			layoutMode: "sloppyMasonry",
+  			itemSelector: ".products .product",
+  			animationEngine: "best-available",
+  			// get sort data-filter
+  			getSortData : {
+  				name : function ( $elem ) {
+  					return $elem.find(".product-title a").text();
+  				},
+  				price : function ( $elem ) {
+  					return parseInt( $elem.find(".plain-price").text(), 10 );
+  				}
+  			}
+  		});
+    }
 
 		// Multi-select filters
 		if ( shoestrap_script_vars.sort_filters == 1 ) {

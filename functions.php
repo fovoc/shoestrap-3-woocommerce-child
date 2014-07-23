@@ -98,22 +98,24 @@ if ( class_exists( 'WooCommerce' ) ) {
 		$sort_filters		= shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' );
 
 		if ( is_woocommerce() && is_shop() && !is_product() ) {
-			// Register && Enqueue Isotope
-			wp_register_script('shoestrap_isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.min.js', false, null, true);
-			wp_enqueue_script('shoestrap_isotope');
-			// Register && Enqueue Isotope-Sloppy-Masonry
-			wp_register_script('shoestrap_isotope_sloppy_masonry', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.sloppy-masonry.min.js', false, null, true);
-			wp_enqueue_script('shoestrap_isotope_sloppy_masonry');
-			
-			if ( $sort_filters == 1 ) {
-			// Register && Enqueue Multiselect
-				if ( $ss_framework->defines['shortname'] == 'bootstrap' ) {
-					wp_register_script('shoestrap_bootstrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
-					wp_enqueue_script('shoestrap_bootstrap_multiselect');
-				}
-				elseif ( $ss_framework->defines['shortname'] == 'foundation' ) {
-					wp_register_script('shoestrap_foundation_multiselect', get_stylesheet_directory_uri() . '/assets/js/foundation-multiselect.js', false, null, true);
-					wp_enqueue_script('shoestrap_foundation_multiselect');
+			if ( $sort_filters == 1 || $masonry == 1 ) {	
+				// Register && Enqueue Isotope
+				wp_register_script('shoestrap_isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.min.js', false, null, true);
+				wp_enqueue_script('shoestrap_isotope');
+				// Register && Enqueue Isotope-Sloppy-Masonry
+				wp_register_script('shoestrap_isotope_sloppy_masonry', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.sloppy-masonry.min.js', false, null, true);
+				wp_enqueue_script('shoestrap_isotope_sloppy_masonry');
+				
+				if ( $sort_filters == 1 ) {
+				// Register && Enqueue Multiselect
+					if ( $ss_framework->defines['shortname'] == 'bootstrap' ) {
+						wp_register_script('shoestrap_bootstrap_multiselect', get_stylesheet_directory_uri() . '/assets/js/bootstrap-multiselect.js', false, null, true);
+						wp_enqueue_script('shoestrap_bootstrap_multiselect');
+					}
+					elseif ( $ss_framework->defines['shortname'] == 'foundation' ) {
+						wp_register_script('shoestrap_foundation_multiselect', get_stylesheet_directory_uri() . '/assets/js/foundation-multiselect.js', false, null, true);
+						wp_enqueue_script('shoestrap_foundation_multiselect');
+					}
 				}
 			}
 
