@@ -46,8 +46,25 @@ if ( ! function_exists( 'ss_updater_settings_page' ) ) {
 				_e( 'No products require a license key.' );
 			}
 
-			// Include our custom licensing fields for all our plugins & themes.
-			do_action( 'shoestrap_updater_form_content' );
+			?>
+
+			<table class="wp-list-table widefat plugins">
+				<thead>
+					<tr>
+						<th scope="col" id="name" class="manage-column column-name" style="">Product name</th>
+						<th scope="col" id="license" class="manage-column column-license" style="">License</th>
+						<th scope="col" id="save" class="manage-column column-save" style=""></th>
+					</tr>
+				</thead>
+				<tbody id="the-list">
+					<?php
+						// Include our custom licensing fields for all our plugins & themes.
+						do_action( 'shoestrap_updater_form_content' );
+					?>
+				</tbody>
+			</table>
+
+			<?php
 
 			// Display the addons section.
 			do_action( 'shoestrap_installer_form_content' );
@@ -66,46 +83,34 @@ if ( ! function_exists( 'shoestrap_woo_theme_license_form' ) ) {
 		$license 	= get_option( 'shoestrap_woo_theme_license_key' );
 		$status 	= get_option( 'shoestrap_woo_theme_license_key_status' );
 		?>
+		<tr id="shoestrap-woo" class="<?php echo $status; ?>">
+			<form method="post" action="options.php">
+				<?php settings_fields( 'shoestrap_woo_theme_license' ); ?>
+				<td class="plugin-title">
+					<strong><?php _e( 'Shoestrap 3 WooCommerce Child', 'shoestrap-woo' ); ?></strong>
+					<div class="row-actions visible">
+						<?php wp_nonce_field( 'shoestrap_woo_nonce', 'shoestrap_woo_nonce' ); ?>
 
-		<div class="postbox" id="shoestrap-woo-license">
-			<h3 class="hndle" style="padding: 8px 12px;"><span><?php _e( 'Shoestrap 3 WooCommerce Child Theme License', 'shoestrap_woo' ); ?></span></h3>
-
-			<div class="inside">
-
-				<form method="post" action="options.php">
-					<?php settings_fields( 'shoestrap_woo_theme_license' ); ?>
-
-					<table class="form-table">
-						<tbody>
-							<tr valign="top">
-								<th scope="row" valign="top"><?php _e( 'License Key', 'shoestrap_woo' ); ?></th>
-								<td>
-									<input id="shoestrap_woo_theme_license_key" name="shoestrap_woo_theme_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" />
-									<label class="description" for="shoestrap_woo_theme_license_key"><?php _e( 'Enter your license key', 'shoestrap_woo' ); ?></label>
-								</td>
-							</tr>
-
-							<?php if ( false !== $license ) : ?>
-								<tr valign="top">
-									<th scope="row" valign="top"><?php _e( 'Activate License', 'shoestrap_woo' ); ?></th>
-									<td>
-										<?php if ( $status !== false && $status == 'valid' ) : ?>
-											<span style="color:green;"><?php _e( 'active', 'shoestrap_woo' ); ?></span>
-											<?php wp_nonce_field( 'shoestrap_woo_nonce', 'shoestrap_woo_nonce' ); ?>
-											<input type="submit" class="button-secondary" name="shoestrap_woo_theme_license_deactivate" value="<?php _e( 'Deactivate License', 'shoestrap_woo' ); ?>"/>
-										<?php else : ?>
-											<?php wp_nonce_field( 'shoestrap_woo_nonce', 'shoestrap_woo_nonce' ); ?>
-											<input type="submit" class="button-secondary" name="shoestrap_woo_theme_license_activate" value="<?php _e( 'Activate License', 'shoestrap_woo' ); ?>"/>
-										<?php endif; ?>
-									</td>
-								</tr>
+						<?php if ( false !== $license ) : ?>
+							<?php if ( $status !== false && $status == 'valid' ) : ?>
+								<input type="submit" class="button-secondary" name="shoestrap_woo_theme_license_deactivate" value="<?php _e( 'Deactivate License', 'shoestrap_woo' ); ?>"/>
+							<?php else : ?>
+								<input type="submit" class="button-secondary" name="shoestrap_woo_theme_license_activate" value="<?php _e( 'Activate License', 'shoestrap_woo' ); ?>"/>
 							<?php endif; ?>
-						</tbody>
-					</table>
+						<?php endif; ?>
+					</div>
+				</td>
+
+				<td>
+					<input id="shoestrap_woo_theme_license_key" name="shoestrap_woo_theme_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" />
+					<label class="description" for="shoestrap_woo_theme_license_key"><?php _e( 'Enter your license key', 'shoestrap_woo' ); ?></label>
+				</td>
+
+				<td>
 					<?php submit_button(); ?>
-				</form>
-			</div>
-		</div>
+				</td>
+			</form>
+		</tr>
 		<?php
 	}
 }
