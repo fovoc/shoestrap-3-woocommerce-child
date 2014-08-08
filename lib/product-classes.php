@@ -17,8 +17,6 @@ add_action( 'wp', 'shoestrap_woo_conditional_post_classes' );
 if ( !function_exists( 'shoestrap_woo_post_classes' ) ) :
 function shoestrap_woo_post_classes( $classes ) {
 	global $post;
-	// get the specified width ( narrow/normal/wide )
-	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
 	
 	// Remove unnecessary classes
 	foreach (range(0, 12) as $number) :
@@ -43,10 +41,10 @@ endif;
 
 if ( !function_exists( 'shoestrap_woo_post_extra_classes' ) ) :
 function shoestrap_woo_post_extra_classes() {
-	global $post, $ss_framework;
+	global $post, $ss_framework, $ss_settings;
 
 	// get the specified width ( narrow/normal/wide )
-	$mode = shoestrap_getVariable( 'shoestrap_woo_posts_columns', 'normal' );
+	$mode = $ss_settings['shoestrap_woo_posts_columns'];
 	
 	$classes[] = 'hentry';
 	// calculate the css classes based on the above selection
