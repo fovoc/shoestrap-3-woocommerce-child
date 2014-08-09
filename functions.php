@@ -238,6 +238,18 @@ if ( class_exists( 'WooCommerce' ) ) {
 			return apply_filters( 'get_product_search_form', $form );
 		}
 	}
+
+	/*
+	* Social Share Buttons in Single Products
+	*/
+	function shoestrap_woo_share_single_product() {
+		global $ss_settings, $ss_social;
+		if ( $ss_settings['shoestrap_woo_share_single_product'] == 1 ) {
+			add_action( 'woocommerce_share',   array( $ss_social, 'social_sharing' ), 5 );
+		}
+	}
+	add_action( 'wp', 'shoestrap_woo_share_single_product' );
+
 }
 
 require_once dirname( __FILE__ ) . '/lib/updater/updater.php';

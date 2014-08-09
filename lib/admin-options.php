@@ -100,6 +100,14 @@ function shoestrap_module_woo_options( $sections ) {
 		'type'      => 'switch'
 	);
 
+	$fields[] = array( 
+		'title'     => __( 'Enable Social Sharing in Single Products', 'shoestrap_woo' ),
+		'desc'      => __( 'Default: Off. You have to select at leat one Social Share Network in order to display the share buttonset.', 'shoestrap_woo' ),
+		'id'        => 'shoestrap_woo_share_single_product',
+		'default'   => 0,
+		'type'      => 'switch'
+	);
+
 	$section['fields'] = $fields;
 
 	$section = apply_filters( 'shoestrap_module_woo_options_modifier', $section );
