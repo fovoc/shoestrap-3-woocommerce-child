@@ -15,7 +15,7 @@ global $woocommerce, $wp_query, $ss_framework;
 if ( 1 == $wp_query->found_posts || ! woocommerce_products_will_display() )
 	return;
 ?>
-<form class="woocommerce-ordering pull-left" method="get">
+<form class="woocommerce-ordering pull-left form-group" method="get">
 	<select name="orderby" class="orderby <?php echo $ss_framework->form_input_classes(); ?>">
 		<?php
 			$catalog_orderby = apply_filters( 'woocommerce_catalog_orderby', array(

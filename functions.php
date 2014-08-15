@@ -245,6 +245,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 	function shoestrap_woo_share_single_product() {
 		global $ss_settings, $ss_social;
 		if ( $ss_settings['shoestrap_woo_share_single_product'] == 1 ) {
+			add_action( 'woocommerce_share',   function(){ echo '<hr/>'; } , 4 );
 			add_action( 'woocommerce_share',   array( $ss_social, 'social_sharing' ), 5 );
 		}
 	}
