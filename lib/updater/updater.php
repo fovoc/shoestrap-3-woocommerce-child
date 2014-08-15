@@ -11,7 +11,7 @@ function shoestrap_woo_theme_theme_updater() {
 
 	$edd_updater = new EDD_SL_Theme_Updater( array(
 			'remote_api_url' 	=> 'http://shoestrap.org',
-			'version' 			=> '1.3',
+			'version' 			=> '1.4',
 			'license' 			=> $license,
 			'item_name' 		=> 'Shoestrap 3 WooCommerce Child',
 			'author'			=> 'aristath, fovoc'
