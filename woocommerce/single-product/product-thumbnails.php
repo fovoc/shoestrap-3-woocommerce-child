@@ -18,7 +18,7 @@ if ( $total > 0 ) : ?>
 		<ul class="slides">
 			<?php if ( has_post_thumbnail() ) : ?>
 				<?php $src = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'thumbnail', false, '' ); ?>
-				<li><a href="<?php echo $src[0]; ?>" class="zoom" rel="thumbnails"><?php the_post_thumbnail('thumbnail'); ?></a></li>
+				<li><a href="<?php echo $src[0]; ?>" rel="thumbnails"><?php the_post_thumbnail('thumbnail'); ?></a></li>
 			<?php endif;
 
 			$loop = 0;
