@@ -97,7 +97,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 		$masonry 				= shoestrap_getVariable( 'shoestrap_woo_masorny' );
 		$sort_filters		= shoestrap_getVariable( 'shoestrap_woo_isotope_sort_filter' );
 
-		if ( is_woocommerce() && is_shop() && !is_product() ) {
+		if ( is_woocommerce() || is_shop() && !is_product() ) {
 			if ( $sort_filters == 1 || $masonry == 1 ) {	
 				// Register && Enqueue Isotope
 				wp_register_script('shoestrap_isotope', get_stylesheet_directory_uri() . '/assets/js/jquery.isotope.min.js', false, null, true);
@@ -140,7 +140,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 	 * Load our custom scripts
 	 */
 	function shoestrap_load_scripts() {
-		if ( is_woocommerce() && is_shop() && !is_product() ) {
+		if ( is_woocommerce() || is_shop() && !is_product() ) {
 		    wp_enqueue_script('shoestrap_script', get_stylesheet_directory_uri() . '/assets/js/script.js');
 		    wp_localize_script('shoestrap_script', 'shoestrap_script_vars', array(
 			    	'is_woo'          => is_woocommerce(),
