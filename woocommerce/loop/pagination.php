@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     2.0.0
+ * @version     2.2.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -17,15 +17,15 @@ if ( $wp_query->max_num_pages <= 1 )
 <nav class="woocommerce-pagination text-center">
 	<?php
 		echo shoestrap_paginate_links( apply_filters( 'woocommerce_pagination_args', array(
-			'base' 			=> str_replace( 999999999, '%#%', get_pagenum_link( 999999999 ) ),
+			'base' 			=> esc_url( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
 			'format' 		=> '',
-			'current' 	=> max( 1, get_query_var('paged') ),
+			'current' 		=> max( 1, get_query_var('paged') ),
 			'total' 		=> $wp_query->max_num_pages,
-			'prev_text' => '<i class="el-icon-chevron-left"></i>',
-			'next_text' => '<i class="el-icon-chevron-right"></i>',
+			'prev_text' 	=> '<i class="el-icon-chevron-left"></i>',
+			'next_text' 	=> '<i class="el-icon-chevron-right"></i>',
 			'type'			=> 'list',
-			'end_size'	=> 3,
-			'mid_size'	=> 3
+			'end_size'		=> 3,
+			'mid_size'		=> 3
 		) ) );
 	?>
 </nav>

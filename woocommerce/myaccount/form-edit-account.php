@@ -4,7 +4,7 @@
  *
  * @author 		WooThemes
  * @package 	WooCommerce/Templates
- * @version     1.6.4
+ * @version     2.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -15,6 +15,8 @@ global $woocommerce, $ss_framework;
 <?php wc_print_notices(); ?>
 
 <form action="" method="post">
+
+	<?php do_action( 'woocommerce_edit_account_form_start' ); ?>
 
 	<p class="form-row form-row-first form-group">
 		<label for="account_first_name"><?php _e( 'First name', 'woocommerce' ); ?> <span class="required">*</span></label>
@@ -38,8 +40,12 @@ global $woocommerce, $ss_framework;
 	</p>
 	<?php echo $ss_framework->clearfix(); ?>
 
+	<?php do_action( 'woocommerce_edit_account_form' ); ?>
+
 	<p><input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, null ); ?>" name="save_account_details" value="<?php _e( 'Save changes', 'woocommerce' ); ?>" /></p>
 
 	<?php wp_nonce_field( 'save_account_details' ); ?>
 	<input type="hidden" name="action" value="save_account_details" />
+
+	<?php do_action( 'woocommerce_edit_account_form_end' ); ?>
 </form>

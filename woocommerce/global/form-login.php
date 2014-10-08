@@ -1,4 +1,11 @@
 <?php
+/**
+ * Login form
+ *
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     2.1.0
+ */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -11,6 +18,7 @@ endif; ?>
 <?php echo $ss_framework->open_row( 'div', null, null, null ); ?>
 	<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 12 ), null, null ); ?>
 		<form method="post" class="login form" <?php if ( $hidden ) echo 'style="display:none;"'; ?>>
+			<?php do_action( 'woocommerce_login_form_start' ); ?>
 			<?php if ( $message ) : ?>
 				<?php echo wpautop( wptexturize( $message ) ); ?>
 			<?php endif; ?>
@@ -30,11 +38,15 @@ endif; ?>
 				<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 6 ), null, null ); ?>
 					<input type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'block', null, null ); ?>" name="login" value="<?php _e( 'Login', 'woocommerce' ); ?>" />
 					<input type="hidden" name="redirect" value="<?php echo esc_url( $redirect ) ?>" />
+					<label for="rememberme" class="inline">
+						<input name="rememberme" type="checkbox" id="rememberme" value="forever" /> <?php _e( 'Remember me', 'woocommerce' ); ?>
+					</label>
 				<?php echo $ss_framework->close_col( 'div' ); ?>
 				<?php echo $ss_framework->open_col( 'div', array( 'mobile' => 6 ), null, null ); ?>
 					<a class="<?php echo $ss_framework->button_classes( 'warning', 'block', null, 'lost_password' ); ?>" href="<?php echo esc_url( wp_lostpassword_url( home_url() ) ); ?>"><?php _e( 'Lost Password?', 'woocommerce' ); ?></a>
 				<?php echo $ss_framework->close_col( 'div' ); ?>
 			</div>
+			<?php do_action( 'woocommerce_login_form_end' ); ?>
 		</form>
 	<?php echo $ss_framework->close_col( 'div' ); ?>
 <?php echo $ss_framework->close_row( 'div' ); ?>
