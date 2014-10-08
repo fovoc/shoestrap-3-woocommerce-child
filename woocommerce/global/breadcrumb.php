@@ -7,7 +7,7 @@
  * @version     3.2.6
  * @see         woocommerce_breadcrumb()
  */
-/*
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -29,7 +29,7 @@ if ( ( ! is_front_page() && ! ( is_post_type_archive() && get_option( 'page_on_f
 	echo $wrap_before;
 
 	if ( ! empty( $home ) ) {
-		echo $before . '<a class="home" href="' . apply_filters( 'woocommerce_breadcrumb_home_url', home_url() ) . '">' . $home . '</a>' . $after . $delimiter;
+		echo $before . '<a class="home" href="' . apply_filters( 'woocommerce_breadcrumb_home_url', home_url() ) . '"><i class="el-icon-home"></i></a>' . $after . $delimiter;
 	}
 
 	if ( is_home() ) {
@@ -219,4 +219,3 @@ if ( ( ! is_front_page() && ! ( is_post_type_archive() && get_option( 'page_on_f
 	echo $wrap_after;
 
 }
-*/

@@ -251,6 +251,32 @@ if ( class_exists( 'WooCommerce' ) ) {
 	}
 	add_action( 'wp', 'shoestrap_woo_share_single_product' );
 
+	/**
+	 * Output the WooCommerce Breadcrumb
+	 *
+	 * @access public
+	 * @return void
+	 */
+	function woocommerce_breadcrumb( $args = array() ) {
+
+		$defaults = apply_filters( 'woocommerce_breadcrumb_defaults', array(
+			'delimiter'   => ' &#47; ',
+			'wrap_before' => '<div class="breadTrail container"><nav class="breadcrumb" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '>',
+			'wrap_after'  => '</nav></div>',
+			'before'      => '',
+			'after'       => '',
+			'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+		) );
+
+		$args = wp_parse_args( $args, $defaults );
+
+		wc_get_template( 'global/breadcrumb.php', $args );
+	}
+	// Remove Woo breadcrumbs from default area
+	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+	// Add Woo breadcrumbs where Shoestrap breadcrumbs are
+	add_action( 'shoestrap_pre_wrap', 'woocommerce_breadcrumb', 99 );
+
 }
 
 require_once dirname( __FILE__ ) . '/lib/updater/updater.php';
