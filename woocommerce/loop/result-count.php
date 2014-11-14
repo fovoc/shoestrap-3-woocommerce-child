@@ -24,7 +24,7 @@ $last     = min( $total, $wp_query->get( 'posts_per_page' ) * $paged );
 $content  = '';
 
 if ( 1 == $total ) {
-	$content = _e( 'Showing the single result', 'woocommerce' );
+	$content = __( 'Showing the single result', 'woocommerce' );
 } elseif ( $total <= $per_page || -1 == $per_page ) {
 	$content = __( 'Showing all '.$total.' results', 'woocommerce' );
 } else {
