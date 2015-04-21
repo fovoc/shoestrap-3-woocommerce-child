@@ -156,7 +156,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 						<input type="submit" class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?> <?php echo $ss_framework->button_classes( 'default', 'medium', null, null ); ?>" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
  						<input type="submit" class="<?php echo $ss_framework->column_classes( array( 'mobile' => 6 ), null ); ?> <?php echo $ss_framework->button_classes( 'primary', 'medium', null, 'checkout-button wc-forward' ); ?>" name="proceed" value="<?php _e( 'Proceed to Checkout', 'woocommerce' ); ?>" />
 					</div>
-					<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 					<hr>
 				<?php echo $ss_framework->close_col( 'div' ); ?>
 				<?php echo $ss_framework->clearfix(); ?>
@@ -179,8 +178,6 @@ do_action( 'woocommerce_before_cart' ); ?>
 <div class="cart-collaterals">
 
 	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
-
-	<?php woocommerce_cart_totals(); ?>
 
 	<?php woocommerce_shipping_calculator(); ?>
 
