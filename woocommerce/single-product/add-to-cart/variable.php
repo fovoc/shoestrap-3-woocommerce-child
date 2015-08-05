@@ -89,7 +89,7 @@ global $woocommerce, $product, $post, $ss_framework;
 			<div class="variations_button <?php echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>">
 				<?php woocommerce_quantity_input(); ?>
 			</div>
-			<button type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'large', null, 'single_add_to_cart_button'); echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>"><?php echo $product->single_add_to_cart_text(); ?></button>
+			<button type="submit" class="<?php echo $ss_framework->button_classes( 'primary', 'large', null, 'single_add_to_cart_button'); ?> <?php echo $ss_framework->column_classes( array( 'tablet' => 4 ), null ); ?>"><?php echo $product->single_add_to_cart_text(); ?></button>
 
 			<input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
 			<input type="hidden" name="product_id" value="<?php echo esc_attr( $post->ID ); ?>" />
